@@ -20,6 +20,30 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'age',
+        'gender',
+        'height',
+        'weight',
+        'wbc',
+        'rbc',
+        'hgb',
+        'hct',
+        'mcv',
+        'mch',
+        'mchc',
+        'plt',
+        'rdw_sd',
+        'rdw_cv',
+        'pdw',
+        'mpv',
+        'p_lcr',
+        'pct',
+        'neu',
+        'lym',
+        'mono',
+        'eos',
+        'baso',
+        'blood_recommendations',
     ];
 
     /**
@@ -44,4 +68,5 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
 }

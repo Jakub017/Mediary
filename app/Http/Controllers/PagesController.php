@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\Http;
 
 class PagesController extends Controller
 {
-    public function index() {
-        return view('index');
+    public function home() {
+        return view('home');
     }
 
     public function bloodTest(Request $request) {
