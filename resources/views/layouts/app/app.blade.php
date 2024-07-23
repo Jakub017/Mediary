@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,12 +17,10 @@
             rel="stylesheet"
         />
     </head>
-    <body class="max-h-screen">
-        <div class="min-h-screen w-full flex">
+    <body class="max-h-screen min-h-screen min-w-screen flex">
+        <div class="flex flex-grow">
             @include('partials.app.sidebar')
-            <div
-                class="flex w-[calc(100% - 256px)] justify-start flex-col h-full"
-            >
+            <div class="flex flex-col w-full h-full">
                 @include('partials.app.nav')
                 <div class="flex flex-col gap-6 p-6 w-full">
                     @yield('content')

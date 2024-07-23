@@ -25,6 +25,8 @@ Route::controller(PagesController::class)->group(function() {
 
 Route::controller(AppController::class)->group(function() {
     Route::get('/pulpit', 'dashboard')->name('dashboard');
+    Route::get('/profil-pacjenta', 'profile')->name('profile');
+    Route::post('/aktualizuj-dane', 'updateBasic')->name('update-basic');    
     Route::get('/badania-krwi', 'blood')->name('blood');
     Route::post('/wyslij-badania-krwi', 'bloodTest')->name('blood-test');
 });

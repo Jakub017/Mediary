@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('height')->nullable();
             $table->string('weight')->nullable();
             $table->string('gender')->nullable();
+            $table->date('birthday')->nullable();
             $table->string('age')->nullable();
             $table->string('wbc')->nullable();
             $table->string('rbc')->nullable();

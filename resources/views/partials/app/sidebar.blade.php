@@ -12,8 +12,8 @@
             >
 
             <a
-                href="{{ route('dashboard') }}"
-                class="w-full text-slate-900 flex p-3 rounded-md text-sm justify-start items-center gap-2 duration-200 hover:bg-blue-100"
+                href="{{ route('profile') }}"
+                class="w-full text-slate-900 flex p-3 rounded-md text-sm justify-start items-center gap-2 duration-200 hover:bg-blue-100 {{ request()->routeIs('profile') ? 'bg-blue-100 text-blue-600' : 'text-slate-900' }}"
             >
                 <i class="fa-solid fa-hospital-user text-base"></i> Profil
                 pacjenta</a
@@ -23,8 +23,8 @@
                 href="{{ route('dashboard') }}"
                 class="w-full text-slate-900 flex p-3 rounded-md text-sm justify-start items-center gap-2 duration-200 hover:bg-blue-100"
             >
-                <i class="fa-solid fa-user-doctor text-base"></i> Specjaliści</a
-            >
+                <i class="fa-solid fa-user-doctor text-base"></i> Specjaliści
+            </a>
 
             <a
                 href="{{ route('blood') }}"

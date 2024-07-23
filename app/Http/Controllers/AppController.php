@@ -7,6 +7,7 @@ use App\Models\Blood;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use Carbon\Carbon;
 
 class AppController extends Controller
 {
@@ -18,6 +19,24 @@ class AppController extends Controller
     public function blood() {
         $pageTitle = 'Badania krwi';
         return view('app.blood', compact('pageTitle'));
+    }
+
+    public function profile() {
+        $pageTitle = 'Profil pacjenta';
+        return view('app.profile', compact('pageTitle'));
+    }
+
+    public function updateBasic(Request $request) {
+        $data = $request->validate([
+            'gender' => '',
+            'weight' => 'numeric',
+            'height' => 'numeric',
+            'birthday' => 'date',
+        ]);
+
+        $data['age'] = Carbon::parse($data['birthday'])->age;
+        $user = User::find(Auth::user()->id);
+        $user->update($data);
     }
 
     public function bloodTest(Request $request) {
@@ -56,7 +75,7 @@ class AppController extends Controller
                 ],
                 [
                     'role' => 'user',
-                    'content' => 'Mam 23 lata, ważę 70kg i mam 173cm wzrostu. Moja płeć to male. Oto moje badania i parametry: '. json_encode($data) . '. Najpierw daj jeden akapit podsumowania (Samo podsumowanie musi miec dokładnie 40 słów, zacznij je od pogrubionego słowa "Podsumowanie".), a następnie w formie listy wypisz lekarzy specjalistów specjalistów (ich nazwy niech są pogrubione), do jakich mam się udac wraz z krótkim uzasadnieniem (kazde uzasadnienie minimium 30 słów równo). Nic więcej nie pisz oprócz tego o co cię proszę. Odpowiedź MUSI być w formie HTML. Odpowiedz ma byc w takiej dokladnie formie: <p><b>Podsumowanie</b>: Podsumowanie </p><br> <ul class="flex flex-col gap-2"><li><b>Lekarz n</b>: Uzasadnienie n</li> <li><b>Lekarz n+1</b>: Uzasadnienie n+1</li> <li><b>Lekarz n+2</b>: Uzasadnienie n+2</li> i tak dalej. Wypisz tyle lekarzy ile trzeba konkretnie dla mnie.</ul>. Nie dodawaj zadnych swoich styli.',
+                    'content' => 'Mam '. auth()->user()->age .' lata, ważę ' . auth()->user()->weight . 'i mam '. auth()->user()->height .'cm wzrostu. Moja płeć to '. auth()->user()->gender .'. Oto moje badania i parametry: '. json_encode($data) . '. Najpierw daj jeden akapit podsumowania (Samo podsumowanie musi miec dokładnie 40 słów, zacznij je od pogrubionego słowa "Podsumowanie".), a następnie w formie listy wypisz lekarzy specjalistów specjalistów (ich nazwy niech są pogrubione), do jakich mam się udac wraz z krótkim uzasadnieniem (kazde uzasadnienie minimium 30 słów równo). Nic więcej nie pisz oprócz tego o co cię proszę. Odpowiedź MUSI być w formie HTML. Odpowiedz ma byc w takiej dokladnie formie: <p><b>Podsumowanie</b>: Podsumowanie </p><br> <ul class="flex flex-col gap-2"><li><b>Lekarz n</b>: Uzasadnienie n</li> <li><b>Lekarz n+1</b>: Uzasadnienie n+1</li> <li><b>Lekarz n+2</b>: Uzasadnienie n+2</li> i tak dalej. Wypisz tyle lekarzy ile trzeba konkretnie dla mnie.</ul>. Nie dodawaj zadnych swoich styli.',
 
                 ]
             ]

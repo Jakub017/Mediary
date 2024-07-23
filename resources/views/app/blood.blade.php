@@ -3,14 +3,21 @@
 <div
     class="flex flex-col gap-6 w-full bg-white rounded-md border-[1px] border-slate-200 p-6 h-fit"
 >
-    <h2 class="text-lg font-medium text-black">Morfologia krwi</h2>
+    <div class="flex flex-col gap-2">
+        <h2 class="text-lg font-medium text-black">Morfologia krwi</h2>
+        <span class="text-xs text-gray-400 font-normal"
+            >Wirtualny specjalista bierze pod uwagę równiez dane z twojego
+            profilu pacjenta.</span
+        >
+    </div>
+
     <form
         action="{{ route('blood-test') }}"
         class="w-full flex flex-wrap gap-4"
         method="post"
     >
         @csrf @METHOD('POST')
-        <div class="flex flex-col gap-1 relative">
+        <div class="flex flex-col gap-1 text-sm">
             <label for="wbc"
                 >Leukocyty
                 <i
@@ -27,7 +34,7 @@
             />
         </div>
 
-        <div class="flex flex-col gap-1">
+        <div class="flex flex-col gap-1 text-sm">
             <label for="rbc"
                 >Erytrocyty
                 <i
@@ -44,7 +51,7 @@
             />
         </div>
 
-        <div class="flex flex-col gap-1">
+        <div class="flex flex-col gap-1 text-sm">
             <label for="hgb"
                 >Hemoglobina
                 <i
@@ -61,7 +68,7 @@
             />
         </div>
 
-        <div class="flex flex-col gap-1">
+        <div class="flex flex-col gap-1 text-sm">
             <label for="hct"
                 >Hematokryt
                 <i
@@ -78,7 +85,7 @@
             />
         </div>
 
-        <div class="flex flex-col gap-1">
+        <div class="flex flex-col gap-1 text-sm">
             <label for="mcv"
                 >MCV
                 <i
@@ -95,7 +102,7 @@
             />
         </div>
 
-        <div class="flex flex-col gap-1">
+        <div class="flex flex-col gap-1 text-sm">
             <label for="mch"
                 >MCH
                 <i
@@ -112,7 +119,7 @@
             />
         </div>
 
-        <div class="flex flex-col gap-1">
+        <div class="flex flex-col gap-1 text-sm">
             <label for="mchc"
                 >MCHC
                 <i
@@ -129,7 +136,7 @@
             />
         </div>
 
-        <div class="flex flex-col gap-1">
+        <div class="flex flex-col gap-1 text-sm">
             <label for="plt"
                 >Płytki krwi
                 <i
@@ -146,7 +153,7 @@
             />
         </div>
 
-        <div class="flex flex-col gap-1">
+        <div class="flex flex-col gap-1 text-sm">
             <label for="rdw_sd"
                 >RDW-SD
                 <i
@@ -163,7 +170,7 @@
             />
         </div>
 
-        <div class="flex flex-col gap-1">
+        <div class="flex flex-col gap-1 text-sm">
             <label for="rdw_cv"
                 >RDW-CV
                 <i
@@ -180,7 +187,7 @@
             />
         </div>
 
-        <div class="flex flex-col gap-1">
+        <div class="flex flex-col gap-1 text-sm">
             <label for="pdw"
                 >PDW
                 <i
@@ -197,7 +204,7 @@
             />
         </div>
 
-        <div class="flex flex-col gap-1">
+        <div class="flex flex-col gap-1 text-sm">
             <label for="mpv"
                 >MPV
                 <i
@@ -214,7 +221,7 @@
             />
         </div>
 
-        <div class="flex flex-col gap-1">
+        <div class="flex flex-col gap-1 text-sm">
             <label for="p_lcr"
                 >P-LCR
                 <i
@@ -231,7 +238,7 @@
             />
         </div>
 
-        <div class="flex flex-col gap-1">
+        <div class="flex flex-col gap-1 text-sm">
             <label for="pct"
                 >PCT
                 <i
@@ -248,7 +255,7 @@
             />
         </div>
 
-        <div class="flex flex-col gap-1">
+        <div class="flex flex-col gap-1 text-sm">
             <label for="neu"
                 >Neutrofile
                 <i
@@ -265,7 +272,7 @@
             />
         </div>
 
-        <div class="flex flex-col gap-1">
+        <div class="flex flex-col gap-1 text-sm">
             <label for="lym"
                 >Limfocyty
                 <i
@@ -282,7 +289,7 @@
             />
         </div>
 
-        <div class="flex flex-col gap-1">
+        <div class="flex flex-col gap-1 text-sm">
             <label for="mono"
                 >Monocyty
                 <i
@@ -299,7 +306,7 @@
             />
         </div>
 
-        <div class="flex flex-col gap-1">
+        <div class="flex flex-col gap-1 text-sm">
             <label for="eos"
                 >Eozynofile
                 <i
@@ -316,7 +323,7 @@
             />
         </div>
 
-        <div class="flex flex-col gap-1">
+        <div class="flex flex-col gap-1 text-sm">
             <label for="baso"
                 >Bazofile
                 <i
