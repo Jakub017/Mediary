@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\Diet;
 use App\Models\User;
-use App\Models\Blood;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
-use Carbon\Carbon;
 
 class AppController extends Controller
 {
@@ -24,6 +24,57 @@ class AppController extends Controller
     public function profile() {
         $pageTitle = 'Profil pacjenta';
         return view('app.profile', compact('pageTitle'));
+    }
+
+    public function diet() {
+        $pageTitle = 'Dieta';
+        $diets = Diet::where('user_id', Auth::id())->get();
+        return view('app.diet', compact('pageTitle', 'diets'));
+    }
+
+    public function createDiet(Request $request) {
+        ini_set('max_execution_time', 300);
+
+
+        $data = $request->validate([
+            'name' => 'required|max:255',
+            'kcal' => 'required',
+            'dishes_count' => 'required',
+            'like' => '',
+            'not_like' => '',
+        ]);
+
+        $data['user_id'] = Auth::id();
+
+        $apiKey = env('OPENAI_API_KEY');
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . $apiKey,
+            'Content-Type' => 'application/json',
+            ])->post('https://api.openai.com/v1/chat/completions', [
+            'model' => 'gpt-4o-mini',
+            'messages' => [
+                [
+                    'role' => 'system',
+                    'content' => 'Jesteś zaawansowanym i wykształconym dietetykiem, otrzymujesz parametry osoby oraz jej preferencje co do diety.'
+                ],
+                [
+                    'role' => 'user',
+                    'content' => 'Mam '. auth()->user()->age .' lata, ważę ' . auth()->user()->weight . 'i mam '. auth()->user()->height .'cm wzrostu. Moja płeć to '. auth()->user()->gender .'. Moje preferencje co do diety to: ilość posiłków: '. $data['dishes_count'] .', ilość kalorii: '. $data['kcal'] .'kcal, lubię jeść: '. $data['like'] .'. Nie lubię jeść i pomiń to w układaniu diety: '. $data['not_like'] .'. Odpowiedź ma być w formacie html (nie zawieraj na początku odpowiedzi ```html), w takiej formie:<ul class="list-disc pl-2"><li class="mt-2"><b>Dzień n: </b></li> <p>Posiłek n: treść posiłku</p><p>Posiłek n+1: treść posiłku</p></li></ul>. Dieta ma być rozpisana na 7 dni. Trzymaj się ściśle tego ile chcę zjeść oraz tego co nie lubię. Zaposuj przy posiłkach rozmiary porcji oraz ilość kalorii. Nie pisz nic więcej oprócz tej odpowiedzi.',
+
+                ]
+            ]
+        ]);
+
+        $data['content'] = $response->json()['choices'][0]['message']['content'];
+
+        Diet::create($data);
+
+        return redirect('/dieta');
+    }
+
+    public function deleteDiet(Diet $diet) {
+        $diet->delete();
+        return redirect('/dieta');
     }
 
     public function updateBasic(Request $request) {

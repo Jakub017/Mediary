@@ -32,7 +32,7 @@
     <div class="flex justify-center items-center gap-2">
         <img
             class="w-12 h-12 rounded-full"
-            src="https://ui-avatars.com/api/?name={{ auth()->user()->name }}&length=1&background=1860FC&color=FFFFFF"
+            src="https://ui-avatars.com/api/?name={{ auth()->user()->name }}&length=1&background=49AA39&color=FFFFFF"
             alt=""
         />
         <div class="flex flex-col">

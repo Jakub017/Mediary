@@ -5,14 +5,6 @@ use App\Http\Controllers\AppController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProfileController;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -24,11 +16,15 @@ Route::controller(PagesController::class)->group(function() {
 });
 
 Route::controller(AppController::class)->group(function() {
-    Route::get('/pulpit', 'dashboard')->name('dashboard');
-    Route::get('/profil-pacjenta', 'profile')->name('profile');
-    Route::post('/aktualizuj-dane', 'updateBasic')->name('update-basic');    
-    Route::get('/badania-krwi', 'blood')->name('blood');
-    Route::post('/wyslij-badania-krwi', 'bloodTest')->name('blood-test');
+    Route::get('/pulpit', 'dashboard')->middleware(['auth', 'verified'])->name('dashboard');
+    Route::get('/profil-pacjenta', 'profile')->middleware(['auth', 'verified'])->name('profile');
+    Route::get('/badania-krwi', 'blood')->middleware(['auth', 'verified'])->name('blood');
+    Route::get('/dieta', 'diet')->middleware(['auth', 'verified'])->name('diet');
+
+    Route::post('/aktualizuj-dane', 'updateBasic')->middleware(['auth', 'verified'])->name('update-basic');    
+    Route::post('/wyslij-badania-krwi', 'bloodTest')->middleware(['auth', 'verified'])->name('blood-test');
+    Route::post('/stworz-diete', 'createDiet')->middleware(['auth', 'verified'])->name('create-diet');
+    Route::delete('/usun-diete/{diet}', 'deleteDiet')->middleware(['auth', 'verified'])->name('delete-diet');
 });
 
 require __DIR__.'/auth.php';

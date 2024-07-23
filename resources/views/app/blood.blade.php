@@ -342,7 +342,7 @@
 
         <div class="w-full">
             <button
-                class="rounded-md bg-[#1860fc] text-white w-fit px-6 py-2 text-base"
+                class="rounded-md bg-[#49AA39] text-white w-fit px-6 py-2 text-base"
             >
                 Zapisz
             </button>
