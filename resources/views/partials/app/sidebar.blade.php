@@ -20,8 +20,8 @@
             >
 
             <a
-                href="{{ route('dashboard') }}"
-                class="w-full flex p-3 rounded-md text-sm justify-start items-center gap-2 duration-200 hover:bg-blue-100"
+                href="{{ route('doctors') }}"
+                class="w-full flex p-3 rounded-md text-sm justify-start items-center gap-2 duration-200 hover:bg-blue-100 {{ request()->routeIs('doctors') ? 'bg-blue-100 text-blue-600' : 'text-slate-900' }}"
             >
                 <i class="fa-solid fa-user-doctor text-base"></i> Specjaliści
             </a>

@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('weight')->nullable();
             $table->string('gender')->nullable();
             $table->date('birthday')->nullable();
+            $table->longText('diseases')->nullable();
+            $table->longText('location')->nullable();
             $table->string('age')->nullable();
             $table->string('wbc')->nullable();
             $table->string('rbc')->nullable();

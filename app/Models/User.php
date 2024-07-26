@@ -26,6 +26,7 @@ class User extends Authenticatable
         'gender',
         'height',
         'weight',
+        'location',
         'wbc',
         'rbc',
         'hgb',
@@ -46,6 +47,7 @@ class User extends Authenticatable
         'eos',
         'baso',
         'blood_recommendations',
+        'diseases',
     ];
 
     /**

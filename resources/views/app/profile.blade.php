@@ -23,6 +23,18 @@
                 <div
                     class="flex flex-col gap-1 w-full lg:w-[calc(33%-12px)] text-sm"
                 >
+                    <label for="location">Miejsce zamieszkania</label>
+                    <input
+                        type="text"
+                        name="location"
+                        placeholder="Np. Warszawa"
+                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                        value="{{ auth()->user()->location }}"
+                    />
+                </div>
+                <div
+                    class="flex flex-col gap-1 w-full lg:w-[calc(33%-12px)] text-sm"
+                >
                     <label for="birthday">Data urodzenia</label>
                     <input
                         type="date"
@@ -53,7 +65,9 @@
                         </option>
                     </select>
                 </div>
+            </div>
 
+            <div class="w-full flex flex-wrap gap-4">
                 <div
                     class="flex flex-col gap-1 w-full lg:w-[calc(33%-12px)] text-sm"
                 >
@@ -66,9 +80,6 @@
                         value="{{ auth()->user()->weight }}"
                     />
                 </div>
-            </div>
-
-            <div class="w-full flex flex-wrap gap-4">
                 <div
                     class="flex flex-col gap-1 w-full lg:w-[calc(33%-12px)] text-sm"
                 >
@@ -76,7 +87,7 @@
                     <input
                         type="number"
                         name="height"
-                        placeholder="Twoja waga"
+                        placeholder="Twój wzrost"
                         class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                         value="{{ auth()->user()->height }}"
                     />
@@ -99,7 +110,8 @@
 
             <div class="w-full">
                 <button
-                    class="rounded-md bg-blue-600 text-white w-fit px-6 py-2 text-base"
+                    type="submit"
+                    class="rounded-md bg-blue-600 text-white w-fit px-6 py-2 text-base duration-200 hover:bg-blue-700"
                 >
                     Zapisz
                 </button>
@@ -174,7 +186,7 @@
 
             <div class="w-full flex flex-wrap gap-4">
                 <button
-                    class="rounded-md bg-blue-600 text-white w-fit px-6 py-2 text-base"
+                    class="rounded-md bg-blue-600 text-white w-fit px-6 py-2 text-base duration-200 hover:bg-blue-700"
                 >
                     Dodaj
                 </button>

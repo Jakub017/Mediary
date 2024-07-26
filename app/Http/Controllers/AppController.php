@@ -32,6 +32,11 @@ class AppController extends Controller
         return view('app.diet', compact('pageTitle', 'diets'));
     }
 
+    public function doctors() {
+        $pageTitle = 'Specjaliści';
+        return view('app.doctors', compact('pageTitle'));
+    }
+
     public function createDiet(Request $request) {
 
         $data = $request->validate([
@@ -60,7 +65,7 @@ class AppController extends Controller
                 [
                     'role' => 'user',
                     'content' => 'Mam ' . auth()->user()->age . ' lat, ważę ' . auth()->user()->weight . ' kg i mam ' . auth()->user()->height . ' cm wzrostu. Moja płeć to ' . auth()->user()->gender . '. 
-Typ diety, który masz mi ułożyć to: ' . $data['diet_type'] . '. 
+Typ diety, który masz mi ułożyć to: ' . $data['diet_type'] . ' Moje stwierdzone choroby to: '. auth()->user()->diseases .'. 
 Moje preferencje co do diety to: ilość posiłków: ' . $data['meals_count'] . ', ilość kalorii: ' . $data['diet_kcal'] . ' kcal, 
 lubię jeść: ' . $data['diet_like'] . '. 
 Nie lubię jeść i pomiń to w układaniu diety: ' . $data['diet_not_like'] . '. 
@@ -126,6 +131,8 @@ Upewnij się, że składniki są zróżnicowane i dobrze zbilansowane w ciągu t
             'weight' => 'numeric',
             'height' => 'numeric',
             'birthday' => 'date',
+            'diseases' => 'string',
+            'location' => 'string',
         ]);
 
         $data['age'] = Carbon::parse($data['birthday'])->age;

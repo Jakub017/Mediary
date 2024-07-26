@@ -144,7 +144,7 @@
             </div>
             <div class="w-full">
                 <button
-                    class="rounded-md bg-blue-600 text-white w-fit px-6 py-2 text-base"
+                    class="rounded-md bg-blue-600 text-white w-fit px-6 py-2 text-base duration-200 hover:bg-blue-700"
                 >
                     Stwórz
                 </button>
@@ -228,7 +228,7 @@
 
                 <div class="flex flex-wrap gap-2">
                     <button
-                        class="show-diet rounded-md bg-blue-600 text-white px-6 py-2 text-base w-28 duration-200 hover:bg-[#2E8B56]"
+                        class="show-diet rounded-md bg-blue-600 text-white px-6 py-2 text-base w-28 duration-200 hover:bg-blue-700"
                     >
                         Zobacz
                     </button>
