@@ -17,8 +17,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('kcal');
             $table->string('dishes_count');
+            $table->string('type');
             $table->string('like')->nullable();
             $table->string('not_like')->nullable();
+            $table->string('other_notes')->nullable();
             $table->longText('content');
             $table->timestamps();
         });

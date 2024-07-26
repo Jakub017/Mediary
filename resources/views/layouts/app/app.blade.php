@@ -18,18 +18,18 @@
         />
     </head>
     <body class="max-h-screen min-h-screen min-w-screen flex">
+        @include('sweetalert::alert')
         <div class="flex flex-grow">
             @include('partials.app.sidebar')
             <div class="flex flex-col w-full h-full">
                 @include('partials.app.nav')
-                <div class="flex flex-col gap-6 p-6 w-full">
-                    @yield('content')
-                </div>
+                <div class="p-6 w-full">@yield('content')</div>
             </div>
         </div>
         <!-- Development -->
         <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
         <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         @yield('scripts')
     </body>
 </html>

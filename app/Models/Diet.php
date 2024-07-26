@@ -14,6 +14,8 @@ class Diet extends Model
         'kcal',
         'dishes_count',
         'like',
+        'type', 
+        'other_notes',
         'not_like',
         'content',
         'user_id',
