@@ -10,13 +10,13 @@ class Diet extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'kcal',
-        'dishes_count',
-        'like',
-        'type', 
-        'other_notes',
-        'not_like',
+        'diet_name',
+        'diet_kcal',
+        'meals_count',
+        'diet_like',
+        'diet_type', 
+        'diet_other_notes',
+        'diet_not_like',
         'content',
         'user_id',
     ];

@@ -35,13 +35,13 @@ class AppController extends Controller
     public function createDiet(Request $request) {
 
         $data = $request->validate([
-            'name' => 'required|max:255',
-            'kcal' => 'required',
-            'dishes_count' => 'required',
-            'type' => 'required',
-            'other_notes' => '',
-            'like' => '',
-            'not_like' => '',
+            'diet_name' => 'required|max:64',
+            'diet_kcal' => 'required',
+            'meals_count' => 'required',
+            'diet_type' => 'required',
+            'diet_other_notes' => '',
+            'diet_like' => '',
+            'diet_not_like' => '',
         ]);
 
         $data['user_id'] = Auth::id();
@@ -60,11 +60,11 @@ class AppController extends Controller
                 [
                     'role' => 'user',
                     'content' => 'Mam ' . auth()->user()->age . ' lat, ważę ' . auth()->user()->weight . ' kg i mam ' . auth()->user()->height . ' cm wzrostu. Moja płeć to ' . auth()->user()->gender . '. 
-Typ diety, który masz mi ułożyć to: ' . $data['type'] . '. 
-Moje preferencje co do diety to: ilość posiłków: ' . $data['dishes_count'] . ', ilość kalorii: ' . $data['kcal'] . ' kcal, 
-lubię jeść: ' . $data['like'] . '. 
-Nie lubię jeść i pomiń to w układaniu diety: ' . $data['not_like'] . '. 
-Moje pozostałe uwagi co do diety: ' . $data['other_notes'] . '. 
+Typ diety, który masz mi ułożyć to: ' . $data['diet_type'] . '. 
+Moje preferencje co do diety to: ilość posiłków: ' . $data['meals_count'] . ', ilość kalorii: ' . $data['diet_kcal'] . ' kcal, 
+lubię jeść: ' . $data['diet_like'] . '. 
+Nie lubię jeść i pomiń to w układaniu diety: ' . $data['diet_not_like'] . '. 
+Moje pozostałe uwagi co do diety: ' . $data['diet_other_notes'] . '. 
 Odpowiedź ma być w formacie HTML (nie zawieraj na początku odpowiedzi ```html), w takiej formie:
 <p class="mb-2 font-semibold">Lista zakupów na cały tydzień:</p>
 <ul class="list-disc pl-2">
@@ -122,7 +122,7 @@ Upewnij się, że składniki są zróżnicowane i dobrze zbilansowane w ciągu t
 
     public function updateBasic(Request $request) {
         $data = $request->validate([
-            'gender' => '',
+            'gender' => 'string',
             'weight' => 'numeric',
             'height' => 'numeric',
             'birthday' => 'date',

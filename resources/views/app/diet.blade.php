@@ -20,23 +20,31 @@
             @csrf @METHOD('POST')
             <div class="flex flex-wrap w-full gap-4 max-w-4xl">
                 <div class="flex flex-col gap-1 text-sm w-full">
-                    <label for="name">Nazwa diety</label>
+                    <label for="diet_name"
+                        >Nazwa diety <span class="text-red-500">*</span></label
+                    >
                     <input
                         type="text"
-                        name="name"
+                        name="diet_name"
                         class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                         placeholder="Moja nowa dieta"
+                        value="{{ old('diet_name') }}"
                     />
+                    @error('diet_name')
+                    <span class="text-red-500 text-xs">{{ $message }}</span>
+                    @enderror
                 </div>
             </div>
             <div class="flex flex-wrap w-full gap-4 max-w-4xl">
                 <div
                     class="flex flex-col gap-1 text-sm w-full 2xl:w-[calc(33.333%-12px)]"
                 >
-                    <label for="type">Typ diety </label>
+                    <label for="diet_type"
+                        >Typ diety <span class="text-red-500">*</span></label
+                    >
                     <select
                         type="text"
-                        name="type"
+                        name="diet_type"
                         class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                     >
                         <option value="">Wybierz typ diety</option>
@@ -44,14 +52,19 @@
                         <option value="wegan">Wegetariańska</option>
                         <option value="keto">Ketogeniczna</option>
                     </select>
+                    @error('diet_type')
+                    <span class="text-red-500 text-xs">{{ $message }}</span>
+                    @enderror
                 </div>
                 <div
                     class="flex flex-col gap-1 text-sm w-full 2xl:w-[calc(33.333%-12px)]"
                 >
-                    <label for="kcal">Ilość kcal</label>
+                    <label for="diet_kcal"
+                        >Ilość kcal <span class="text-red-500">*</span></label
+                    >
                     <select
                         type="number"
-                        name="kcal"
+                        name="diet_kcal"
                         step="100"
                         class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                     >
@@ -61,14 +74,20 @@
                         <option value="2500">2500</option>
                         <option value="3000">3000</option>
                     </select>
+                    @error('diet_kcal')
+                    <span class="text-red-500 text-xs">{{ $message }}</span>
+                    @enderror
                 </div>
                 <div
                     class="flex flex-col gap-1 text-sm w-full 2xl:w-[calc(33.333%-12px)]"
                 >
-                    <label for="dishes_count">Ilość posiłków</label>
+                    <label for="meals_count"
+                        >Ilość posiłków
+                        <span class="text-red-500">*</span></label
+                    >
                     <select
                         type="number"
-                        name="dishes_count"
+                        name="meals_count"
                         step="100"
                         class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                     >
@@ -77,6 +96,9 @@
                         <option value="4">4</option>
                         <option value="5">5</option>
                     </select>
+                    @error('meals_count')
+                    <span class="text-red-500 text-xs">{{ $message }}</span>
+                    @enderror
                 </div>
             </div>
             <div class="flex flex-wrap w-full gap-4 max-w-4xl">
