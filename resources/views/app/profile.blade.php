@@ -103,7 +103,8 @@
                             name="diseases"
                             placeholder="Np. cukrzyca, otyłość, nadciśnienie tętnicze..."
                             class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm resize-none h-28"
-                        ></textarea>
+                            >{{ auth()->user()->diseases }}</textarea
+                        >
                     </div>
                 </div>
             </div>

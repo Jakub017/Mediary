@@ -127,17 +127,19 @@ Upewnij się, że składniki są zróżnicowane i dobrze zbilansowane w ciągu t
 
     public function updateBasic(Request $request) {
         $data = $request->validate([
-            'gender' => 'string',
+            'gender' => 'nullable|string',
             'weight' => 'numeric',
             'height' => 'numeric',
             'birthday' => 'date',
-            'diseases' => 'string',
-            'location' => 'string',
+            'diseases' => 'nullable|string',
+            'location' => 'nullable|string',
         ]);
 
         $data['age'] = Carbon::parse($data['birthday'])->age;
         $user = User::find(Auth::user()->id);
         $user->update($data);
+
+        return redirect('/profil-pacjenta');
     }
 
     public function bloodTest(Request $request) {
