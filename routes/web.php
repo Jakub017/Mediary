@@ -21,6 +21,7 @@ Route::controller(AppController::class)->group(function() {
     Route::get('/badania-krwi', 'blood')->middleware(['auth', 'verified'])->name('blood');
     Route::get('/dieta', 'diet')->middleware(['auth', 'verified'])->name('diet');
     Route::get('/specjalisci', 'doctors')->middleware(['auth', 'verified'])->name('doctors');
+    Route::get('/cwiczenia', 'workouts')->middleware(['auth', 'verified'])->name('workouts');
 
     Route::post('/aktualizuj-dane', 'updateBasic')->middleware(['auth', 'verified'])->name('update-basic');    
     Route::post('/wyslij-badania-krwi', 'bloodTest')->middleware(['auth', 'verified'])->name('blood-test');

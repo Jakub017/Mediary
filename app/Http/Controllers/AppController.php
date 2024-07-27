@@ -37,6 +37,11 @@ class AppController extends Controller
         return view('app.doctors', compact('pageTitle'));
     }
 
+    public function workouts() {
+        $pageTitle = 'Ćwiczenia';
+        return view('app.workouts', compact('pageTitle'));
+    }
+
     public function createDiet(Request $request) {
 
         $data = $request->validate([

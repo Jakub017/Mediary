@@ -2,7 +2,7 @@
 
 <div class="flex flex-wrap gap-6">
     <div
-        class="flex flex-col gap-6 w-full xl:w-[calc(50%-12px)] bg-white rounded-md border-[1px] border-slate-200 p-6 h-fit"
+        class="flex flex-col gap-6 w-full xl:w-[calc(50%-12px)] bg-white rounded-md border-[1px] border-slate-200 p-6 h-fit dark:bg-[#2C2C2E] dark:border-none"
     >
         <form
             action="{{ route('blood-test') }}"
@@ -11,17 +11,29 @@
         >
             @csrf @METHOD('POST')
             <div class="flex flex-col w-full gap-4">
-                <div class="flex flex-col gap-2 w-full">
-                    <h2 class="text-lg font-medium text-black">
-                        Morfologia krwi
-                    </h2>
-                    <span class="text-xs text-gray-400 font-normal"
-                        >Twoje kluczowe parametry krwi w jednym miejscu.</span
-                    >
+                <div class="w-full flex justify-between items-center">
+                    <div class="flex flex-col gap-2 w-full">
+                        <h2
+                            class="text-lg font-medium text-black dark:text-white"
+                        >
+                            Morfologia krwi
+                        </h2>
+                        <span
+                            class="text-xs text-gray-400 font-normal dark:text-[#A0A0A0]"
+                            >Twoje kluczowe parametry krwi w jednym
+                            miejscu.</span
+                        >
+                    </div>
+                    <button>
+                        <i
+                            class="dropdown-button fa-solid fa-chevron-down text-2xl duration-300 rotate-180 dark:text-white"
+                        ></i>
+                    </button>
                 </div>
-                <div class="w-full flex flex-wrap gap-4">
+
+                <div class="dropdown-content w-full flex flex-wrap gap-4">
                     <div class="flex flex-col gap-1 text-sm">
-                        <label for="wbc"
+                        <label for="wbc" class="dark:text-white"
                             >Leukocyty
                             <i
                                 data-tooltip="wbc"
@@ -32,13 +44,13 @@
                             type="number"
                             name="wbc"
                             step="0.01"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
                             value="{{ auth()->user()->wbc }}"
                         />
                     </div>
 
                     <div class="flex flex-col gap-1 text-sm">
-                        <label for="rbc"
+                        <label for="rbc" class="dark:text-white"
                             >Erytrocyty
                             <i
                                 class="fa-solid fa-circle-info text-sm text-gray-400"
@@ -49,13 +61,13 @@
                             type="number"
                             name="rbc"
                             step="0.01"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
                             value="{{ auth()->user()->rbc }}"
                         />
                     </div>
 
                     <div class="flex flex-col gap-1 text-sm">
-                        <label for="hgb"
+                        <label for="hgb" class="dark:text-white"
                             >Hemoglobina
                             <i
                                 class="fa-solid fa-circle-info text-sm text-gray-400"
@@ -66,16 +78,16 @@
                             type="number"
                             name="hgb"
                             step="0.01"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
                             value="{{ auth()->user()->hgb }}"
                         />
                     </div>
 
                     <div class="flex flex-col gap-1 text-sm">
-                        <label for="hct"
+                        <label for="hct" class="dark:text-white"
                             >Hematokryt
                             <i
-                                class="fa-solid fa-circle-info text-sm text-gray-400 text-sm"
+                                class="fa-solid fa-circle-info text-gray-400 text-sm"
                                 data-tooltip="hct"
                             ></i
                         ></label>
@@ -83,13 +95,13 @@
                             type="number"
                             name="hct"
                             step="0.01"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
                             value="{{ auth()->user()->hct }}"
                         />
                     </div>
 
                     <div class="flex flex-col gap-1 text-sm">
-                        <label for="mcv"
+                        <label for="mcv" class="dark:text-white"
                             >MCV
                             <i
                                 class="fa-solid fa-circle-info text-sm text-gray-400"
@@ -100,13 +112,13 @@
                             type="number"
                             name="mcv"
                             step="0.01"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
                             value="{{ auth()->user()->mcv }}"
                         />
                     </div>
 
                     <div class="flex flex-col gap-1 text-sm">
-                        <label for="mch"
+                        <label for="mch" class="dark:text-white"
                             >MCH
                             <i
                                 class="fa-solid fa-circle-info text-sm text-gray-400"
@@ -117,13 +129,13 @@
                             type="number"
                             name="mch"
                             step="0.01"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
                             value="{{ auth()->user()->mch }}"
                         />
                     </div>
 
                     <div class="flex flex-col gap-1 text-sm">
-                        <label for="mchc"
+                        <label for="mchc" class="dark:text-white"
                             >MCHC
                             <i
                                 class="fa-solid fa-circle-info text-sm text-gray-400"
@@ -134,13 +146,13 @@
                             type="number"
                             name="mchc"
                             step="0.01"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
                             value="{{ auth()->user()->mchc }}"
                         />
                     </div>
 
                     <div class="flex flex-col gap-1 text-sm">
-                        <label for="plt"
+                        <label for="plt" class="dark:text-white"
                             >Płytki krwi
                             <i
                                 class="fa-solid fa-circle-info text-sm text-gray-400"
@@ -151,13 +163,13 @@
                             type="number"
                             name="plt"
                             step="0.01"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
                             value="{{ auth()->user()->plt }}"
                         />
                     </div>
 
                     <div class="flex flex-col gap-1 text-sm">
-                        <label for="rdw_sd"
+                        <label for="rdw_sd" class="dark:text-white"
                             >RDW-SD
                             <i
                                 class="fa-solid fa-circle-info text-sm text-gray-400"
@@ -168,13 +180,13 @@
                             type="number"
                             name="rdw_sd"
                             step="0.01"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
                             value="{{ auth()->user()->rdw_sd }}"
                         />
                     </div>
 
                     <div class="flex flex-col gap-1 text-sm">
-                        <label for="rdw_cv"
+                        <label for="rdw_cv" class="dark:text-white"
                             >RDW-CV
                             <i
                                 class="fa-solid fa-circle-info text-sm text-gray-400"
@@ -185,13 +197,13 @@
                             type="number"
                             name="rdw_cv"
                             step="0.01"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
                             value="{{ auth()->user()->rdw_cv }}"
                         />
                     </div>
 
                     <div class="flex flex-col gap-1 text-sm">
-                        <label for="pdw"
+                        <label for="pdw" class="dark:text-white"
                             >PDW
                             <i
                                 class="fa-solid fa-circle-info text-sm text-gray-400"
@@ -202,13 +214,13 @@
                             type="number"
                             name="pdw"
                             step="0.01"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
                             value="{{ auth()->user()->pdw }}"
                         />
                     </div>
 
                     <div class="flex flex-col gap-1 text-sm">
-                        <label for="mpv"
+                        <label for="mpv" class="dark:text-white"
                             >MPV
                             <i
                                 class="fa-solid fa-circle-info text-sm text-gray-400"
@@ -219,13 +231,13 @@
                             type="number"
                             name="mpv"
                             step="0.01"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
                             value="{{ auth()->user()->mpv }}"
                         />
                     </div>
 
                     <div class="flex flex-col gap-1 text-sm">
-                        <label for="p_lcr"
+                        <label for="p_lcr" class="dark:text-white"
                             >P-LCR
                             <i
                                 class="fa-solid fa-circle-info text-sm text-gray-400"
@@ -236,13 +248,13 @@
                             type="number"
                             name="p_lcr"
                             step="0.01"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
                             value="{{ auth()->user()->p_lcr }}"
                         />
                     </div>
 
                     <div class="flex flex-col gap-1 text-sm">
-                        <label for="pct"
+                        <label for="pct" class="dark:text-white"
                             >PCT
                             <i
                                 class="fa-solid fa-circle-info text-sm text-gray-400"
@@ -253,13 +265,13 @@
                             type="number"
                             name="pct"
                             step="0.01"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
                             value="{{ auth()->user()->pct }}"
                         />
                     </div>
 
                     <div class="flex flex-col gap-1 text-sm">
-                        <label for="neu"
+                        <label for="neu" class="dark:text-white"
                             >Neutrofile
                             <i
                                 class="fa-solid fa-circle-info text-sm text-gray-400"
@@ -270,13 +282,13 @@
                             type="number"
                             name="neu"
                             step="0.01"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
                             value="{{ auth()->user()->neu }}"
                         />
                     </div>
 
                     <div class="flex flex-col gap-1 text-sm">
-                        <label for="lym"
+                        <label for="lym" class="dark:text-white"
                             >Limfocyty
                             <i
                                 class="fa-solid fa-circle-info text-sm text-gray-400"
@@ -287,13 +299,13 @@
                             type="number"
                             name="lym"
                             step="0.01"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
                             value="{{ auth()->user()->lym }}"
                         />
                     </div>
 
                     <div class="flex flex-col gap-1 text-sm">
-                        <label for="mono"
+                        <label for="mono" class="dark:text-white"
                             >Monocyty
                             <i
                                 class="fa-solid fa-circle-info text-sm text-gray-400"
@@ -304,13 +316,13 @@
                             type="number"
                             name="mono"
                             step="0.01"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
                             value="{{ auth()->user()->mono }}"
                         />
                     </div>
 
                     <div class="flex flex-col gap-1 text-sm">
-                        <label for="eos"
+                        <label for="eos" class="dark:text-white"
                             >Eozynofile
                             <i
                                 class="fa-solid fa-circle-info text-sm text-gray-400"
@@ -321,13 +333,13 @@
                             type="number"
                             name="eos"
                             step="0.01"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
                             value="{{ auth()->user()->eos }}"
                         />
                     </div>
 
                     <div class="flex flex-col gap-1 text-sm">
-                        <label for="baso"
+                        <label for="baso" class="dark:text-white"
                             >Bazofile
                             <i
                                 class="fa-solid fa-circle-info text-sm text-gray-400"
@@ -338,7 +350,7 @@
                             type="number"
                             name="baso"
                             step="0.01"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
                             value="{{ auth()->user()->baso }}"
                         />
                     </div>
@@ -346,18 +358,30 @@
             </div>
 
             <div class="flex flex-col w-full gap-4">
-                <div class="flex flex-col gap-2">
-                    <h2 class="text-lg font-medium text-black">
-                        Próby wątrobowe
-                    </h2>
-                    <span class="text-xs text-gray-400 font-normal"
-                        >Monitoruj swoje zdrowie wątroby.</span
-                    >
+                <div class="w-full flex justify-between items-center">
+                    <div class="flex flex-col gap-2">
+                        <h2
+                            class="text-lg font-medium text-black dark:text-white"
+                        >
+                            Próby wątrobowe
+                        </h2>
+                        <span
+                            class="text-xs text-gray-400 font-normal dark:text-[#A0A0A0]"
+                            >Monitoruj swoje zdrowie wątroby.</span
+                        >
+                    </div>
+                    <button>
+                        <i
+                            class="dropdown-button fa-solid fa-chevron-down text-2xl duration-300 dark:text-white"
+                        ></i>
+                    </button>
                 </div>
-                <div class="w-full flex flex-wrap gap-4">
+                <div
+                    class="dropdown-content w-full flex flex-wrap gap-4 h-0 overflow-hidden"
+                >
                     <div class="flex flex-col gap-1 text-sm">
                         <div class="flex flex-col gap-1 text-sm">
-                            <label for="tsh"
+                            <label for="tsh" class="dark:text-white"
                                 >TSH
                                 <i
                                     data-tooltip="tsh"
@@ -368,14 +392,14 @@
                                 type="number"
                                 name="tsh"
                                 step="0.01"
-                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255]"
                                 value="{{ auth()->user()->tsh }}"
                             />
                         </div>
                     </div>
                     <div class="flex flex-col gap-1 text-sm">
                         <div class="flex flex-col gap-1 text-sm">
-                            <label for="ast"
+                            <label for="ast" class="dark:text-white"
                                 >AST
                                 <i
                                     data-tooltip="ast"
@@ -386,14 +410,14 @@
                                 type="number"
                                 name="ast"
                                 step="0.01"
-                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255]"
                                 value="{{ auth()->user()->tsh }}"
                             />
                         </div>
                     </div>
                     <div class="flex flex-col gap-1 text-sm">
                         <div class="flex flex-col gap-1 text-sm">
-                            <label for="alt"
+                            <label for="alt" class="dark:text-white"
                                 >ALT
                                 <i
                                     data-tooltip="alt"
@@ -404,14 +428,14 @@
                                 type="number"
                                 name="alt"
                                 step="0.01"
-                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255]"
                                 value="{{ auth()->user()->tsh }}"
                             />
                         </div>
                     </div>
                     <div class="flex flex-col gap-1 text-sm">
                         <div class="flex flex-col gap-1 text-sm">
-                            <label for="alt"
+                            <label for="alt" class="dark:text-white"
                                 >Bilirubina całkowita
                                 <i
                                     data-tooltip="alt"
@@ -422,14 +446,14 @@
                                 type="number"
                                 name="alt"
                                 step="0.01"
-                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255]"
                                 value="{{ auth()->user()->tsh }}"
                             />
                         </div>
                     </div>
                     <div class="flex flex-col gap-1 text-sm">
                         <div class="flex flex-col gap-1 text-sm">
-                            <label for="alt"
+                            <label for="alt" class="dark:text-white"
                                 >Fosfataza zasadowa
                                 <i
                                     data-tooltip="alt"
@@ -440,14 +464,14 @@
                                 type="number"
                                 name="alt"
                                 step="0.01"
-                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255]"
                                 value="{{ auth()->user()->tsh }}"
                             />
                         </div>
                     </div>
                     <div class="flex flex-col gap-1 text-sm">
                         <div class="flex flex-col gap-1 text-sm">
-                            <label for="ggtp"
+                            <label for="ggtp" class="dark:text-white"
                                 >GGTP
                                 <i
                                     data-tooltip="ggtp"
@@ -458,7 +482,7 @@
                                 type="number"
                                 name="ggtp"
                                 step="0.01"
-                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255]"
                                 value="{{ auth()->user()->ggtp }}"
                             />
                         </div>
@@ -477,19 +501,21 @@
     </div>
 
     <div
-        class="flex flex-col gap-8 w-full xl:w-[calc(50%-12px)] bg-white rounded-md border-[1px] border-slate-200 p-6 h-fit"
+        class="flex flex-col gap-8 w-full xl:w-[calc(50%-12px)] bg-white rounded-md border-[1px] border-slate-200 p-6 h-fit dark:bg-[#2C2C2E] dark:border-none"
     >
-        <h2 class="text-lg font-medium text-black">
+        <h2 class="text-lg font-medium text-black dark:text-white">
             Zalecenia wirtualnego specjalisty<br />
             <span class="text-xs text-gray-400 font-normal"
                 >Wirtualny specjalista bierze pod uwagę równiez dane z twojego
                 profilu pacjenta.</span
             >
         </h2>
-        <div class="text-base leading-6">
+        <div class="text-sm leading-6 dark:text-white">
             @if(auth()->user()->blood_recommendations) {!!
             auth()->user()->blood_recommendations !!} @else
-            <p>Nie znaleziono zaleceń. Wypełnij więcej danych.</p>
+            <p class="text-gray-400 text-xs dark:text-">
+                Nie znaleziono zaleceń. Wypełnij więcej danych.
+            </p>
             @endif
         </div>
     </div>
@@ -617,6 +643,22 @@
             "Rodzaj białych krwinek biorących udział w reakcjach alergicznych i zapalnych.",
         placement: "right",
         theme: "light",
+    });
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        dropdownBtns = [...document.querySelectorAll(".dropdown-button")];
+        dropdownContents = [...document.querySelectorAll(".dropdown-content")];
+
+        dropdownBtns.forEach((btn, index) => {
+            btn.addEventListener("click", (e) => {
+                e.preventDefault();
+                btn.classList.toggle("rotate-180");
+                dropdownContents[index].classList.toggle("h-0");
+                dropdownContents[index].classList.toggle("overflow-hidden");
+            });
+        });
     });
 </script>
 @endsection

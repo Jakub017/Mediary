@@ -2,11 +2,13 @@
 
 <div class="flex flex-wrap gap-4 w-full">
     <div
-        class="flex flex-col gap-6 w-full xl:w-[calc(50%-8px)] bg-white rounded-md border-[1px] border-slate-200 p-6 h-fit"
+        class="flex flex-col gap-6 w-full xl:w-[calc(50%-8px)] bg-white rounded-md border-[1px] border-slate-200 p-6 h-fit dark:bg-[#2C2C2E] dark:border-none"
     >
         <div class="flex flex-col gap-2">
-            <h2 class="text-lg font-medium text-black">Podstawowe dane</h2>
-            <span class="text-xs text-gray-400 font-normal"
+            <h2 class="text-lg font-medium text-black dark:text-white">
+                Podstawowe dane
+            </h2>
+            <span class="text-xs text-gray-400 font-normal dark:text-[#A0A0A0]"
                 >W tym miejscu możesz wyprowadzic lub zaktualizowac swoje dane
                 pacjenta.</span
             >
@@ -23,24 +25,28 @@
                 <div
                     class="flex flex-col gap-1 w-full lg:w-[calc(33%-12px)] text-sm"
                 >
-                    <label for="location">Miejsce zamieszkania</label>
+                    <label for="location" class="dark:text-white"
+                        >Miejsce zamieszkania</label
+                    >
                     <input
                         type="text"
                         name="location"
                         placeholder="Np. Warszawa"
-                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
                         value="{{ auth()->user()->location }}"
                     />
                 </div>
                 <div
                     class="flex flex-col gap-1 w-full lg:w-[calc(33%-12px)] text-sm"
                 >
-                    <label for="birthday">Data urodzenia</label>
+                    <label for="birthday" class="dark:text-white"
+                        >Data urodzenia</label
+                    >
                     <input
                         type="date"
                         name="birthday"
                         placeholder="Twoja waga"
-                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
                         value="{{ auth()->user()->birthday }}"
                     />
                 </div>
@@ -48,11 +54,11 @@
                 <div
                     class="flex flex-col gap-1 w-full lg:w-[calc(33%-12px)] text-sm"
                 >
-                    <label for="gender">Płec</label>
+                    <label for="gender" class="dark:text-white">Płec</label>
                     <select
                         name="gender"
                         id="gender"
-                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
                     >
                         <option value="">Wybierz płec</option>
                         <option value="male" {{ auth()->
@@ -71,24 +77,28 @@
                 <div
                     class="flex flex-col gap-1 w-full lg:w-[calc(33%-12px)] text-sm"
                 >
-                    <label for="weight"> Waga [kg] </label>
+                    <label for="weight" class="dark:text-white">
+                        Waga [kg]
+                    </label>
                     <input
                         type="number"
                         name="weight"
                         placeholder="Twoja waga"
-                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
                         value="{{ auth()->user()->weight }}"
                     />
                 </div>
                 <div
                     class="flex flex-col gap-1 w-full lg:w-[calc(33%-12px)] text-sm"
                 >
-                    <label for="height"> Wzrost [cm] </label>
+                    <label for="height" class="dark:text-white">
+                        Wzrost [cm]
+                    </label>
                     <input
                         type="number"
                         name="height"
                         placeholder="Twój wzrost"
-                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
                         value="{{ auth()->user()->height }}"
                     />
                 </div>
@@ -97,12 +107,14 @@
             <div class="w-full flex flex-wrap gap-4">
                 <div class="w-full flex">
                     <div class="flex flex-col gap-1 w-full text-sm">
-                        <label for="diseases">Stwierdzone choroby</label>
+                        <label for="diseases" class="dark:text-white"
+                            >Stwierdzone choroby</label
+                        >
                         <textarea
                             type="text"
                             name="diseases"
                             placeholder="Np. cukrzyca, otyłość, nadciśnienie tętnicze..."
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm resize-none h-28"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm resize-none h-28 dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
                             >{{ auth()->user()->diseases }}</textarea
                         >
                     </div>
@@ -120,11 +132,13 @@
         </form>
     </div>
     <div
-        class="flex flex-col gap-6 w-full xl:w-[calc(50%-8px)] bg-white rounded-md border-[1px] border-slate-200 p-6 h-fit"
+        class="flex flex-col gap-6 w-full xl:w-[calc(50%-8px)] bg-white rounded-md border-[1px] border-slate-200 p-6 h-fit dark:bg-[#2C2C2E] dark:border-none"
     >
         <div class="flex flex-col gap-2">
-            <h2 class="text-lg font-medium text-black">Ostatnie pomiary</h2>
-            <span class="text-xs text-gray-400 font-normal"
+            <h2 class="text-lg font-medium text-black dark:text-white">
+                Ostatnie pomiary
+            </h2>
+            <span class="text-xs text-gray-400 font-normal dark:text-[#A0A0A0]"
                 >W tym miejscu mozesz wprowadzac swoje ostatnie pomiary tętna,
                 ciśnienia, czy saturacji krwi.</span
             >
@@ -137,36 +151,42 @@
                 <div
                     class="flex flex-col gap-1 w-full lg:w-[calc(33%-12px)] text-sm"
                 >
-                    <label for="measurement_date">Data pomiaru</label>
+                    <label for="measurement_date" class="dark:text-white"
+                        >Data pomiaru</label
+                    >
                     <input
                         type="date"
                         name="measurement_date"
                         placeholder=""
-                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
                         value="{{ \Carbon\Carbon::today()->format('Y-m-d') }}"
                     />
                 </div>
                 <div
                     class="flex flex-col gap-1 w-full lg:w-[calc(33%-12px)] text-sm"
                 >
-                    <label for="blood_pressure">Ciśnienie krwi</label>
+                    <label for="blood_pressure" class="dark:text-white"
+                        >Ciśnienie krwi</label
+                    >
                     <input
                         type="text"
                         name="blood_pressure"
                         placeholder="Np. 120/60"
-                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
                     />
                 </div>
 
                 <div
                     class="flex flex-col gap-1 w-full lg:w-[calc(33%-12px)] text-sm"
                 >
-                    <label for="heart_rate">Tętno</label>
+                    <label for="heart_rate" class="dark:text-white"
+                        >Tętno</label
+                    >
                     <input
                         type="number"
                         name="heart_rate"
                         placeholder="Np. 60"
-                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
                     />
                 </div>
             </div>
@@ -175,12 +195,14 @@
                 <div
                     class="flex flex-col gap-1 w-full lg:w-[calc(33%-12px)] text-sm"
                 >
-                    <label for="saturation"> Saturacja krwi </label>
+                    <label for="saturation" class="dark:text-white">
+                        Saturacja krwi
+                    </label>
                     <input
                         type="number"
                         name="saturation"
                         placeholder="Np. 99"
-                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
                     />
                 </div>
             </div>
@@ -193,7 +215,7 @@
                 </button>
 
                 <button
-                    class="text-sm text-gray-600 px-6 py-2 bg-gray-100 rounded-md duration-200 hover:bg-gray-300"
+                    class="text-sm text-gray-600 px-6 py-2 bg-gray-100 rounded-md duration-200 hover:bg-gray-300 dark:dark:bg-[#3A3A3C] dark:text-[#FFF] dark:hover:bg-[#525255]"
                 >
                     Eksport do .pdf
                 </button>
@@ -201,13 +223,13 @@
         </form>
     </div>
     <div
-        class="flex flex-col gap-6 w-full xl:w-[calc(50%-8px)] bg-white rounded-md border-[1px] border-slate-200 p-6 h-fit"
+        class="flex flex-col gap-6 w-full xl:w-[calc(50%-8px)] bg-white rounded-md border-[1px] border-slate-200 p-6 h-fit dark:bg-[#2C2C2E] dark:border-none"
     >
         <div class="flex flex-col gap-2">
-            <h2 class="text-lg font-medium text-black">
+            <h2 class="text-lg font-medium text-black dark:text-white">
                 Dokumentacja medyczna
             </h2>
-            <span class="text-xs text-gray-400 font-normal"
+            <span class="text-xs text-gray-400 font-normal dark:text-[#A0A0A0]"
                 >W tym miejscu mozesz przesłac pliki twojej dokumentacji
                 medycznej.</span
             >
