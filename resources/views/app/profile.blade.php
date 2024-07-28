@@ -15,7 +15,7 @@
         </div>
 
         <form
-            action="{{ route('update-basic') }}"
+            action="{{ route('profile.update') }}"
             method="POST"
             class="flex flex-wrap gap-4"
         >

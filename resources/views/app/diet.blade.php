@@ -15,7 +15,7 @@
         </div>
 
         <form
-            action="{{ route('create-diet') }}"
+            action="{{ route('diet.store') }}"
             class="w-full flex flex-col gap-6"
             method="post"
         >
@@ -243,7 +243,7 @@
                     </button>
                     <form
                         class="flex justify-center items-center"
-                        action="{{ route('delete-diet', $diet) }}"
+                        action="{{ route('route.destroy', $diet) }}"
                         method="post"
                     >
                         @csrf @METHOD('DELETE')

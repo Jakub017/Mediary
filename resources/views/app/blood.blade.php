@@ -5,7 +5,7 @@
         class="flex flex-col gap-6 w-full xl:w-[calc(50%-12px)] bg-white rounded-md border-[1px] border-slate-200 p-6 h-fit dark:bg-[#2C2C2E] dark:border-none"
     >
         <form
-            action="{{ route('blood-test') }}"
+            action="{{ route('blood.store') }}"
             class="w-full flex flex-col gap-8"
             method="post"
         >
