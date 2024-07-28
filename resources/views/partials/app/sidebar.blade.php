@@ -17,14 +17,14 @@
         <div class="flex flex-col items-center justify-center gap-4 w-full">
             <a
                 href="{{ route('index') }}"
-                class="w-full flex p-3 rounded-md text-sm justify-start items-center gap-2 duration-200 hover:bg-blue-100 dark:hover:bg-[#212121] {{ request()->routeIs('index') ? 'bg-blue-100  text-blue-600 dark:bg-[#1E90FF] dark:text-white' : 'text-slate-900 dark:text-white ' }}"
+                class="w-full flex p-3 rounded-md text-sm justify-start items-center gap-2 duration-200 hover:bg-blue-100 dark:hover:bg-[#212121] {{ request()->routeIs('index') ? 'bg-blue-100  text-blue-500 dark:bg-[#1E90FF] dark:text-white' : 'text-slate-900 dark:text-white ' }}"
             >
                 <i class="fa-solid fa-house text-base"></i> Pulpit</a
             >
 
             <a
                 href="{{ route('profile.index') }}"
-                class="w-full  flex p-3 rounded-md text-sm justify-start items-center gap-2 duration-200 hover:bg-blue-100 dark:hover:bg-[#212121] {{ request()->routeIs('profile.index') ? 'bg-blue-100 text-blue-600 dark:bg-[#1E90FF] dark:text-white' : 'text-slate-900 dark:text-white' }}"
+                class="w-full  flex p-3 rounded-md text-sm justify-start items-center gap-2 duration-200 hover:bg-blue-100 dark:hover:bg-[#212121] {{ request()->routeIs('profile.index') ? 'bg-blue-100 text-blue-500 dark:bg-[#1E90FF] dark:text-white' : 'text-slate-900 dark:text-white' }}"
             >
                 <i class="fa-solid fa-hospital-user text-base"></i> Profil
                 pacjenta</a
@@ -32,28 +32,28 @@
 
             <a
                 href="{{ route('doctor.index') }}"
-                class="w-full flex p-3 rounded-md text-sm justify-start items-center gap-2 duration-200 hover:bg-blue-100 dark:hover:bg-[#212121] {{ request()->routeIs('doctor.index') ? 'bg-blue-100 text-blue-600 dark:bg-[#1E90FF] dark:text-white' : 'text-slate-900 dark:text-white' }}"
+                class="w-full flex p-3 rounded-md text-sm justify-start items-center gap-2 duration-200 hover:bg-blue-100 dark:hover:bg-[#212121] {{ request()->routeIs('doctor.index') ? 'bg-blue-100 text-blue-500 dark:bg-[#1E90FF] dark:text-white' : 'text-slate-900 dark:text-white' }}"
             >
                 <i class="fa-solid fa-user-doctor text-base"></i> Specjaliści
             </a>
 
             <a
                 href="{{ route('blood.index') }}"
-                class="w-full flex p-3 rounded-md text-sm justify-start items-center gap-2 duration-200 hover:bg-blue-100 dark:hover:bg-[#212121] {{ request()->routeIs('blood.index') ? 'bg-blue-100 text-blue-600 dark:bg-[#1E90FF] dark:text-white' : 'text-slate-900 dark:text-white' }}"
+                class="w-full flex p-3 rounded-md text-sm justify-start items-center gap-2 duration-200 hover:bg-blue-100 dark:hover:bg-[#212121] {{ request()->routeIs('blood.index') ? 'bg-blue-100 text-blue-500 dark:bg-[#1E90FF] dark:text-white' : 'text-slate-900 dark:text-white' }}"
             >
                 <i class="fa-solid fa-droplet text-base"></i> Badania krwi</a
             >
 
             <a
                 href="{{ route('diet.index') }}"
-                class="w-full  flex p-3 rounded-md text-sm justify-start items-center gap-2 duration-200 hover:bg-blue-100 dark:hover:bg-[#212121] {{ request()->routeIs('diet.index') ? 'bg-blue-100 text-blue-600 dark:bg-[#1E90FF] dark:text-white' : 'text-slate-900 dark:text-white' }}"
+                class="w-full  flex p-3 rounded-md text-sm justify-start items-center gap-2 duration-200 hover:bg-blue-100 dark:hover:bg-[#212121] {{ request()->routeIs('diet.index') ? 'bg-blue-100 text-blue-500 dark:bg-[#1E90FF] dark:text-white' : 'text-slate-900 dark:text-white' }}"
             >
                 <i class="fa-solid fa-utensils text-base"></i> Dieta</a
             >
 
             <a
                 href="{{ route('workout.index') }}"
-                class="w-full flex p-3 rounded-md text-sm justify-start items-center gap-2 duration-200 hover:bg-blue-100 dark:hover:bg-[#212121] {{ request()->routeIs('workout.index') ? 'bg-blue-100 text-blue-600 dark:bg-[#1E90FF] dark:text-white' : 'text-slate-900 dark:text-white' }}"
+                class="w-full flex p-3 rounded-md text-sm justify-start items-center gap-2 duration-200 hover:bg-blue-100 dark:hover:bg-[#212121] {{ request()->routeIs('workout.index') ? 'bg-blue-100 text-blue-500 dark:bg-[#1E90FF] dark:text-white' : 'text-slate-900 dark:text-white' }}"
             >
                 <i class="fa-solid fa-dumbbell text-base"></i> Ćwiczenia</a
             >

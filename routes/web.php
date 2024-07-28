@@ -36,8 +36,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::controller(DietController::class)->group(function() {
         Route::get('/dieta', 'index')->name('diet.index');
         Route::post('/stworz-diete', 'store')->name('diet.store');
-        Route::delete('/usun-diete', 'destroy')->name('diet.destroy');
-        Route::delete('/usun-diete-force', 'forceDestroy')->name('diet.forceDestroy');
+        Route::post('/przywroc-diete/{diet}', 'restore')->name('diet.restore');
+        Route::delete('/usun-diete/{diet}', 'destroy')->name('diet.destroy');
+        Route::delete('/usun-permanetnie/{diet}', 'forceDestroy')->name('diet.forceDestroy');
     });
 
     Route::controller(DoctorController::class)->group(function() {

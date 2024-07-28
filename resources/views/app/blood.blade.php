@@ -26,12 +26,14 @@
                     </div>
                     <button>
                         <i
-                            class="dropdown-button fa-solid fa-chevron-down text-2xl duration-300 rotate-180 dark:text-white"
+                            class="dropdown-button fa-solid fa-chevron-down text-2xl duration-300 dark:text-white"
                         ></i>
                     </button>
                 </div>
 
-                <div class="dropdown-content w-full flex flex-wrap gap-4">
+                <div
+                    class="dropdown-content w-full flex flex-wrap gap-4 h-0 overflow-hidden"
+                >
                     <div class="flex flex-col gap-1 text-sm">
                         <label for="wbc" class="dark:text-white"
                             >Leukocyty

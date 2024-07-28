@@ -159,21 +159,36 @@
     <div
         class="flex flex-col gap-6 w-full bg-white rounded-md border-[1px] border-slate-200 p-6 h-fit lg:w-[calc(50%-12px)] dark:bg-[#2C2C2E] dark:border-[#525255]"
     >
-        <div class="flex flex-col gap-2">
-            <h2 class="text-lg font-medium text-black dark:text-white">
-                Twoje diety
-            </h2>
-            <span class="text-xs text-gray-400 font-normal dark:text-[#A0A0A0]"
-                >Lista twoich zapisanych diet.</span
+        <div
+            class="flex flex-wrap justify-center items-center md:justify-between"
+        >
+            <div class="flex flex-col gap-2">
+                <h2 class="text-lg font-medium text-black dark:text-white">
+                    Twoje diety
+                </h2>
+                <span
+                    class="text-xs text-gray-400 font-normal dark:text-[#A0A0A0]"
+                    >Lista twoich zapisanych diet.</span
+                >
+            </div>
+            <button
+                class="show-deleted-diets rounded-md bg-red-100 text-red-500 px-6 py-2 text-sm duration-200 hover:bg-red-200"
             >
+                Usunięte diety
+            </button>
+            <button
+                class="show-my-diets rounded-md bg-blue-100 text-blue-500 px-6 py-2 text-sm duration-200 hover:bg-blue-200 hidden"
+            >
+                Moje diety
+            </button>
         </div>
 
         <div class="flex flex-wrap gap-4">
             @forelse($diets as $diet)
             <div
-                class="w-full border-[1px] border-slate-200 p-4 rounded-md flex flex-col gap-4 shadow-sm dark:bg-[#3A3A3A] dark:border-[#525255]"
+                class="diet w-full border-[1px] border-slate-200 p-4 rounded-md flex flex-col gap-4 shadow-sm dark:bg-[#3A3A3A] dark:border-[#525255]"
             >
-                <h2 class="text-lg font-semibold text-blue-600">
+                <h2 class="text-lg font-semibold text-blue-600 dark:text-white">
                     {{ $diet->diet_name }}
                 </h2>
                 <div class="flex flex-col gap-2 dark:text-gray-300">
@@ -243,7 +258,7 @@
                     </button>
                     <form
                         class="flex justify-center items-center"
-                        action="{{ route('route.destroy', $diet) }}"
+                        action="{{ route('diet.destroy', $diet) }}"
                         method="post"
                     >
                         @csrf @METHOD('DELETE')
@@ -251,6 +266,95 @@
                             <i
                                 class="fa-solid fa-trash text-xl text-red-600"
                             ></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            @empty @endforelse @forelse($trashedDiets as $diet)
+            <div
+                class="deleted-diet w-full border-[1px] border-slate-200 p-4 rounded-md flex flex-col gap-4 shadow-sm dark:bg-[#3A3A3A] dark:border-[#525255] hidden"
+            >
+                <h2 class="text-lg font-semibold text-blue-600 dark:text-white">
+                    {{ $diet->diet_name }}
+                </h2>
+                <div class="flex flex-col gap-2 dark:text-gray-300">
+                    <p
+                        class="text-sm flex items-center w-full justify-start gap-1"
+                    >
+                        <span class="font-medium"
+                            ><i class="fa-solid fa-utensils text-blue-600"></i>
+                            Typ diety:
+                        </span>
+                        @if($diet->diet_type === 'keto') Ketogeniczna
+                        @elseif($diet->diet_type === 'wegan') Wegetariańska
+                        @elseif($diet->diet_type === 'classic') Klasyczna @endif
+                    </p>
+                    <p
+                        class="text-sm flex items-center w-full justify-start gap-1"
+                    >
+                        <span class="font-medium"
+                            ><i class="fa-solid fa-bolt text-blue-600"></i>
+                            Ilość kalorii:
+                        </span>
+                        {{ $diet->diet_kcal }}
+                    </p>
+                    <p
+                        class="text-sm flex items-center w-full justify-start gap-1"
+                    >
+                        <span class="font-medium"
+                            ><i class="fa-solid fa-bowl-food text-blue-600"></i>
+                            Ilość posiłków:</span
+                        >
+                        {{ $diet->meals_count }}
+                    </p>
+                    <p
+                        class="text-sm flex items-center w-full justify-start gap-1"
+                    >
+                        <span class="font-medium"
+                            ><i class="fa-solid fa-heart text-blue-600"></i>
+                            Składniki, które lubię:</span
+                        >
+                        <span class="lowercase">{{ $diet->diet_like }}</span>
+                    </p>
+                    <p
+                        class="text-sm flex items-center w-full justify-start gap-1"
+                    >
+                        <span class="font-medium"
+                            ><i
+                                class="fa-solid fa-circle-xmark text-blue-600"
+                            ></i>
+                            Składniki, których nie lubię:</span
+                        >
+                        <span
+                            class="lowercase"
+                            >{{ $diet->diet_not_like }}</span
+                        >
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap gap-2">
+                    <form
+                        class="flex justify-center items-center"
+                        action="{{ route('diet.restore', $diet) }}"
+                        method="post"
+                    >
+                        @csrf @METHOD('POST')
+                        <button
+                            class="rounded-md bg-blue-600 text-white px-6 py-2 w-32 duration-200 hover:bg-blue-700 text-base"
+                        >
+                            Przywróć
+                        </button>
+                    </form>
+                    <form
+                        class="flex justify-center items-center"
+                        action="{{ route('diet.forceDestroy', $diet) }}"
+                        method="post"
+                    >
+                        @csrf @METHOD('DELETE')
+                        <button
+                            class="rounded-md bg-red-600 text-white px-6 py-2 w-fit duration-200 hover:bg-red-700 text-base"
+                        >
+                            Usuń na zawsze
                         </button>
                     </form>
                 </div>
@@ -298,6 +402,37 @@
             dietPopups.forEach((popup) => {
                 popup.classList.add("hidden");
             });
+        });
+
+        const diets = [...document.querySelectorAll(".diet")];
+        const showDeletedBtn = document.querySelector(".show-deleted-diets");
+        const showMyDietsBtn = document.querySelector(".show-my-diets");
+        const deletedDiets = [...document.querySelectorAll(".deleted-diet")];
+
+        showDeletedBtn.addEventListener("click", () => {
+            diets.forEach((diet) => {
+                diet.classList.add("hidden");
+            });
+
+            deletedDiets.forEach((diet) => {
+                diet.classList.remove("hidden");
+            });
+
+            showDeletedBtn.classList.add("hidden");
+            showMyDietsBtn.classList.remove("hidden");
+        });
+
+        showMyDietsBtn.addEventListener("click", () => {
+            deletedDiets.forEach((diet) => {
+                diet.classList.add("hidden");
+            });
+
+            diets.forEach((diet) => {
+                diet.classList.remove("hidden");
+            });
+
+            showMyDietsBtn.classList.add("hidden");
+            showDeletedBtn.classList.remove("hidden");
         });
     });
 </script>

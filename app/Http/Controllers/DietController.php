@@ -99,12 +99,18 @@ Upewnij się, że składniki są zróżnicowane i dobrze zbilansowane w ciągu t
         return redirect()->route('diet.index');
     }
 
-    public function delete(Diet $diet) {
+    public function restore($id) {
+        $diet = Diet::withTrashed()->where('id', $id)->restore();
+        return redirect()->route('diet.index');
+    }
+
+    public function destroy(Diet $diet) {
         $diet->delete();
         return redirect()->route('diet.index');
     }
 
-    public function forceDelete(Diet $diet) {
+    public function forceDestroy($id) {
+        $diet = Diet::withTrashed()->where('id', $id)->first();
         $diet->forceDelete();
         return redirect()->route('diet.index');
     }
