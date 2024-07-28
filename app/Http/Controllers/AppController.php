@@ -11,14 +11,8 @@ use Illuminate\Support\Facades\Http;
 
 class AppController extends Controller
 {
-    public function dashboard() {
+    public function index() {
         $pageTitle = 'Pulpit';
         return view('app.dashboard', compact('pageTitle'));
-    }
-
-    public function updateBasic(Request $request) {
-        
-    }
-
-    
+    }    
 }
