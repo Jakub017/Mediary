@@ -392,7 +392,7 @@
                                 type="number"
                                 name="tsh"
                                 step="0.01"
-                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255]"
+                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
                                 value="{{ auth()->user()->tsh }}"
                             />
                         </div>
@@ -410,8 +410,8 @@
                                 type="number"
                                 name="ast"
                                 step="0.01"
-                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255]"
-                                value="{{ auth()->user()->tsh }}"
+                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                                value="{{ auth()->user()->ast }}"
                             />
                         </div>
                     </div>
@@ -428,44 +428,44 @@
                                 type="number"
                                 name="alt"
                                 step="0.01"
-                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255]"
-                                value="{{ auth()->user()->tsh }}"
+                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                                value="{{ auth()->user()->alt }}"
                             />
                         </div>
                     </div>
                     <div class="flex flex-col gap-1 text-sm">
                         <div class="flex flex-col gap-1 text-sm">
-                            <label for="alt" class="dark:text-white"
+                            <label for="bilirubin" class="dark:text-white"
                                 >Bilirubina całkowita
                                 <i
-                                    data-tooltip="alt"
+                                    data-tooltip="bilirubin"
                                     class="fa-solid fa-circle-info text-sm text-gray-400"
                                 ></i
                             ></label>
                             <input
                                 type="number"
-                                name="alt"
+                                name="bilirubin"
                                 step="0.01"
-                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255]"
-                                value="{{ auth()->user()->tsh }}"
+                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                                value="{{ auth()->user()->bilirubin }}"
                             />
                         </div>
                     </div>
                     <div class="flex flex-col gap-1 text-sm">
                         <div class="flex flex-col gap-1 text-sm">
-                            <label for="alt" class="dark:text-white"
+                            <label for="alp" class="dark:text-white"
                                 >Fosfataza zasadowa
                                 <i
-                                    data-tooltip="alt"
+                                    data-tooltip="alp"
                                     class="fa-solid fa-circle-info text-sm text-gray-400"
                                 ></i
                             ></label>
                             <input
                                 type="number"
-                                name="alt"
+                                name="alp"
                                 step="0.01"
-                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255]"
-                                value="{{ auth()->user()->tsh }}"
+                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                                value="{{ auth()->user()->alp }}"
                             />
                         </div>
                     </div>
@@ -482,8 +482,128 @@
                                 type="number"
                                 name="ggtp"
                                 step="0.01"
-                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255]"
+                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
                                 value="{{ auth()->user()->ggtp }}"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col w-full gap-4">
+                <div class="w-full flex justify-between items-center">
+                    <div class="flex flex-col gap-2">
+                        <h2
+                            class="text-lg font-medium text-black dark:text-white"
+                        >
+                            Lipidogram
+                        </h2>
+                        <span
+                            class="text-xs text-gray-400 font-normal dark:text-[#A0A0A0]"
+                            >Monitoruj swoje poziomy cholesterolu i zdrowie
+                            serca.</span
+                        >
+                    </div>
+                    <button>
+                        <i
+                            class="dropdown-button fa-solid fa-chevron-down text-2xl duration-300 dark:text-white"
+                        ></i>
+                    </button>
+                </div>
+                <div
+                    class="dropdown-content w-full flex flex-wrap gap-4 h-0 overflow-hidden"
+                >
+                    <div class="flex flex-col gap-1 text-sm">
+                        <div class="flex flex-col gap-1 text-sm">
+                            <label
+                                for="total_cholesterol"
+                                class="dark:text-white"
+                                >Cholesterol całkowity
+                                <i
+                                    data-tooltip="total_cholesterol"
+                                    class="fa-solid fa-circle-info text-sm text-gray-400"
+                                ></i
+                            ></label>
+                            <input
+                                type="number"
+                                name="total_cholesterol"
+                                step="0.01"
+                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                                value="{{ auth()->user()->total_cholesterol }}"
+                            />
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-1 text-sm">
+                        <div class="flex flex-col gap-1 text-sm">
+                            <label for="hdl_cholesterol" class="dark:text-white"
+                                >Cholesterol HDL
+                                <i
+                                    data-tooltip="hdl_cholesterol"
+                                    class="fa-solid fa-circle-info text-sm text-gray-400"
+                                ></i
+                            ></label>
+                            <input
+                                type="number"
+                                name="hdl_cholesterol"
+                                step="0.01"
+                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                                value="{{ auth()->user()->hdl_cholesterol }}"
+                            />
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-1 text-sm">
+                        <div class="flex flex-col gap-1 text-sm">
+                            <label
+                                for="non_hdl_cholesterol"
+                                class="dark:text-white"
+                                >Cholesterol nie-HDL
+                                <i
+                                    data-tooltip="non_hdl_cholesterol"
+                                    class="fa-solid fa-circle-info text-sm text-gray-400"
+                                ></i
+                            ></label>
+                            <input
+                                type="number"
+                                name="non_hdl_cholesterol"
+                                step="0.01"
+                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                                value="{{ auth()->user()->non_hdl_cholesterol }}"
+                            />
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-1 text-sm">
+                        <div class="flex flex-col gap-1 text-sm">
+                            <label for="ldl_cholesterol" class="dark:text-white"
+                                >Cholesterol LDL
+                                <i
+                                    data-tooltip="ldl_cholesterol"
+                                    class="fa-solid fa-circle-info text-sm text-gray-400"
+                                ></i
+                            ></label>
+                            <input
+                                type="number"
+                                name="ldl_cholesterol"
+                                step="0.01"
+                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                                value="{{ auth()->user()->ldl_cholesterol }}"
+                            />
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-1 text-sm">
+                        <div class="flex flex-col gap-1 text-sm">
+                            <label for="triglycerides" class="dark:text-white"
+                                >Triglicerydy
+                                <i
+                                    data-tooltip="triglycerides"
+                                    class="fa-solid fa-circle-info text-sm text-gray-400"
+                                ></i
+                            ></label>
+                            <input
+                                type="number"
+                                name="triglycerides"
+                                step="0.01"
+                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                                value="{{ auth()->user()->triglycerides }}"
                             />
                         </div>
                     </div>
@@ -641,6 +761,48 @@
     tippy("[data-tooltip='baso']", {
         content:
             "Rodzaj białych krwinek biorących udział w reakcjach alergicznych i zapalnych.",
+        placement: "right",
+        theme: "light",
+    });
+
+    tippy("[data-tooltip='tsh']", {
+        content:
+            "Hormon stymulujący tarczycę, odpowiedzialny za regulację produkcji hormonów tarczycy (T3 i T4). Poziom TSH jest używany do oceny funkcji tarczycy.",
+        placement: "right",
+        theme: "light",
+    });
+
+    tippy("[data-tooltip='ast']", {
+        content:
+            "Enzym występujący głównie w wątrobie, sercu i mięśniach. Podwyższony poziom AST może wskazywać na uszkodzenie wątroby lub mięśnia sercowego.",
+        placement: "right",
+        theme: "light",
+    });
+
+    tippy("[data-tooltip='alt']", {
+        content:
+            "Enzym wątrobowy, który jest wskaźnikiem zdrowia wątroby. Wysoki poziom ALT może świadczyć o uszkodzeniu wątroby, takim jak zapalenie wątroby.",
+        placement: "right",
+        theme: "light",
+    });
+
+    tippy("[data-tooltip='bilirubin']", {
+        content:
+            "Bilirubina jest produktem rozpadu hemoglobiny. Jej podwyższony poziom może świadczyć o problemach z wątrobą, takich jak żółtaczka.",
+        placement: "right",
+        theme: "light",
+    });
+
+    tippy("[data-tooltip='alp']", {
+        content:
+            "Enzym występujący w kościach i wątrobie. Podwyższony poziom ALP może wskazywać na choroby wątroby, dróg żółciowych lub kości.",
+        placement: "right",
+        theme: "light",
+    });
+
+    tippy("[data-tooltip='ggtp']", {
+        content:
+            "Enzym związany z wątrobą i drogami żółciowymi. Wysoki poziom GGTP może świadczyć o chorobach wątroby, takich jak stłuszczenie wątroby lub marskość.",
         placement: "right",
         theme: "light",
     });
