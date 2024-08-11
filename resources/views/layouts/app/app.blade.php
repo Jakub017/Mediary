@@ -30,7 +30,7 @@
     <body class="max-h-screen min-h-screen min-w-screen flex">
         <div class="flex flex-grow">
             @include('partials.app.sidebar')
-            <div class="flex flex-col w-full h-full dark:bg-[#212121]">
+            <div class="flex flex-col w-full h-full">
                 @include('partials.app.nav')
                 <div class="p-6 w-full h-auto overflow-y-scroll no-scrollbar">
                     @yield('content')

@@ -2,7 +2,7 @@
 
 <div class="flex gap-4 flex-wrap">
     <div class="w-full">
-        <h2 class="text-lg font-medium text-black dark:text-white">
+        <h2 class="text-lg font-medium text-black">
             Wyszukaj lekarzy
         </h2>
     </div>
@@ -14,7 +14,7 @@
                 ></i>
                 <input
                     type="text"
-                    class="text-sm p-2 rounded-md w-full border-[1px] border-slate-200 pl-8 dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                    class="text-sm p-2 rounded-md w-full border-[1px] border-slate-200 pl-8"
                     placeholder="Specjalizacja, badanie..."
                 />
             </div>
@@ -24,7 +24,7 @@
                 ></i>
                 <input
                     type="text"
-                    class="text-sm p-2 rounded-md border-[1px] border-slate-200 w-full pl-8 dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                    class="text-sm p-2 rounded-md border-[1px] border-slate-200 w-full pl-8"
                     placeholder="Miasto"
                     value="{{ auth()->user()->location }}"
                 />
@@ -37,7 +37,7 @@
         </form>
     </div>
     <div
-        class="p-4 rounded-md flex gap-6 border-[1px] border-slate-200 w-full md:w-[calc(50%-12px)] xl:w-[calc(33%-12px)] flex-wrap dark:bg-[#2C2C2E] dark:border-none dark:text-white"
+        class="p-4 rounded-md flex gap-6 border-[1px] border-slate-200 w-full md:w-[calc(50%-12px)] xl:w-[calc(33%-12px)] flex-wrap"
     >
         <div class="flex gap-4 justify-between items-start">
             <img
@@ -92,7 +92,7 @@
         </div>
     </div>
     <div
-        class="p-4 rounded-md flex gap-6 border-[1px] border-slate-200 w-full md:w-[calc(50%-12px)] xl:w-[calc(33%-12px)] flex-wrap dark:bg-[#2C2C2E] dark:border-none dark:text-white"
+        class="p-4 rounded-md flex gap-6 border-[1px] border-slate-200 w-full md:w-[calc(50%-12px)] xl:w-[calc(33%-12px)] flex-wrap"
     >
         <div class="flex gap-4 justify-between items-start">
             <img
@@ -147,7 +147,7 @@
         </div>
     </div>
     <div
-        class="p-4 rounded-md flex gap-6 border-[1px] border-slate-200 w-full md:w-[calc(50%-12px)] xl:w-[calc(33%-12px)] flex-wrap dark:bg-[#2C2C2E] dark:border-none dark:text-white"
+        class="p-4 rounded-md flex gap-6 border-[1px] border-slate-200 w-full md:w-[calc(50%-12px)] xl:w-[calc(33%-12px)] flex-wrap"
     >
         <div class="flex gap-4 justify-between items-start">
             <img

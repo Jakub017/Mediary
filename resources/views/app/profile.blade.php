@@ -2,13 +2,13 @@
 
 <div class="flex flex-wrap gap-4 w-full">
     <div
-        class="flex flex-col gap-6 w-full xl:w-[calc(50%-8px)] bg-white rounded-md border-[1px] border-slate-200 p-6 h-fit dark:bg-[#2C2C2E] dark:border-none"
+        class="flex flex-col gap-6 w-full xl:w-[calc(50%-8px)] bg-white rounded-md border-[1px] border-slate-200 p-6 h-fit"
     >
         <div class="flex flex-col gap-2">
-            <h2 class="text-lg font-medium text-black dark:text-white">
+            <h2 class="text-lg font-medium text-black">
                 Podstawowe dane
             </h2>
-            <span class="text-xs text-gray-400 font-normal dark:text-[#A0A0A0]"
+            <span class="text-xs text-gray-400 font-normal"
                 >W tym miejscu możesz wyprowadzic lub zaktualizowac swoje dane
                 pacjenta.</span
             >
@@ -32,7 +32,7 @@
                         type="text"
                         name="location"
                         placeholder="Np. Warszawa"
-                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                         value="{{ auth()->user()->location }}"
                     />
                 </div>
@@ -46,7 +46,7 @@
                         type="date"
                         name="birthday"
                         placeholder="Twoja waga"
-                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                         value="{{ auth()->user()->birthday }}"
                     />
                 </div>
@@ -58,7 +58,7 @@
                     <select
                         name="gender"
                         id="gender"
-                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                     >
                         <option value="">Wybierz płec</option>
                         <option value="male" {{ auth()->
@@ -84,7 +84,7 @@
                         type="number"
                         name="weight"
                         placeholder="Twoja waga"
-                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                         value="{{ auth()->user()->weight }}"
                     />
                 </div>
@@ -98,7 +98,7 @@
                         type="number"
                         name="height"
                         placeholder="Twój wzrost"
-                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                         value="{{ auth()->user()->height }}"
                     />
                 </div>
@@ -114,7 +114,7 @@
                             type="text"
                             name="diseases"
                             placeholder="Np. cukrzyca, otyłość, nadciśnienie tętnicze..."
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm resize-none h-28 dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm resize-none h-28"
                             >{{ auth()->user()->diseases }}</textarea
                         >
                     </div>
@@ -132,13 +132,13 @@
         </form>
     </div>
     <div
-        class="flex flex-col gap-6 w-full xl:w-[calc(50%-8px)] bg-white rounded-md border-[1px] border-slate-200 p-6 h-fit dark:bg-[#2C2C2E] dark:border-none"
+        class="flex flex-col gap-6 w-full xl:w-[calc(50%-8px)] bg-white rounded-md border-[1px] border-slate-200 p-6 h-fit"
     >
         <div class="flex flex-col gap-2">
-            <h2 class="text-lg font-medium text-black dark:text-white">
+            <h2 class="text-lg font-medium text-black">
                 Ostatnie pomiary
             </h2>
-            <span class="text-xs text-gray-400 font-normal dark:text-[#A0A0A0]"
+            <span class="text-xs text-gray-400 font-normal"
                 >W tym miejscu mozesz wprowadzac swoje ostatnie pomiary tętna,
                 ciśnienia, czy saturacji krwi.</span
             >
@@ -158,7 +158,7 @@
                         type="date"
                         name="measurement_date"
                         placeholder=""
-                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                         value="{{ \Carbon\Carbon::today()->format('Y-m-d') }}"
                     />
                 </div>
@@ -172,7 +172,7 @@
                         type="text"
                         name="blood_pressure"
                         placeholder="Np. 120/60"
-                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                     />
                 </div>
 
@@ -186,7 +186,7 @@
                         type="number"
                         name="heart_rate"
                         placeholder="Np. 60"
-                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                     />
                 </div>
             </div>
@@ -202,7 +202,7 @@
                         type="number"
                         name="saturation"
                         placeholder="Np. 99"
-                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                     />
                 </div>
             </div>
@@ -215,7 +215,7 @@
                 </button>
 
                 <button
-                    class="text-sm text-gray-600 px-6 py-2 bg-gray-100 rounded-md duration-200 hover:bg-gray-300 dark:dark:bg-[#3A3A3C] dark:text-[#FFF] dark:hover:bg-[#525255]"
+                    class="text-sm text-gray-600 px-6 py-2 bg-gray-100 rounded-md duration-200 hover:bg-gray-300"
                 >
                     Eksport do .pdf
                 </button>
@@ -223,13 +223,13 @@
         </form>
     </div>
     <div
-        class="flex flex-col gap-6 w-full xl:w-[calc(50%-8px)] bg-white rounded-md border-[1px] border-slate-200 p-6 h-fit dark:bg-[#2C2C2E] dark:border-none"
+        class="flex flex-col gap-6 w-full xl:w-[calc(50%-8px)] bg-white rounded-md border-[1px] border-slate-200 p-6 h-fit"
     >
         <div class="flex flex-col gap-2">
-            <h2 class="text-lg font-medium text-black dark:text-white">
+            <h2 class="text-lg font-medium text-black">
                 Dokumentacja medyczna
             </h2>
-            <span class="text-xs text-gray-400 font-normal dark:text-[#A0A0A0]"
+            <span class="text-xs text-gray-400 font-normal"
                 >W tym miejscu mozesz przesłac pliki twojej dokumentacji
                 medycznej.</span
             >

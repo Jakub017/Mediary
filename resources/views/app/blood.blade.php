@@ -2,7 +2,7 @@
 
 <div class="flex flex-wrap gap-6">
     <div
-        class="flex flex-col gap-6 w-full xl:w-[calc(50%-12px)] bg-white rounded-md border-[1px] border-slate-200 p-6 h-fit dark:bg-[#2C2C2E] dark:border-none"
+        class="flex flex-col gap-6 w-full xl:w-[calc(50%-12px)] bg-white rounded-md border-[1px] border-slate-200 p-6 h-fit"
     >
         <form
             action="{{ route('blood.store') }}"
@@ -14,19 +14,19 @@
                 <div class="w-full flex justify-between items-center">
                     <div class="flex flex-col gap-2 w-full">
                         <h2
-                            class="text-lg font-medium text-black dark:text-white"
+                            class="text-lg font-medium text-black"
                         >
                             Morfologia krwi
                         </h2>
                         <span
-                            class="text-xs text-gray-400 font-normal dark:text-[#A0A0A0]"
+                            class="text-xs text-gray-400 font-normal"
                             >Twoje kluczowe parametry krwi w jednym
                             miejscu.</span
                         >
                     </div>
                     <button>
                         <i
-                            class="dropdown-button fa-solid fa-chevron-down text-2xl duration-300 dark:text-white"
+                            class="dropdown-button fa-solid fa-chevron-down text-2xl duration-300"
                         ></i>
                     </button>
                 </div>
@@ -46,7 +46,7 @@
                             type="number"
                             name="wbc"
                             step="0.01"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                             value="{{ auth()->user()->wbc }}"
                         />
                     </div>
@@ -63,7 +63,7 @@
                             type="number"
                             name="rbc"
                             step="0.01"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                             value="{{ auth()->user()->rbc }}"
                         />
                     </div>
@@ -80,7 +80,7 @@
                             type="number"
                             name="hgb"
                             step="0.01"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                             value="{{ auth()->user()->hgb }}"
                         />
                     </div>
@@ -97,7 +97,7 @@
                             type="number"
                             name="hct"
                             step="0.01"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                             value="{{ auth()->user()->hct }}"
                         />
                     </div>
@@ -114,7 +114,7 @@
                             type="number"
                             name="mcv"
                             step="0.01"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                             value="{{ auth()->user()->mcv }}"
                         />
                     </div>
@@ -131,7 +131,7 @@
                             type="number"
                             name="mch"
                             step="0.01"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                             value="{{ auth()->user()->mch }}"
                         />
                     </div>
@@ -148,7 +148,7 @@
                             type="number"
                             name="mchc"
                             step="0.01"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                             value="{{ auth()->user()->mchc }}"
                         />
                     </div>
@@ -165,7 +165,7 @@
                             type="number"
                             name="plt"
                             step="0.01"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                             value="{{ auth()->user()->plt }}"
                         />
                     </div>
@@ -182,7 +182,7 @@
                             type="number"
                             name="rdw_sd"
                             step="0.01"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                             value="{{ auth()->user()->rdw_sd }}"
                         />
                     </div>
@@ -199,7 +199,7 @@
                             type="number"
                             name="rdw_cv"
                             step="0.01"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                             value="{{ auth()->user()->rdw_cv }}"
                         />
                     </div>
@@ -216,7 +216,7 @@
                             type="number"
                             name="pdw"
                             step="0.01"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                             value="{{ auth()->user()->pdw }}"
                         />
                     </div>
@@ -233,7 +233,7 @@
                             type="number"
                             name="mpv"
                             step="0.01"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                             value="{{ auth()->user()->mpv }}"
                         />
                     </div>
@@ -250,7 +250,7 @@
                             type="number"
                             name="p_lcr"
                             step="0.01"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                             value="{{ auth()->user()->p_lcr }}"
                         />
                     </div>
@@ -267,7 +267,7 @@
                             type="number"
                             name="pct"
                             step="0.01"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                             value="{{ auth()->user()->pct }}"
                         />
                     </div>
@@ -284,7 +284,7 @@
                             type="number"
                             name="neu"
                             step="0.01"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                             value="{{ auth()->user()->neu }}"
                         />
                     </div>
@@ -301,7 +301,7 @@
                             type="number"
                             name="lym"
                             step="0.01"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                             value="{{ auth()->user()->lym }}"
                         />
                     </div>
@@ -318,7 +318,7 @@
                             type="number"
                             name="mono"
                             step="0.01"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                             value="{{ auth()->user()->mono }}"
                         />
                     </div>
@@ -335,7 +335,7 @@
                             type="number"
                             name="eos"
                             step="0.01"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                             value="{{ auth()->user()->eos }}"
                         />
                     </div>
@@ -352,7 +352,7 @@
                             type="number"
                             name="baso"
                             step="0.01"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                             value="{{ auth()->user()->baso }}"
                         />
                     </div>
@@ -363,18 +363,18 @@
                 <div class="w-full flex justify-between items-center">
                     <div class="flex flex-col gap-2">
                         <h2
-                            class="text-lg font-medium text-black dark:text-white"
+                            class="text-lg font-medium text-black"
                         >
                             Próby wątrobowe
                         </h2>
                         <span
-                            class="text-xs text-gray-400 font-normal dark:text-[#A0A0A0]"
+                            class="text-xs text-gray-400 font-normal"
                             >Monitoruj swoje zdrowie wątroby.</span
                         >
                     </div>
                     <button>
                         <i
-                            class="dropdown-button fa-solid fa-chevron-down text-2xl duration-300 dark:text-white"
+                            class="dropdown-button fa-solid fa-chevron-down text-2xl duration-300"
                         ></i>
                     </button>
                 </div>
@@ -394,7 +394,7 @@
                                 type="number"
                                 name="tsh"
                                 step="0.01"
-                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                                 value="{{ auth()->user()->tsh }}"
                             />
                         </div>
@@ -412,7 +412,7 @@
                                 type="number"
                                 name="ast"
                                 step="0.01"
-                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                                 value="{{ auth()->user()->ast }}"
                             />
                         </div>
@@ -430,7 +430,7 @@
                                 type="number"
                                 name="alt"
                                 step="0.01"
-                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                                 value="{{ auth()->user()->alt }}"
                             />
                         </div>
@@ -448,7 +448,7 @@
                                 type="number"
                                 name="bilirubin"
                                 step="0.01"
-                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                                 value="{{ auth()->user()->bilirubin }}"
                             />
                         </div>
@@ -466,7 +466,7 @@
                                 type="number"
                                 name="alp"
                                 step="0.01"
-                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                                 value="{{ auth()->user()->alp }}"
                             />
                         </div>
@@ -484,7 +484,7 @@
                                 type="number"
                                 name="ggtp"
                                 step="0.01"
-                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                                 value="{{ auth()->user()->ggtp }}"
                             />
                         </div>
@@ -496,19 +496,19 @@
                 <div class="w-full flex justify-between items-center">
                     <div class="flex flex-col gap-2">
                         <h2
-                            class="text-lg font-medium text-black dark:text-white"
+                            class="text-lg font-medium text-black"
                         >
                             Lipidogram
                         </h2>
                         <span
-                            class="text-xs text-gray-400 font-normal dark:text-[#A0A0A0]"
+                            class="text-xs text-gray-400 font-normal"
                             >Monitoruj swoje poziomy cholesterolu i zdrowie
                             serca.</span
                         >
                     </div>
                     <button>
                         <i
-                            class="dropdown-button fa-solid fa-chevron-down text-2xl duration-300 dark:text-white"
+                            class="dropdown-button fa-solid fa-chevron-down text-2xl duration-300"
                         ></i>
                     </button>
                 </div>
@@ -530,7 +530,7 @@
                                 type="number"
                                 name="total_cholesterol"
                                 step="0.01"
-                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                                 value="{{ auth()->user()->total_cholesterol }}"
                             />
                         </div>
@@ -548,7 +548,7 @@
                                 type="number"
                                 name="hdl_cholesterol"
                                 step="0.01"
-                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                                 value="{{ auth()->user()->hdl_cholesterol }}"
                             />
                         </div>
@@ -568,7 +568,7 @@
                                 type="number"
                                 name="non_hdl_cholesterol"
                                 step="0.01"
-                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                                 value="{{ auth()->user()->non_hdl_cholesterol }}"
                             />
                         </div>
@@ -586,7 +586,7 @@
                                 type="number"
                                 name="ldl_cholesterol"
                                 step="0.01"
-                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                                 value="{{ auth()->user()->ldl_cholesterol }}"
                             />
                         </div>
@@ -604,7 +604,7 @@
                                 type="number"
                                 name="triglycerides"
                                 step="0.01"
-                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                                 value="{{ auth()->user()->triglycerides }}"
                             />
                         </div>
@@ -623,19 +623,19 @@
     </div>
 
     <div
-        class="flex flex-col gap-8 w-full xl:w-[calc(50%-12px)] bg-white rounded-md border-[1px] border-slate-200 p-6 h-fit dark:bg-[#2C2C2E] dark:border-none"
+        class="flex flex-col gap-8 w-full xl:w-[calc(50%-12px)] bg-white rounded-md border-[1px] border-slate-200 p-6 h-fit"
     >
-        <h2 class="text-lg font-medium text-black dark:text-white">
+        <h2 class="text-lg font-medium text-black">
             Zalecenia wirtualnego specjalisty<br />
             <span class="text-xs text-gray-400 font-normal"
                 >Wirtualny specjalista bierze pod uwagę równiez dane z twojego
                 profilu pacjenta.</span
             >
         </h2>
-        <div class="text-sm leading-6 dark:text-white">
+        <div class="text-sm leading-6">
             @if(auth()->user()->blood_recommendations) {!!
             auth()->user()->blood_recommendations !!} @else
-            <p class="text-gray-400 text-xs dark:text-">
+            <p class="text-gray-400 text-xs">
                 Nie znaleziono zaleceń. Wypełnij więcej danych.
             </p>
             @endif

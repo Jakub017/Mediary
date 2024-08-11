@@ -2,13 +2,13 @@
 
 <div class="flex flex-wrap gap-6">
     <div
-        class="flex flex-col gap-6 w-full bg-white rounded-md border-[1px] border-slate-200 p-6 h-fit lg:w-[calc(50%-12px)] dark:bg-[#2C2C2E] dark:border-[#525255]"
+        class="flex flex-col gap-6 w-full bg-white rounded-md border-[1px] border-slate-200 p-6 h-fit lg:w-[calc(50%-12px)]"
     >
         <div class="flex flex-col gap-2">
-            <h2 class="text-lg font-medium text-black dark:text-white">
+            <h2 class="text-lg font-medium text-black">
                 Dostosuj nową dietę
             </h2>
-            <span class="text-xs text-gray-400 font-normal dark:text-[#A0A0A0]"
+            <span class="text-xs text-gray-400 font-normal"
                 >Dostosuj parametry swojej diety. Wirtualny asystent bierze pod
                 uwagę również dane z twojego profilu pacjenta.</span
             >
@@ -28,7 +28,7 @@
                     <input
                         type="text"
                         name="diet_name"
-                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                         placeholder="Moja nowa dieta"
                         value="{{ old('diet_name') }}"
                     />
@@ -47,7 +47,7 @@
                     <select
                         type="text"
                         name="diet_type"
-                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                     >
                         <option value="">Wybierz typ diety</option>
                         <option value="classic">Klasyczna</option>
@@ -68,7 +68,7 @@
                         type="number"
                         name="diet_kcal"
                         step="100"
-                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                     >
                         <option value="">Wybierz ilość kalorii</option>
                         <option value="1500">1500</option>
@@ -91,7 +91,7 @@
                         type="number"
                         name="meals_count"
                         step="100"
-                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                     >
                         <option value="">Ilość posiłków</option>
                         <option value="3">3</option>
@@ -114,7 +114,7 @@
                         type="number"
                         name="diet_like"
                         step="100"
-                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 resize-none h-24 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 resize-none h-24 text-sm"
                         placeholder="Np. jabłka, ogórki..."
                     ></textarea>
                 </div>
@@ -128,7 +128,7 @@
                         type="number"
                         name="diet_not_like"
                         step="100"
-                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 resize-none h-24 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 resize-none h-24 text-sm"
                         placeholder="Np. pomidory, cebula..."
                     ></textarea>
                 </div>
@@ -141,7 +141,7 @@
                     <textarea
                         type="text"
                         name="diet_other_notes"
-                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 resize-none h-24 text-sm dark:bg-[#3A3A3C] dark:border-[#525255] dark:text-white"
+                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 resize-none h-24 text-sm"
                         placeholder="Np. bez gotowanych potraw"
                     ></textarea>
                 </div>
@@ -157,17 +157,17 @@
     </div>
 
     <div
-        class="flex flex-col gap-6 w-full bg-white rounded-md border-[1px] border-slate-200 p-6 h-fit lg:w-[calc(50%-12px)] dark:bg-[#2C2C2E] dark:border-[#525255]"
+        class="flex flex-col gap-6 w-full bg-white rounded-md border-[1px] border-slate-200 p-6 h-fit lg:w-[calc(50%-12px)]"
     >
         <div
             class="flex flex-wrap justify-center items-center md:justify-between"
         >
             <div class="flex flex-col gap-2">
-                <h2 class="text-lg font-medium text-black dark:text-white">
+                <h2 class="text-lg font-medium text-black">
                     Twoje diety
                 </h2>
                 <span
-                    class="text-xs text-gray-400 font-normal dark:text-[#A0A0A0]"
+                    class="text-xs text-gray-400 font-normal"
                     >Lista twoich zapisanych diet.</span
                 >
             </div>
@@ -186,12 +186,12 @@
         <div class="flex flex-wrap gap-4">
             @forelse($diets as $diet)
             <div
-                class="diet w-full border-[1px] border-slate-200 p-4 rounded-md flex flex-col gap-4 shadow-sm dark:bg-[#3A3A3A] dark:border-[#525255]"
+                class="diet w-full border-[1px] border-slate-200 p-4 rounded-md flex flex-col gap-4 shadow-sm"
             >
-                <h2 class="text-lg font-semibold text-blue-600 dark:text-white">
+                <h2 class="text-lg font-semibold text-blue-600">
                     {{ $diet->diet_name }}
                 </h2>
-                <div class="flex flex-col gap-2 dark:text-gray-300">
+                <div class="flex flex-col gap-2">
                     <p
                         class="text-sm flex items-center w-full justify-start gap-1"
                     >
@@ -272,12 +272,12 @@
             </div>
             @empty @endforelse @forelse($trashedDiets as $diet)
             <div
-                class="deleted-diet w-full border-[1px] border-slate-200 p-4 rounded-md flex flex-col gap-4 shadow-sm dark:bg-[#3A3A3A] dark:border-[#525255] hidden"
+                class="deleted-diet w-full border-[1px] border-slate-200 p-4 rounded-md flex flex-col gap-4 shadow-sm hidden"
             >
-                <h2 class="text-lg font-semibold text-blue-600 dark:text-white">
+                <h2 class="text-lg font-semibold text-blue-600">
                     {{ $diet->diet_name }}
                 </h2>
-                <div class="flex flex-col gap-2 dark:text-gray-300">
+                <div class="flex flex-col gap-2">
                     <p
                         class="text-sm flex items-center w-full justify-start gap-1"
                     >

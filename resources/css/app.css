@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-    .no-scrollbar {
-        scrollbar-width: none;
-    }
+[x-cloak] {
+    display: none;
 }
