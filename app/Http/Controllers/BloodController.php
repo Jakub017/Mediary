@@ -11,7 +11,7 @@ class BloodController extends Controller
 {
     public function index() {
         $pageTitle = 'Badania krwi';
-        return view('app.blood', compact('pageTitle'));
+        return view('blood', compact('pageTitle'));
     }
 
     public function store(Request $request) {

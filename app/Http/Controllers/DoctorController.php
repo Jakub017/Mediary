@@ -8,6 +8,6 @@ class DoctorController extends Controller
 {
     public function index() {
         $pageTitle = 'Specjaliści';
-        return view('app.doctors', compact('pageTitle'));
+        return view('doctors', compact('pageTitle'));
     }
 }

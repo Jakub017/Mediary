@@ -1,11 +1,10 @@
-<!-- prettier-ignore -->
 <x-form-section submit="updateProfileInformation">
     <x-slot name="title">
-        {{ __('Profile Information') }}
+        {{ __('Informacje o koncie') }}
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Update your account\'s profile information and email address.') }}
+        {{ __('W tym miejscu mozesz zmienic') }}
     </x-slot>
 
     <x-slot name="form">
@@ -25,7 +24,7 @@
                                     reader.readAsDataURL($refs.photo.files[0]);
                             " />
 
-                <x-label for="photo" value="{{ __('Photo') }}" />
+                <x-label for="photo" value="{{ __('Zdjęcie profilowe') }}" />
 
                 <!-- Current Profile Photo -->
                 <div class="mt-2" x-show="! photoPreview">
@@ -40,12 +39,12 @@
                 </div>
 
                 <x-secondary-button class="mt-2 me-2" type="button" x-on:click.prevent="$refs.photo.click()">
-                    {{ __('Select A New Photo') }}
+                    {{ __('Wybierz zdjęcie z dysku') }}
                 </x-secondary-button>
 
                 @if ($this->user->profile_photo_path)
                     <x-secondary-button type="button" class="mt-2" wire:click="deleteProfilePhoto">
-                        {{ __('Remove Photo') }}
+                        {{ __('Usuń zdjęcie') }}
                     </x-secondary-button>
                 @endif
 
@@ -55,14 +54,14 @@
 
         <!-- Name -->
         <div class="col-span-6 sm:col-span-4">
-            <x-label for="name" value="{{ __('Name') }}" />
+            <x-label for="name" value="{{ __('Imię i nazwisko') }}" />
             <x-input id="name" type="text" class="mt-1 block w-full" wire:model="state.name" required autocomplete="name" />
             <x-input-error for="name" class="mt-2" />
         </div>
 
         <!-- Email -->
         <div class="col-span-6 sm:col-span-4">
-            <x-label for="email" value="{{ __('Email') }}" />
+            <x-label for="email" value="{{ __('Adres email') }}" />
             <x-input id="email" type="email" class="mt-1 block w-full" wire:model="state.email" required autocomplete="username" />
             <x-input-error for="email" class="mt-2" />
 
@@ -85,12 +84,12 @@
     </x-slot>
 
     <x-slot name="actions">
-        <x-action-message class="me-3" on="saved">
-            {{ __('Saved.') }}
-        </x-action-message>
+            <x-button wire:loading.attr="disabled" wire:target="photo">
+                {{ __('Zaktualizuj') }}
+            </x-button>
 
-        <x-button wire:loading.attr="disabled" wire:target="photo">
-            {{ __('Save') }}
-        </x-button>
+            <x-action-message class="" on="saved">
+                {{ __('Informacje zaktualizowane') }}
+            </x-action-message>
     </x-slot>
 </x-form-section>

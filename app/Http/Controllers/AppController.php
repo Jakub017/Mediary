@@ -9,10 +9,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
+
+
 class AppController extends Controller
 {
     public function index() {
         $pageTitle = 'Pulpit';
-        return view('app.dashboard', compact('pageTitle'));
+        return view('dashboard', compact('pageTitle'));
     }    
 }

@@ -8,22 +8,26 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WorkoutController;
+use Laravel\Jetstream\Http\Controllers\Livewire\UserProfileController;
 
 
 
 // Webstite routes
 Route::controller(PagesController::class)->group(function() {
-    Route::get('/', 'home')->name('home');
+    Route::get('/', 'welcome')->name('welcome');
 });
 
 // Application routes
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',])->group(function () {
     Route::controller(AppController::class)->group(function() {
         Route::get('/pulpit', 'index')->name('index'); 
     });
 
     Route::controller(ProfileController::class)->group(function() {
         Route::get('/profil-pacjenta', 'index')->name('profile.index');
+        Route::get('/ustawienia', 'show')->name('profile.show');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
@@ -50,8 +54,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 });
 
-
-require __DIR__.'/auth.php';
 
 Route::middleware([
     'auth:sanctum',

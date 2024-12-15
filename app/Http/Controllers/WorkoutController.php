@@ -8,6 +8,6 @@ class WorkoutController extends Controller
 {
     public function index() {
         $pageTitle = 'Ćwiczenia';
-        return view('app.workouts', compact('pageTitle'));
+        return view('workouts', compact('pageTitle'));
     }
 }

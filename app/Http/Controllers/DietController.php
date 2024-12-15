@@ -13,7 +13,7 @@ class DietController extends Controller
         $pageTitle = 'Dieta';
         $diets = Diet::where('user_id', Auth::id())->get();
         $trashedDiets = Diet::onlyTrashed()->where('user_id', Auth::id())->get();
-        return view('app.diet', compact('pageTitle', 'diets', 'trashedDiets'));
+        return view('diet', compact('pageTitle', 'diets', 'trashedDiets'));
     }
 
     public function store(Request $request) {

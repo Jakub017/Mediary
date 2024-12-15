@@ -1,0 +1,2 @@
+resources/views/profile/show.blade.php
+resources/views/profile/update-profile-information-form.blade.php

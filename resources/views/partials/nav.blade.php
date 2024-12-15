@@ -1,7 +1,7 @@
 <nav
     class="w-full border-b-[1px] h-24 flex justify-between gap-6 items-center border-slate-200 p-6"
 >
-    <h2 class="text-xl">{{ $pageTitle }}</h2>
+    <h2 class="text-xl">{{ $pageTitle ?? "Domyślna nazwa" }}</h2>
     <div class="ml-auto flex gap-3 items-center">
         <div
             class="p-2 rounded-md border-[1px] border-slate-200 flex gap-2 justify-between items-center"
@@ -15,7 +15,7 @@
     <div class="w-[1px] h-full bg-slate-200"></div>
     <div class="flex gap-3 items-center">
         <div
-            class="theme-toggle w-10 h-10 border-[1px] flex justify-center items-center rounded-full border-slate-200 hover:cursor-pointer duration-200"
+            class="w-10 h-10 border-[1px] flex justify-center items-center rounded-full border-slate-200 hover:cursor-pointer duration-200"
         >
             <div class="sun-icon flex justify-center items-center">
                 <i class="fa-solid fa-sun text-slate-500"></i>
@@ -37,7 +37,7 @@
     <div class="flex justify-center items-center gap-2">
         <img
             class="w-12 h-12 rounded-full"
-            src="https://ui-avatars.com/api/?name={{ auth()->user()->name }}&length=1&background=2563eb&color=FFFFFF"
+            src="https://ui-avatars.com/api/?name={{ auth()->user()->name }}&color=7F9CF5&background=EBF4FF"
             alt=""
         />
         <div class="flex flex-col">

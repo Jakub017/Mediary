@@ -1,6 +1,4 @@
-<div
-    class="min-w-64 bg-[#F9F9F9] min-h-screen border-[1px] border-slate-200"
->
+<div class="min-w-64 bg-[#F9F9F9] min-h-screen border-[1px] border-slate-200">
     <div class="flex flex-col items-center justify-center p-6 gap-8">
         <div class="flex justify-between w-full items-center">
             <img
@@ -8,11 +6,7 @@
                 class="w-36 hidden"
                 alt=""
             />
-            <img
-                src="{{ asset('img/logo-dark.png') }}"
-                class="w-36"
-                alt=""
-            />
+            <img src="{{ asset('img/logo-dark.png') }}" class="w-36" alt="" />
         </div>
         <div class="flex flex-col items-center justify-center gap-4 w-full">
             <a
@@ -60,12 +54,10 @@
         </div>
 
         <div class="flex flex-col items-start justify-center gap-4 w-full">
-            <h4 class="text-slate-900 text-sm">
-                Ustawienia i pomoc
-            </h4>
+            <h4 class="text-slate-900 text-sm">Ustawienia i pomoc</h4>
             <a
-                href="{{ route('index') }}"
-                class="w-full text-slate-900 flex p-3 rounded-md text-sm justify-start items-center gap-2 duration-200 hover:bg-blue-100"
+                href="{{ route('profile.show') }}"
+                class="w-full flex p-3 rounded-md text-sm justify-start items-center gap-2 duration-200 hover:bg-blue-100 {{ request()->routeIs('profile.show') ? 'bg-blue-100 text-blue-500' : 'text-slate-900' }}"
             >
                 <i class="fa-solid fa-gear text-base"></i> Ustawienia</a
             >

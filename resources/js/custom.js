@@ -1,7 +1,7 @@
 const userTheme = localStorage.getItem("theme");
 const moonIcon = document.querySelector(".moon-icon");
 const sunIcon = document.querySelector(".sun-icon");
-const themeToggle = document.querySelector(".theme-toggle");
+const themeToggle = document.querySelector(".toggle-theme");
 
 document.addEventListener("DOMContentLoaded", function () {
     if (userTheme === "dark") {
