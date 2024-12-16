@@ -29,15 +29,18 @@
     >
         <x-banner />
 
-        <div class="flex flex-grow">
+        <div>
             @include('partials.sidebar')
-            <div class="flex flex-col w-full h-full">
+            <div class="lg:pl-72">
                 @include('partials.nav')
-                <div class="p-6 w-full h-auto overflow-y-scroll no-scrollbar">
-                    {{ $slot }}
-                </div>
+                <main class="py-10">
+                    <div class="px-4 sm:px-6 lg:px-8">
+                        {{ $slot }}
+                    </div>
+                </main>
             </div>
         </div>
+
         @stack('modals') @livewireScripts
 
         <!-- Development -->
