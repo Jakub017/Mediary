@@ -1,4 +1,30 @@
-<x-app-layout>
+<script setup>
+import { useForm, usePage } from "@inertiajs/vue3";
+
+const page = usePage();
+const user = page.props.user;
+
+const form = useForm({
+    location: user.location || "",
+    birthday: user.birthday || "",
+    gender: user.gender || "",
+    weight: user.weight || "",
+    height: user.height || "",
+    diseases: user.diseases || "",
+});
+
+const submit = () => form.patch(route("profile.update", user.id));
+</script>
+
+<script>
+import MainLayout from "@/Layouts/MainLayout.vue";
+export default {
+    layout: MainLayout,
+    loading: false,
+};
+</script>
+
+<template>
     <div class="flex flex-wrap gap-4 w-full">
         <div
             class="flex flex-col gap-6 w-full xl:w-[calc(50%-8px)] bg-white rounded-md border-[1px] border-slate-200 p-6 h-fit"
@@ -11,13 +37,7 @@
                 >
             </div>
 
-            <form
-                action="{{ route('profile.update') }}"
-                method="POST"
-                class="flex flex-wrap gap-4"
-            >
-                @csrf @METHOD('POST')
-
+            <form @submit.prevent="submit" class="flex flex-wrap gap-4">
                 <div class="w-full flex flex-wrap gap-4">
                     <div
                         class="flex flex-col gap-1 w-full lg:w-[calc(33%-12px)] text-sm"
@@ -27,11 +47,15 @@
                         >
                         <input
                             type="text"
-                            name="location"
                             placeholder="Np. Warszawa"
                             class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
-                            value="{{ auth()->user()->location }}"
+                            v-model="form.location"
                         />
+                        <span
+                            class="text-red-500 text-xs"
+                            v-if="form.errors.location"
+                            >{{ form.errors.location }}</span
+                        >
                     </div>
                     <div
                         class="flex flex-col gap-1 w-full lg:w-[calc(33%-12px)] text-sm"
@@ -41,11 +65,15 @@
                         >
                         <input
                             type="date"
-                            name="birthday"
                             placeholder="Twoja waga"
                             class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
-                            value="{{ auth()->user()->birthday }}"
+                            v-model="form.birthday"
                         />
+                        <span
+                            class="text-red-500 text-xs"
+                            v-if="form.errors.birthday"
+                            >{{ form.errors.birthday }}</span
+                        >
                     </div>
 
                     <div
@@ -53,20 +81,19 @@
                     >
                         <label for="gender" class="dark:text-white">Płec</label>
                         <select
-                            name="gender"
                             id="gender"
                             class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                            v-model="form.gender"
                         >
                             <option value="">Wybierz płec</option>
-                            <option value="male" {{ auth()->
-                                user()->gender == 'male' ? 'selected' :
-                                ''}}>Męzczyzna
-                            </option>
-                            <option value="female" {{ auth()->
-                                user()->gender == 'female' ? 'selected' :
-                                ''}}>Kobieta
-                            </option>
+                            <option value="Kobieta">Kobieta</option>
+                            <option value="Mężczyzna">Mężczyzna</option>
                         </select>
+                        <span
+                            class="text-red-500 text-xs"
+                            v-if="form.errors.gender"
+                            >{{ form.errors.gender }}</span
+                        >
                     </div>
                 </div>
 
@@ -79,11 +106,15 @@
                         </label>
                         <input
                             type="number"
-                            name="weight"
                             placeholder="Twoja waga"
                             class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
-                            value="{{ auth()->user()->weight }}"
+                            v-model="form.weight"
                         />
+                        <span
+                            class="text-red-500 text-xs"
+                            v-if="form.errors.weight"
+                            >{{ form.errors.weight }}</span
+                        >
                     </div>
                     <div
                         class="flex flex-col gap-1 w-full lg:w-[calc(33%-12px)] text-sm"
@@ -93,11 +124,15 @@
                         </label>
                         <input
                             type="number"
-                            name="height"
                             placeholder="Twój wzrost"
                             class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
-                            value="{{ auth()->user()->height }}"
+                            v-model="form.height"
                         />
+                        <span
+                            class="text-red-500 text-xs"
+                            v-if="form.errors.height"
+                            >{{ form.errors.height }}</span
+                        >
                     </div>
                 </div>
 
@@ -109,17 +144,21 @@
                             >
                             <textarea
                                 type="text"
-                                name="diseases"
                                 placeholder="Np. cukrzyca, otyłość, nadciśnienie tętnicze..."
                                 class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm resize-none h-28"
-                                >{{ auth()->user()->diseases }}</textarea
+                                v-model="form.diseases"
+                            ></textarea>
+                            <span
+                                class="text-red-500 text-xs"
+                                v-if="form.errors.diseases"
+                                >{{ form.errors.diseases }}</span
                             >
                         </div>
                     </div>
                 </div>
 
                 <div class="w-full">
-                    <x-primary-button>Zapisz</x-primary-button>
+                    <button type="submit">Zapisz</button>
                 </div>
             </form>
         </div>
@@ -200,7 +239,7 @@
                 <div class="w-full flex flex-wrap gap-4">
                     <x-primary-button>Zapisz</x-primary-button>
 
-                    <x-secondary-button>Eksport do pdf</x-primary-button>
+                    <x-secondary-button>Eksport do pdf</x-secondary-button>
                 </div>
             </form>
         </div>
@@ -218,4 +257,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</template>

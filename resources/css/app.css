@@ -5,3 +5,11 @@
 [x-cloak] {
     display: none;
 }
+
+#app {
+    width: 100%;
+}
+
+* {
+    font-family: "Roboto";
+}

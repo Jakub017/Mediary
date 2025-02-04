@@ -14,7 +14,10 @@ use Illuminate\Support\Facades\Http;
 class AppController extends Controller
 {
     public function index() {
-        $pageTitle = 'Pulpit';
-        return view('dashboard', compact('pageTitle'));
+        return Inertia('Dashboard/Index');
     }    
+
+    public function login() {
+        return Inertia('Auth/Login');
+    }
 }

@@ -2,21 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
 use App\Models\User;
-use Illuminate\View\View;
+use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
 
 class ProfileController extends Controller
 {
 
     public function index() {
-        $pageTitle = 'Profil pacjenta';
-        return view('profile', compact('pageTitle'));
+        return Inertia('Profile/Index');
     }
 
     public function show(Request $request) {

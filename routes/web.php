@@ -17,6 +17,8 @@ Route::controller(PagesController::class)->group(function() {
     Route::get('/', 'welcome')->name('welcome');
 });
 
+Route::get('/logowanie', [AppController::class, 'login'])->name('login.new');
+
 // Application routes
 Route::middleware(['auth:sanctum',
     config('jetstream.auth_session'),
@@ -26,7 +28,7 @@ Route::middleware(['auth:sanctum',
     });
 
     Route::controller(ProfileController::class)->group(function() {
-        Route::get('/profil-pacjenta', 'index')->name('profile.index');
+        Route::get('/moj-profil', 'index')->name('profile.index');
         Route::get('/ustawienia', 'show')->name('profile.show');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -34,7 +36,7 @@ Route::middleware(['auth:sanctum',
 
      Route::controller(BloodController::class)->group(function() {
         Route::get('/badania-krwi', 'index')->name('blood.index');
-        Route::post('/wyslij-badania-krwi', 'store')->name('blood.store');
+        Route::patch('/wyslij-badania-krwi', 'store')->name('blood.update');
     });
 
     Route::controller(DietController::class)->group(function() {
@@ -55,12 +57,12 @@ Route::middleware(['auth:sanctum',
 });
 
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
+// Route::middleware([
+//     'auth:sanctum',
+//     config('jetstream.auth_session'),
+//     'verified',
+// ])->group(function () {
+//     Route::get('/dashboard', function () {
+//         return view('dashboard');
+//     })->name('dashboard');
+// });
