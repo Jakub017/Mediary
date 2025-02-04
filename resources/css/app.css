@@ -6,10 +6,6 @@
     display: none;
 }
 
-#app {
-    width: 100%;
-}
-
 * {
-    font-family: "Roboto";
+    font-family: "Roboto", sans-serif;
 }

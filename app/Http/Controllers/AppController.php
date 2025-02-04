@@ -13,11 +13,7 @@ use Illuminate\Support\Facades\Http;
 
 class AppController extends Controller
 {
-    public function index() {
-        return Inertia('Dashboard/Index');
+    public function dashboard() {
+        return Inertia('Dashboard');
     }    
-
-    public function login() {
-        return Inertia('Auth/Login');
-    }
 }

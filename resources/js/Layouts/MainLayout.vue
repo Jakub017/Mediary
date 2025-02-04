@@ -63,11 +63,11 @@ const user = page.props.user;
                                     <ul role="list" class="-mx-2 space-y-1">
                                         <li>
                                             <Link
-                                                :href="route('index')"
-                                                class="{{ request()->routeIs('index') ? 'bg-gray-50 text-blue-600' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50' }} group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold shadow-2xl"
+                                                :href="route('dashboard')"
+                                                class="{{ request()->routeIs('dashboard') ? 'bg-gray-50 text-blue-600' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50' }} group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold shadow-2xl"
                                             >
                                                 <svg
-                                                    class="h-6 w-6 shrink-0 {{ request()->routeIs('index') ? 'text-blue-600' : 'text-gray-400 group-hover:text-blue-600' }}"
+                                                    class="h-6 w-6 shrink-0 {{ request()->routeIs('dashboard') ? 'text-blue-600' : 'text-gray-400 group-hover:text-blue-600' }}"
                                                     fill="none"
                                                     viewBox="0 0 24 24"
                                                     stroke-width="1.5"
@@ -129,19 +129,21 @@ const user = page.props.user;
                             <ul role="list" class="-mx-2 space-y-1">
                                 <li>
                                     <Link
-                                        :href="route('index')"
+                                        :href="route('dashboard')"
                                         :class="{
                                             'bg-blue-600 text-blue-600 shadow-2xl':
-                                                route().current('index'),
+                                                route().current('dashboard'),
                                             'text-gray-600 hover:text-blue-600 hover:bg-gray-50':
-                                                !route().current('index'),
+                                                !route().current('dashboard'),
                                         }"
                                         class="flex justify-center items-center gap-x-3 rounded-full p-3 text-sm font-semibold transition-colors duration-300 size-12"
                                     >
                                         <i
                                             :class="{
                                                 'text-white':
-                                                    route().current('index'),
+                                                    route().current(
+                                                        'dashboard'
+                                                    ),
                                             }"
                                             class="fa-solid fa-house text-lg"
                                         ></i>
@@ -345,9 +347,11 @@ const user = page.props.user;
                                     aria-haspopup="true"
                                 >
                                     <span class="sr-only">Open user menu</span>
-                                    <span class="mr-2 text-gray-600">{{
-                                        user.name
-                                    }}</span>
+                                    <span
+                                        class="mr-2 text-gray-600"
+                                        v-if="user.name"
+                                        >{{ user.name }}</span
+                                    >
                                     <img
                                         class="h-8 w-8 rounded-full bg-gray-50"
                                         alt=""
