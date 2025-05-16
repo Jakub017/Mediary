@@ -53,9 +53,9 @@ export default {
 <template>
     <div class="flex flex-wrap gap-6">
         <div
-            class="flex flex-col gap-6 w-full xl:w-[calc(50%-12px)] bg-white rounded-md border-[1px] border-slate-200 p-6 h-fit"
+            class="flex flex-col gap-6 w-full xl:w-[calc(50%-12px)] bg-white rounded-2xl border-[1px] border-slate-200 p-6 h-fit"
         >
-            <form class="w-full flex flex-col gap-8" @submit.prevent="submit">
+            <form class="w-full flex flex-col gap-6" @submit.prevent="submit">
                 <div class="flex flex-col w-full gap-6">
                     <div class="flex flex-col gap-2">
                         <div class="flex gap-2 items-center">
@@ -485,7 +485,7 @@ export default {
         </div>
 
         <div
-            class="flex flex-col gap-6 w-full xl:w-[calc(50%-12px)] bg-white rounded-md border-[1px] border-slate-200 p-6 h-fit"
+            class="flex flex-col gap-6 w-full xl:w-[calc(50%-12px)] bg-white rounded-2xl border-[1px] border-slate-200 p-6 h-fit"
         >
             <div class="flex flex-col gap-2">
                 <div class="flex gap-2 items-center">

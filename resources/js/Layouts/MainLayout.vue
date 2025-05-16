@@ -222,7 +222,7 @@ const user = page.props.user;
                     >
                         <li>
                             <ul role="list" class="-mx-2 space-y-1">
-                                <li>
+                                <!-- <li>
                                     <Link
                                         href="#"
                                         class="text-gray-600 hover:text-blue-600 hover:bg-gray-50 flex justify-center items-center gap-x-3 rounded-full p-3 text-sm font-semibold transition-colors duration-300 size-12"
@@ -231,10 +231,10 @@ const user = page.props.user;
                                             class="fa-solid fa-circle-exclamation text-xl"
                                         ></i>
                                     </Link>
-                                </li>
+                                </li> -->
                                 <li>
                                     <Link
-                                        href="#"
+                                        method=""
                                         class="text-gray-600 hover:text-blue-600 hover:bg-gray-50 flex justify-center items-center gap-x-3 rounded-full p-3 text-sm font-semibold transition-colors duration-300 size-12"
                                     >
                                         <i
