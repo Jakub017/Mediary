@@ -1,15 +1,25 @@
 <script setup>
 import { Link, usePage } from "@inertiajs/vue3";
 import ApexCharts from "apexcharts";
+import { computed } from "vue";
 
 const page = usePage();
-const user = page.props.user;
+const user = computed(() => page.props.user);
+
+const props = defineProps({
+    weights: Array,
+    dates: Array,
+    systolics: Array,
+    diastolics: Array,
+    blood_dates: Array,
+    last_pressure: Object,
+});
 
 var options = {
     series: [
         {
             name: "Waga",
-            data: [31, 40, 28, 51, 42],
+            data: props.weights,
         },
     ],
 
@@ -19,7 +29,6 @@ var options = {
         zoom: {
             enabled: false,
         },
-
         toolbar: {
             show: false,
         },
@@ -80,15 +89,9 @@ var options = {
         width: 3,
     },
 
-    labels: [
-        "01.02.2025",
-        "02.02.2025",
-        "03.02.2025",
-        "04.02.2025",
-        "05.02.2025",
-    ],
+    labels: props.dates,
     xaxis: {
-        type: "datetime",
+        type: "category",
     },
     yaxis: {
         opposite: true,
@@ -107,11 +110,11 @@ var optionsHeart = {
     series: [
         {
             name: "Ciśnienie skurczowe",
-            data: [118, 120, 119, 122, 121],
+            data: props.systolics,
         },
         {
             name: "Ciśnienie rozkurczowe",
-            data: [78, 80, 79, 81, 80],
+            data: props.diastolics,
         },
     ],
     chart: {
@@ -130,6 +133,10 @@ var optionsHeart = {
     stroke: {
         curve: "straight",
         width: 3,
+    },
+    labels: props.blood_dates,
+    xaxis: {
+        type: "category",
     },
 };
 
@@ -156,7 +163,7 @@ export default {
 
 <template>
     <div class="flex flex-col mb-6">
-        <h1 class="text-4xl font-medium">Dzień dobry, {{ user.name }}!</h1>
+        <h1 class="text-4xl font-normal">Dzień dobry, {{ user.name }}!</h1>
     </div>
     <div class="flex flex-col xl:flex-row lg:items-start gap-6">
         <div
@@ -175,13 +182,17 @@ export default {
                     </div>
                     <h4 class="text-2xl font-normal">Waga</h4>
                 </div>
-                <span class="text-xs text-gray-600"
+                <span class="text-sm text-gray-600"
                     >Prawidłowa waga dla twojego wzrostu to 58 - 64kg</span
                 >
                 <div id="chart"></div>
                 <div class="flex justify-between items-end">
-                    <p class="text-6xl font-light">
-                        75<span class="text-base font-ligh">kg</span>
+                    <p v-if="user.weight" class="text-6xl font-light">
+                        {{ user.weight
+                        }}<span class="text-base font-ligh">kg</span>
+                    </p>
+                    <p v-else class="text-2xl font-light">
+                        brak danych<span class="text-base font-ligh"></span>
                     </p>
                     <button
                         href=""
@@ -202,13 +213,16 @@ export default {
                     </div>
                     <h4 class="text-2xl font-normal">Ciśnienie krwi</h4>
                 </div>
-                <span class="text-xs text-gray-600"
+                <span class="text-sm text-gray-600"
                     >Twoje prawidłowe ciśnienie to 120-130/80-90 mmHg</span
                 >
                 <div id="chart-heart"></div>
                 <div class="flex justify-between items-end">
                     <p class="text-6xl font-light">
-                        120/80<span class="text-base font-ligh">mmHg</span>
+                        {{ props.last_pressure.systolic }}/{{
+                            props.last_pressure.diastolic
+                        }}
+                        <span class="text-base font-ligh">mmHg</span>
                     </p>
                     <button
                         href=""
@@ -231,11 +245,14 @@ export default {
                     </div>
                     <h4 class="text-2xl font-normal">Wirtualny specjalista</h4>
                 </div>
-                <span class="text-xs text-gray-600"
-                    >Ocena na podstawie twoich wyników krwi</span
+                <span class="text-sm text-gray-600"
+                    >Ocena na podstawie twoich wyników badań.</span
                 >
                 <div class="flex">
-                    <div class="mt-2" v-html="user.blood_recommendations"></div>
+                    <div
+                        class="mt-2 text-sm"
+                        v-html="user.blood_recommendations"
+                    ></div>
                 </div>
             </div>
         </div>

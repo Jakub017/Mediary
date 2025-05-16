@@ -1,19 +1,31 @@
 <script setup>
 import { useForm, usePage } from "@inertiajs/vue3";
+import { computed } from "vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
 
 const page = usePage();
-const user = page.props.user;
+const user = computed(() => page.props.user);
 
 const form = useForm({
-    location: user.location || "",
-    birthday: user.birthday || "",
-    gender: user.gender || "",
-    weight: user.weight || "",
-    height: user.height || "",
-    diseases: user.diseases || "",
+    birthday: user.value.birthday,
+    gender: user.value.gender,
+    weight: user.value.weight,
+    height: user.value.height,
+    diseases: user.value.diseases,
 });
 
-const submit = () => form.patch(route("profile.update", user.id));
+const pressureForm = useForm({
+    systolic: null,
+    diastolic: null,
+    date: null,
+});
+
+const submit = () => form.patch(route("profile.update"));
+const submitPressure = () => pressureForm.post(route("blood.pressure"));
+
+const props = defineProps({
+    blood_pressures: Array,
+});
 </script>
 
 <script>
@@ -25,13 +37,19 @@ export default {
 </script>
 
 <template>
-    <div class="flex flex-wrap gap-4 w-full">
-        <div
-            class="flex flex-col gap-6 w-full xl:w-[calc(50%-8px)] bg-white rounded-md border-[1px] border-slate-200 p-6 h-fit"
-        >
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 grid-rows-['mansory']">
+        <!-- Podstawowe dane -->
+        <div class="flex flex-col gap-6 bg-white rounded-2xl border-[1px] p-6">
             <div class="flex flex-col gap-2">
-                <h2 class="text-lg font-medium text-black">Podstawowe dane</h2>
-                <span class="text-xs text-gray-400 font-normal"
+                <div class="flex gap-2 items-center">
+                    <div
+                        class="flex justify-center items-center bg-blue-200 size-12 rounded-2xl"
+                    >
+                        <i class="fa-solid fa-user text-blue-600 text-xl"></i>
+                    </div>
+                    <h4 class="text-2xl font-normal">Podstawowe dane</h4>
+                </div>
+                <span class="text-sm text-gray-600"
                     >W tym miejscu możesz wyprowadzic lub zaktualizowac swoje
                     dane pacjenta.</span
                 >
@@ -40,27 +58,9 @@ export default {
             <form @submit.prevent="submit" class="flex flex-wrap gap-4">
                 <div class="w-full flex flex-wrap gap-4">
                     <div
-                        class="flex flex-col gap-1 w-full lg:w-[calc(33%-12px)] text-sm"
+                        class="flex flex-col gap-1 w-full lg:w-[calc(50%-12px)] text-sm"
                     >
-                        <label for="location" class="dark:text-white"
-                            >Miejsce zamieszkania</label
-                        >
-                        <input
-                            type="text"
-                            placeholder="Np. Warszawa"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
-                            v-model="form.location"
-                        />
-                        <span
-                            class="text-red-500 text-xs"
-                            v-if="form.errors.location"
-                            >{{ form.errors.location }}</span
-                        >
-                    </div>
-                    <div
-                        class="flex flex-col gap-1 w-full lg:w-[calc(33%-12px)] text-sm"
-                    >
-                        <label for="birthday" class="dark:text-white"
+                        <label for="birthday" class="text-gray-600 text-xs"
                             >Data urodzenia</label
                         >
                         <input
@@ -77,9 +77,11 @@ export default {
                     </div>
 
                     <div
-                        class="flex flex-col gap-1 w-full lg:w-[calc(33%-12px)] text-sm"
+                        class="flex flex-col gap-1 w-full lg:w-[calc(50%-12px)] text-sm"
                     >
-                        <label for="gender" class="dark:text-white">Płec</label>
+                        <label for="gender" class="text-gray-600 text-xs"
+                            >Płeć</label
+                        >
                         <select
                             id="gender"
                             class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
@@ -88,6 +90,9 @@ export default {
                             <option value="">Wybierz płec</option>
                             <option value="Kobieta">Kobieta</option>
                             <option value="Mężczyzna">Mężczyzna</option>
+                            <option value="Wolę nie podawać">
+                                Wolę nie podawać
+                            </option>
                         </select>
                         <span
                             class="text-red-500 text-xs"
@@ -99,9 +104,9 @@ export default {
 
                 <div class="w-full flex flex-wrap gap-4">
                     <div
-                        class="flex flex-col gap-1 w-full lg:w-[calc(33%-12px)] text-sm"
+                        class="flex flex-col gap-1 w-full lg:w-[calc(50%-12px)] text-sm"
                     >
-                        <label for="weight" class="dark:text-white">
+                        <label for="weight" class="text-gray-600 text-xs">
                             Waga [kg]
                         </label>
                         <input
@@ -117,9 +122,9 @@ export default {
                         >
                     </div>
                     <div
-                        class="flex flex-col gap-1 w-full lg:w-[calc(33%-12px)] text-sm"
+                        class="flex flex-col gap-1 w-full lg:w-[calc(50%-12px)] text-sm"
                     >
-                        <label for="height" class="dark:text-white">
+                        <label for="height" class="text-gray-600 text-xs">
                             Wzrost [cm]
                         </label>
                         <input
@@ -139,7 +144,7 @@ export default {
                 <div class="w-full flex flex-wrap gap-4">
                     <div class="w-full flex">
                         <div class="flex flex-col gap-1 w-full text-sm">
-                            <label for="diseases" class="dark:text-white"
+                            <label for="diseases" class="text-gray-600 text-xs"
                                 >Stwierdzone choroby</label
                             >
                             <textarea
@@ -158,99 +163,153 @@ export default {
                 </div>
 
                 <div class="w-full">
-                    <button type="submit">Zapisz</button>
+                    <PrimaryButton :type="'submit'">Zapisz</PrimaryButton>
                 </div>
             </form>
         </div>
+
+        <!-- Pomiar ciśnienia -->
         <div
-            class="flex flex-col gap-6 w-full xl:w-[calc(50%-8px)] bg-white rounded-md border-[1px] border-slate-200 p-6 h-fit"
+            class="flex flex-col gap-6 bg-white rounded-2xl border-[1px] border-slate-200 p-6"
         >
             <div class="flex flex-col gap-2">
-                <h2 class="text-lg font-medium text-black">Ostatnie pomiary</h2>
-                <span class="text-xs text-gray-400 font-normal"
+                <div class="flex gap-2 items-center">
+                    <div
+                        class="flex justify-center items-center bg-blue-200 size-12 rounded-2xl"
+                    >
+                        <i
+                            class="fa-solid fa-heart-pulse text-blue-600 text-xl"
+                        ></i>
+                    </div>
+                    <h4 class="text-2xl font-normal">Pomiar ciśnienia</h4>
+                </div>
+                <span class="text-sm text-gray-600"
                     >W tym miejscu mozesz wprowadzac swoje ostatnie pomiary
-                    tętna, ciśnienia, czy saturacji krwi.</span
+                    ciśnienia krwi.</span
                 >
             </div>
 
-            <form action="#" method="POST" class="flex flex-wrap gap-4">
-                @csrf @METHOD('POST')
-
+            <form
+                @submit.prevent="submitPressure"
+                method="POST"
+                class="flex flex-wrap gap-4"
+            >
                 <div class="w-full flex flex-wrap gap-4">
                     <div
                         class="flex flex-col gap-1 w-full lg:w-[calc(33%-12px)] text-sm"
                     >
-                        <label for="measurement_date" class="dark:text-white"
+                        <label for="date" class="text-xs text-gray-600"
                             >Data pomiaru</label
                         >
                         <input
                             type="date"
-                            name="measurement_date"
-                            placeholder=""
                             class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
-                            value="{{ \Carbon\Carbon::today()->format('Y-m-d') }}"
+                            v-model="pressureForm.date"
                         />
                     </div>
                     <div
                         class="flex flex-col gap-1 w-full lg:w-[calc(33%-12px)] text-sm"
                     >
-                        <label for="blood_pressure" class="dark:text-white"
-                            >Ciśnienie krwi</label
+                        <label for="systolic" class="text-xs text-gray-600"
+                            >Ciśnienie skurczowe</label
                         >
                         <input
                             type="text"
-                            name="blood_pressure"
-                            placeholder="Np. 120/60"
+                            placeholder="Np. 120"
                             class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                            v-model="pressureForm.systolic"
                         />
                     </div>
 
                     <div
                         class="flex flex-col gap-1 w-full lg:w-[calc(33%-12px)] text-sm"
                     >
-                        <label for="heart_rate" class="dark:text-white"
-                            >Tętno</label
+                        <label for="diastolic" class="text-xs text-gray-600"
+                            >Ciśnienie rozkurczowe</label
                         >
                         <input
                             type="number"
-                            name="heart_rate"
-                            placeholder="Np. 60"
+                            v-model="pressureForm.diastolic"
+                            placeholder="Np. 80"
                             class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
                         />
                     </div>
                 </div>
-
-                <div class="w-full flex flex-wrap gap-4">
-                    <div
-                        class="flex flex-col gap-1 w-full lg:w-[calc(33%-12px)] text-sm"
-                    >
-                        <label for="saturation" class="dark:text-white">
-                            Saturacja krwi
-                        </label>
-                        <input
-                            type="number"
-                            name="saturation"
-                            placeholder="Np. 99"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
-                        />
-                    </div>
-                </div>
-
-                <div class="w-full flex flex-wrap gap-4">
-                    <x-primary-button>Zapisz</x-primary-button>
-
-                    <x-secondary-button>Eksport do pdf</x-secondary-button>
-                </div>
+                <PrimaryButton :type="'submit'">Dodaj</PrimaryButton>
             </form>
+
+            <div class="flow-root">
+                <h4 class="text-xl font-normal mb-1">Historia pomiarów</h4>
+                <div class="inline-block min-w-full align-middle">
+                    <table class="min-w-full divide-y divide-gray-300">
+                        <thead>
+                            <tr>
+                                <th
+                                    scope="col"
+                                    class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0"
+                                >
+                                    Data
+                                </th>
+                                <th
+                                    scope="col"
+                                    class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                                >
+                                    Ciśnienie krwi
+                                </th>
+                                <th
+                                    scope="col"
+                                    class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                                >
+                                    Opinia
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr
+                                v-for="pressure in blood_pressures"
+                                :key="pressure.id"
+                            >
+                                <td
+                                    class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0"
+                                >
+                                    {{ pressure.date }}
+                                </td>
+                                <td
+                                    class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"
+                                >
+                                    {{ pressure.systolic }} /
+                                    {{ pressure.diastolic }}
+                                </td>
+                                <td
+                                    class="px-3 py-4 text-sm text-gray-500 break-words"
+                                >
+                                    {{ pressure.review }}
+                                </td>
+                            </tr>
+
+                            <!-- More people... -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
+
+        <!-- Dokumentacja medyczna -->
         <div
-            class="flex flex-col gap-6 w-full xl:w-[calc(50%-8px)] bg-white rounded-md border-[1px] border-slate-200 p-6 h-fit"
+            class="flex flex-col gap-6 bg-white rounded-2xl border-[1px] border-slate-200 p-6"
         >
             <div class="flex flex-col gap-2">
-                <h2 class="text-lg font-medium text-black">
-                    Dokumentacja medyczna
-                </h2>
-                <span class="text-xs text-gray-400 font-normal"
+                <div class="flex gap-2 items-center">
+                    <div
+                        class="flex justify-center items-center bg-blue-200 size-12 rounded-2xl"
+                    >
+                        <i
+                            class="fa-solid fa-folder-open text-blue-600 text-xl"
+                        ></i>
+                    </div>
+                    <h4 class="text-2xl font-normal">Dokumentacja medyczna</h4>
+                </div>
+                <span class="text-sm text-gray-600"
                     >W tym miejscu mozesz przesłac pliki twojej dokumentacji
                     medycznej.</span
                 >

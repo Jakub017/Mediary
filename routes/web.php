@@ -23,11 +23,14 @@ Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'), 'verified'
     });  
 
     Route::controller(ProfileController::class)->group(function() {
-        Route::get('/profile', 'index')->name('profile.index');
+        Route::get('/profil', 'index')->name('profile.index');
+        Route::patch('/profil/zapisz', 'update')->name('profile.update');
     });
 
     Route::controller(BloodController::class)->group(function() {
         Route::get('/badania-krwi', 'index')->name('blood.index');
+        Route::patch('/badania-krwi/wyniki', 'update')->name('blood.update');
+        Route::post('/badania-krwi/cisnienie', 'pressure')->name('blood.pressure');
     });
 
     Route::controller(DietController::class)->group(function() {

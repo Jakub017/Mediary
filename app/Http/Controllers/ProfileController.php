@@ -13,30 +13,34 @@ use Illuminate\Support\Facades\Redirect;
 class ProfileController extends Controller
 {
 
-    public function index() {
-        return Inertia('Profile/Index');
-    }
-
-    public function show(Request $request) {
-        $pageTitle = 'Ustawienia profilu';
+    public function index(Request $request) {
         $user = $request->user();
-        return view('profile.show', compact('pageTitle', 'request', 'user'));
+        $blood_pressures = $user->blood_pressures()->orderBy('date', 'asc')->get();
+        return Inertia('Profile/Index', [
+            'blood_pressures' => $blood_pressures,
+        ]);
     }
      
     public function update(Request $request)
     {        
         $data = $request->validate([
             'gender' => 'nullable|string',
-            'weight' => 'numeric',
-            'height' => 'numeric',
-            'birthday' => 'date',
+            'weight' => 'nullable|numeric',
+            'height' => 'nullable|numeric',
+            'birthday' => 'nullable|date',
             'diseases' => 'nullable|string',
-            'location' => 'nullable|string',
         ]);
 
         $data['age'] = Carbon::parse($data['birthday'])->age;
-        $user = User::find(Auth::user()->id);
+        $user = $request->user();
         $user->update($data);
+
+        if(!empty($data['weight'])) {
+            $user->weights()->create([
+                'weight' => $data['weight'],
+                'date' => Carbon::today(),
+            ]);
+        }
 
         return redirect()->route('profile.index');
     }

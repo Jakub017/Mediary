@@ -13,7 +13,31 @@ use Illuminate\Support\Facades\Http;
 
 class AppController extends Controller
 {
-    public function dashboard() {
-        return Inertia('Dashboard');
+    public function dashboard(Request $request) {
+        $user = $request->user();
+        $weights = $user->weights()->orderBy('date', 'asc')->limit(5)->pluck('weight');
+        $dates = $user->weights()->orderBy('date', 'asc')->limit(5)->pluck('date');
+
+        $dates = $dates->map(function ($date) {
+            return Carbon::parse($date)->format('d.m');
+        });
+
+        $systolics = $user->blood_pressures()->orderBy('date', 'asc')->limit(5)->pluck('systolic');
+        $diastolics = $user->blood_pressures()->orderBy('date', 'asc')->limit(5)->pluck('diastolic');
+        $blood_dates = $user->blood_pressures()->orderBy('date', 'asc')->limit(5)->pluck('date');
+        $last_pressure = $user->blood_pressures()->orderBy('date', 'desc')->first();
+
+        $blood_dates = $blood_dates->map(function ($date) {
+            return Carbon::parse($date)->format('d.m');
+        });
+        
+        return Inertia('Dashboard', [
+            'weights' => $weights,
+            'dates' => $dates,
+            'systolics' => $systolics,
+            'diastolics' => $diastolics,
+            'blood_dates' => $blood_dates,
+            'last_pressure' => $last_pressure,
+        ]);
     }    
 }

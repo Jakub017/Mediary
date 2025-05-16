@@ -3,12 +3,13 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Weight;
+use Laravel\Sanctum\HasApiTokens;
+use Laravel\Jetstream\HasProfilePhoto;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
-use Laravel\Jetstream\HasProfilePhoto;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
@@ -27,6 +28,15 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'height',
+        'weight',
+        'birthday',
+        'age',
+        'gender', 'diseases', 'wbc', 'rbc', 'hgb', 'hct', 'mcv', 'mch', 'mchc', 'plt', 'rdw_sd', 'rdw_cv', 'pdw', 'mpv', 'p_lcr', 'pct', 'neu',
+    'lym', 'mono', 'eos', 'baso', 'tsh', 'ast', 'alt', 'bilirubin',
+    'alp', 'ggtp', 'total_cholesterol', 'hdl_cholesterol',
+    'non_hdl_cholesterol', 'ldl_cholesterol', 'triglycerides',
+    'blood_recommendations',
     ];
 
     /**
@@ -61,5 +71,13 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function weights() {
+        return $this->hasMany(Weight::class);
+    }
+
+    public function blood_pressures() {
+        return $this->hasMany(BloodPressure::class);
     }
 }

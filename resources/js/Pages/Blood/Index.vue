@@ -1,43 +1,45 @@
 <script setup>
 import { useForm, usePage } from "@inertiajs/vue3";
+import { computed } from "vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
 
 const page = usePage();
-const user = page.props.user;
+const user = computed(() => page.props.user);
 
 const form = useForm({
-    wbc: user.wbc || null,
-    rbc: user.rbc || null,
-    hgb: user.hgb || null,
-    hct: user.hct || null,
-    mcv: user.mcv || null,
-    mch: user.mch || null,
-    mchc: user.mchc || null,
-    plt: user.plt || null,
-    rdw_sd: user.rdw_sd || null,
-    rdw_cv: user.rdw_cv || null,
-    pdw: user.pdw || null,
-    mpv: user.mpv || null,
-    p_lcr: user.p_lcr || null,
-    pct: user.pct || null,
-    neu: user.neu || null,
-    lym: user.lym || null,
-    mono: user.mono || null,
-    eos: user.eos || null,
-    baso: user.baso || null,
-    tsh: user.tsh || null,
-    ast: user.ast || null,
-    alt: user.alt || null,
-    bilirubin: user.bilirubin || null,
-    alp: user.alp || null,
-    ggtp: user.ggtp || null,
-    total_cholesterol: user.total_cholesterol || null,
-    hdl_cholesterol: user.hdl_cholesterol || null,
-    non_hdl_cholesterol: user.non_hdl_cholesterol || null,
-    ldl_cholesterol: user.ldl_cholesterol || null,
-    triglycerides: user.triglycerides || null,
+    wbc: user.value.wbc,
+    rbc: user.value.rbc,
+    hgb: user.value.hgb,
+    hct: user.value.hct,
+    mcv: user.value.mcv,
+    mch: user.value.mch,
+    mchc: user.value.mchc,
+    plt: user.value.plt,
+    rdw_sd: user.value.rdw_sd,
+    rdw_cv: user.value.rdw_cv,
+    pdw: user.value.pdw,
+    mpv: user.value.mpv,
+    p_lcr: user.value.p_lcr,
+    pct: user.value.pct,
+    neu: user.value.neu,
+    lym: user.value.lym,
+    mono: user.value.mono,
+    eos: user.value.eos,
+    baso: user.value.baso,
+    tsh: user.value.tsh,
+    ast: user.value.ast,
+    alt: user.value.alt,
+    bilirubin: user.value.bilirubin,
+    alp: user.value.alp,
+    ggtp: user.value.ggtp,
+    total_cholesterol: user.value.total_cholesterol,
+    hdl_cholesterol: user.value.hdl_cholesterol,
+    non_hdl_cholesterol: user.value.non_hdl_cholesterol,
+    ldl_cholesterol: user.value.ldl_cholesterol,
+    triglycerides: user.value.triglycerides,
 });
 
-const submit = () => form.patch(route("blood.update", user.id));
+const submit = () => form.patch(route("blood.update"));
 </script>
 
 <script>
@@ -54,22 +56,29 @@ export default {
             class="flex flex-col gap-6 w-full xl:w-[calc(50%-12px)] bg-white rounded-md border-[1px] border-slate-200 p-6 h-fit"
         >
             <form class="w-full flex flex-col gap-8" @submit.prevent="submit">
-                <div class="flex flex-col w-full gap-4">
-                    <div class="w-full flex justify-between items-center">
-                        <div class="flex flex-col gap-2 w-full">
-                            <h2 class="text-lg font-medium text-black">
-                                Morfologia krwi
-                            </h2>
-                            <span class="text-xs text-gray-400 font-normal"
-                                >Twoje kluczowe parametry krwi w jednym
-                                miejscu.</span
+                <div class="flex flex-col w-full gap-6">
+                    <div class="flex flex-col gap-2">
+                        <div class="flex gap-2 items-center">
+                            <div
+                                class="flex justify-center items-center bg-blue-200 size-12 rounded-2xl"
                             >
+                                <i
+                                    class="fa-solid fa-droplet text-blue-600 text-xl"
+                                ></i>
+                            </div>
+                            <h4 class="text-2xl font-normal">
+                                Morfologia krwi
+                            </h4>
                         </div>
+                        <span class="text-sm text-gray-600"
+                            >Twoje kluczowe parametry krwi w jednym
+                            miejscu.</span
+                        >
                     </div>
 
                     <div class="dropdown-content w-full flex flex-wrap gap-4">
                         <div class="flex flex-col gap-1 text-sm">
-                            <label for="wbc" class="dark:text-white"
+                            <label for="wbc" class="text-gray-600 text-xs"
                                 >Leukocyty
                                 <i
                                     data-tooltip="wbc"
@@ -90,7 +99,7 @@ export default {
                         </div>
 
                         <div class="flex flex-col gap-1 text-sm">
-                            <label for="rbc" class="dark:text-white"
+                            <label for="rbc" class="text-gray-600 text-xs"
                                 >Erytrocyty
                                 <i
                                     class="fa-solid fa-circle-info text-sm text-gray-400"
@@ -111,7 +120,7 @@ export default {
                         </div>
 
                         <div class="flex flex-col gap-1 text-sm">
-                            <label for="hgb" class="dark:text-white"
+                            <label for="hgb" class="text-gray-600 text-xs"
                                 >Hemoglobina
                                 <i
                                     class="fa-solid fa-circle-info text-sm text-gray-400"
@@ -132,7 +141,7 @@ export default {
                         </div>
 
                         <div class="flex flex-col gap-1 text-sm">
-                            <label for="hct" class="dark:text-white"
+                            <label for="hct" class="text-gray-600 text-xs"
                                 >Hematokryt
                                 <i
                                     class="fa-solid fa-circle-info text-gray-400 text-sm"
@@ -153,7 +162,7 @@ export default {
                         </div>
 
                         <div class="flex flex-col gap-1 text-sm">
-                            <label for="mcv" class="dark:text-white"
+                            <label for="mcv" class="text-gray-600 text-xs"
                                 >MCV
                                 <i
                                     class="fa-solid fa-circle-info text-sm text-gray-400"
@@ -174,7 +183,7 @@ export default {
                         </div>
 
                         <div class="flex flex-col gap-1 text-sm">
-                            <label for="mch" class="dark:text-white"
+                            <label for="mch" class="text-gray-600 text-xs"
                                 >MCH
                                 <i
                                     class="fa-solid fa-circle-info text-sm text-gray-400"
@@ -195,7 +204,7 @@ export default {
                         </div>
 
                         <div class="flex flex-col gap-1 text-sm">
-                            <label for="mchc" class="dark:text-white"
+                            <label for="mchc" class="text-gray-600 text-xs"
                                 >MCHC
                                 <i
                                     class="fa-solid fa-circle-info text-sm text-gray-400"
@@ -216,7 +225,7 @@ export default {
                         </div>
 
                         <div class="flex flex-col gap-1 text-sm">
-                            <label for="plt" class="dark:text-white"
+                            <label for="plt" class="text-gray-600 text-xs"
                                 >Płytki krwi
                                 <i
                                     class="fa-solid fa-circle-info text-sm text-gray-400"
@@ -237,7 +246,7 @@ export default {
                         </div>
 
                         <div class="flex flex-col gap-1 text-sm">
-                            <label for="rdw_sd" class="dark:text-white"
+                            <label for="rdw_sd" class="text-gray-600 text-xs"
                                 >RDW-SD
                                 <i
                                     class="fa-solid fa-circle-info text-sm text-gray-400"
@@ -258,7 +267,7 @@ export default {
                         </div>
 
                         <div class="flex flex-col gap-1 text-sm">
-                            <label for="rdw_cv" class="dark:text-white"
+                            <label for="rdw_cv" class="text-gray-600 text-xs"
                                 >RDW-CV
                                 <i
                                     class="fa-solid fa-circle-info text-sm text-gray-400"
@@ -279,7 +288,7 @@ export default {
                         </div>
 
                         <div class="flex flex-col gap-1 text-sm">
-                            <label for="pdw" class="dark:text-white"
+                            <label for="pdw" class="text-gray-600 text-xs"
                                 >PDW
                                 <i
                                     class="fa-solid fa-circle-info text-sm text-gray-400"
@@ -300,7 +309,7 @@ export default {
                         </div>
 
                         <div class="flex flex-col gap-1 text-sm">
-                            <label for="mpv" class="dark:text-white"
+                            <label for="mpv" class="text-gray-600 text-xs"
                                 >MPV
                                 <i
                                     class="fa-solid fa-circle-info text-sm text-gray-400"
@@ -321,7 +330,7 @@ export default {
                         </div>
 
                         <div class="flex flex-col gap-1 text-sm">
-                            <label for="p_lcr" class="dark:text-white"
+                            <label for="p_lcr" class="text-gray-600 text-xs"
                                 >P-LCR
                                 <i
                                     class="fa-solid fa-circle-info text-sm text-gray-400"
@@ -342,7 +351,7 @@ export default {
                         </div>
 
                         <div class="flex flex-col gap-1 text-sm">
-                            <label for="pct" class="dark:text-white"
+                            <label for="pct" class="text-gray-600 text-xs"
                                 >PCT
                                 <i
                                     class="fa-solid fa-circle-info text-sm text-gray-400"
@@ -363,7 +372,7 @@ export default {
                         </div>
 
                         <div class="flex flex-col gap-1 text-sm">
-                            <label for="neu" class="dark:text-white"
+                            <label for="neu" class="text-gray-600 text-xs"
                                 >Neutrofile
                                 <i
                                     class="fa-solid fa-circle-info text-sm text-gray-400"
@@ -384,7 +393,7 @@ export default {
                         </div>
 
                         <div class="flex flex-col gap-1 text-sm">
-                            <label for="lym" class="dark:text-white"
+                            <label for="lym" class="text-gray-600 text-xs"
                                 >Limfocyty
                                 <i
                                     class="fa-solid fa-circle-info text-sm text-gray-400"
@@ -405,7 +414,7 @@ export default {
                         </div>
 
                         <div class="flex flex-col gap-1 text-sm">
-                            <label for="mono" class="dark:text-white"
+                            <label for="mono" class="text-gray-600 text-xs"
                                 >Monocyty
                                 <i
                                     class="fa-solid fa-circle-info text-sm text-gray-400"
@@ -426,7 +435,7 @@ export default {
                         </div>
 
                         <div class="flex flex-col gap-1 text-sm">
-                            <label for="eos" class="dark:text-white"
+                            <label for="eos" class="text-gray-600 text-xs"
                                 >Eozynofile
                                 <i
                                     class="fa-solid fa-circle-info text-sm text-gray-400"
@@ -447,7 +456,7 @@ export default {
                         </div>
 
                         <div class="flex flex-col gap-1 text-sm">
-                            <label for="baso" class="dark:text-white"
+                            <label for="baso" class="text-gray-600 text-xs"
                                 >Bazofile
                                 <i
                                     class="fa-solid fa-circle-info text-sm text-gray-400"
@@ -470,26 +479,31 @@ export default {
                 </div>
 
                 <div class="w-full">
-                    <button
-                        type="submit"
-                        class="rounded-md bg-blue-600 text-white w-fit px-6 py-2 text-base duration-200 hover:bg-blue-700"
-                    >
-                        Zapisz
-                    </button>
+                    <PrimaryButton :type="'submit'">Zapisz</PrimaryButton>
                 </div>
             </form>
         </div>
 
         <div
-            class="flex flex-col gap-8 w-full xl:w-[calc(50%-12px)] bg-white rounded-md border-[1px] border-slate-200 p-6 h-fit"
+            class="flex flex-col gap-6 w-full xl:w-[calc(50%-12px)] bg-white rounded-md border-[1px] border-slate-200 p-6 h-fit"
         >
-            <h2 class="text-lg font-medium text-black">
-                Zalecenia wirtualnego specjalisty<br />
-                <span class="text-xs text-gray-400 font-normal"
-                    >Wirtualny specjalista bierze pod uwagę równiez dane z
-                    twojego profilu pacjenta.</span
+            <div class="flex flex-col gap-2">
+                <div class="flex gap-2 items-center">
+                    <div
+                        class="flex justify-center items-center bg-blue-200 size-12 rounded-2xl"
+                    >
+                        <i
+                            class="fa-solid fa-user-doctor text-blue-600 text-xl"
+                        ></i>
+                    </div>
+                    <h4 class="text-2xl font-normal">
+                        Zalecenia wirtualnego specjalisty
+                    </h4>
+                </div>
+                <span class="text-sm text-gray-600"
+                    >Twoje kluczowe parametry krwi w jednym miejscu.</span
                 >
-            </h2>
+            </div>
             <div
                 v-if="user.blood_recommendations"
                 v-html="user.blood_recommendations"

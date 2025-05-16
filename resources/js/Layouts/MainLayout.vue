@@ -188,7 +188,7 @@ const user = page.props.user;
                                                 'text-white':
                                                     route().current('blood.*'),
                                             }"
-                                            class="fa-solid fa-droplet text-lg"
+                                            class="fa-solid fa-flask-vial text-lg"
                                         ></i>
                                     </Link>
                                 </li>
