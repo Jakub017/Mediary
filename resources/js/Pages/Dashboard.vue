@@ -182,8 +182,15 @@ export default {
                     </div>
                     <h4 class="text-2xl font-normal">Waga</h4>
                 </div>
-                <span class="text-sm text-gray-600"
-                    >Prawidłowa waga dla twojego wzrostu to 58 - 64kg</span
+                <span v-if="user.proper_weight" class="text-sm text-gray-600"
+                    >Prawidłowy zakres wagi na podstawie twoich danych to
+                    {{ user.proper_weight }}</span
+                >
+                <span v-else class="text-sm text-gray-600"
+                    >Uzupełnij
+                    <Link class="text-blue-600" :href="route('profile.index')"
+                        >podstawowe dane profilu</Link
+                    >, aby obliczyć prawidłowy zakres wagi.</span
                 >
                 <div id="chart"></div>
                 <div class="flex justify-between items-end">
@@ -218,11 +225,14 @@ export default {
                 >
                 <div id="chart-heart"></div>
                 <div class="flex justify-between items-end">
-                    <p class="text-6xl font-light">
+                    <p v-if="props.last_pressure" class="text-6xl font-light">
                         {{ props.last_pressure.systolic }}/{{
                             props.last_pressure.diastolic
                         }}
                         <span class="text-base font-ligh">mmHg</span>
+                    </p>
+                    <p v-else class="text-2xl font-light">
+                        brak danych<span class="text-base font-ligh"></span>
                     </p>
                     <button
                         href=""

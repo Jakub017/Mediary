@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 
@@ -41,6 +42,12 @@ class ProfileController extends Controller
                 'date' => Carbon::today(),
             ]);
         }
+
+        $height_in_meters = $data['height'] / 100;
+        $min_weight = round(18.5 * ($height_in_meters * $height_in_meters), 1);
+        $max_weight = round(24.9 * ($height_in_meters * $height_in_meters), 1);
+        $user->proper_weight = $min_weight . 'kg - '. $max_weight . 'kg';
+        $user->save();
 
         return redirect()->route('profile.index');
     }

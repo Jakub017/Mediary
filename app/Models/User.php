@@ -36,7 +36,7 @@ class User extends Authenticatable
     'lym', 'mono', 'eos', 'baso', 'tsh', 'ast', 'alt', 'bilirubin',
     'alp', 'ggtp', 'total_cholesterol', 'hdl_cholesterol',
     'non_hdl_cholesterol', 'ldl_cholesterol', 'triglycerides',
-    'blood_recommendations',
+    'blood_recommendations', 'proper_weight', 'proper_pressure',
     ];
 
     /**
