@@ -37,9 +37,11 @@ export default {
 </script>
 
 <template>
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 grid-rows-['mansory']">
+    <div class="columns-1 lg:columns-2 gap-6 break-inside-avoid">
         <!-- Podstawowe dane -->
-        <div class="flex flex-col gap-6 bg-white rounded-2xl border-[1px] p-6">
+        <div
+            class="flex flex-col gap-6 bg-white rounded-2xl border-[1px] p-6 mb-6 break-inside-avoid"
+        >
             <div class="flex flex-col gap-2">
                 <div class="flex gap-2 items-center">
                     <div
@@ -168,9 +170,31 @@ export default {
             </form>
         </div>
 
+        <!-- Dokumentacja medyczna -->
+        <div
+            class="flex flex-col gap-6 bg-white rounded-2xl border-[1px] border-slate-200 p-6 mb-6 break-inside-avoid"
+        >
+            <div class="flex flex-col gap-2">
+                <div class="flex gap-2 items-center">
+                    <div
+                        class="flex justify-center items-center bg-blue-200 size-12 rounded-2xl"
+                    >
+                        <i
+                            class="fa-solid fa-folder-open text-blue-600 text-xl"
+                        ></i>
+                    </div>
+                    <h4 class="text-2xl font-normal">Dokumentacja medyczna</h4>
+                </div>
+                <span class="text-sm text-gray-600"
+                    >W tym miejscu mozesz przesłac pliki twojej dokumentacji
+                    medycznej.</span
+                >
+            </div>
+        </div>
+
         <!-- Pomiar ciśnienia -->
         <div
-            class="flex flex-col gap-6 bg-white rounded-2xl border-[1px] border-slate-200 p-6"
+            class="flex flex-col gap-6 bg-white rounded-2xl border-[1px] border-slate-200 p-6 break-inside-avoid"
         >
             <div class="flex flex-col gap-2">
                 <div class="flex gap-2 items-center">
@@ -291,28 +315,6 @@ export default {
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </div>
-
-        <!-- Dokumentacja medyczna -->
-        <div
-            class="flex flex-col gap-6 bg-white rounded-2xl border-[1px] border-slate-200 p-6"
-        >
-            <div class="flex flex-col gap-2">
-                <div class="flex gap-2 items-center">
-                    <div
-                        class="flex justify-center items-center bg-blue-200 size-12 rounded-2xl"
-                    >
-                        <i
-                            class="fa-solid fa-folder-open text-blue-600 text-xl"
-                        ></i>
-                    </div>
-                    <h4 class="text-2xl font-normal">Dokumentacja medyczna</h4>
-                </div>
-                <span class="text-sm text-gray-600"
-                    >W tym miejscu mozesz przesłac pliki twojej dokumentacji
-                    medycznej.</span
-                >
             </div>
         </div>
     </div>
