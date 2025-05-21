@@ -1,6 +1,6 @@
 <script setup>
 import { useForm, usePage } from "@inertiajs/vue3";
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 
 const page = usePage();
@@ -40,17 +40,31 @@ const form = useForm({
 });
 
 const submit = () => form.patch(route("blood.update"));
+
+onMounted(() => {
+    const dropdownBtns = [...document.querySelectorAll(".dropdown-btn")];
+    const dropdownContents = [
+        ...document.querySelectorAll(".dropdown-content"),
+    ];
+    const dropdownArrows = [...document.querySelectorAll(".dropdown-arrow")];
+
+    dropdownBtns.forEach((btn, i) => {
+        btn.addEventListener("click", () => {
+            dropdownContents[i].classList.toggle("hidden");
+            dropdownArrows[i].classList.toggle("rotate-180");
+        });
+    });
+});
 </script>
 
 <script>
 import MainLayout from "@/Layouts/MainLayout.vue";
 export default {
     layout: MainLayout,
-    loading: false,
 };
 </script>
 
-<template>
+<template class="overflow-y-auto">
     <div class="flex flex-wrap gap-6">
         <div
             class="flex flex-col gap-6 w-full lg:w-[calc(50%-12px)] bg-white rounded-2xl border-[1px] border-slate-200 p-6 h-fit"
@@ -80,12 +94,19 @@ export default {
                             <h4 class="text-xl font-normal w-full">
                                 Morfologia krwi
                             </h4>
-                            <button class="flex justify-center items-center">
-                                <i class="fa-solid fa-angle-down text-xl"></i>
+                            <button
+                                type="button"
+                                class="dropdown-btn flex justify-center items-center"
+                            >
+                                <i
+                                    class="dropdown-arrow fa-solid fa-angle-down text-xl"
+                                ></i>
                             </button>
                         </div>
 
-                        <div class="w-full flex gap-4 flex-wrap">
+                        <div
+                            class="dropdown-content w-full flex gap-4 flex-wrap"
+                        >
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="wbc" class="text-gray-600 text-xs"
                                     >Leukocyty
@@ -498,12 +519,19 @@ export default {
                             <h4 class="text-xl font-normal w-full">
                                 Próby wątrobowe
                             </h4>
-                            <button class="flex justify-center items-center">
-                                <i class="fa-solid fa-angle-down text-xl"></i>
+                            <button
+                                type="button"
+                                class="dropdown-btn flex justify-center items-center"
+                            >
+                                <i
+                                    class="dropdown-arrow fa-solid fa-angle-down text-xl"
+                                ></i>
                             </button>
                         </div>
 
-                        <div class="w-full flex gap-4 flex-wrap">
+                        <div
+                            class="dropdown-content w-full flex gap-4 flex-wrap"
+                        >
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="wbc" class="text-gray-600 text-xs"
                                     >AST
@@ -618,12 +646,19 @@ export default {
                             <h4 class="text-xl font-normal w-full">
                                 Cholesterol
                             </h4>
-                            <button class="flex justify-center items-center">
-                                <i class="fa-solid fa-angle-down text-xl"></i>
+                            <button
+                                type="button"
+                                class="dropdown-btn flex justify-center items-center"
+                            >
+                                <i
+                                    class="dropdown-arrow fa-solid fa-angle-down text-xl"
+                                ></i>
                             </button>
                         </div>
 
-                        <div class="w-full flex gap-4 flex-wrap">
+                        <div
+                            class="dropdown-content w-full flex gap-4 flex-wrap"
+                        >
                             <div class="flex flex-col gap-1 text-sm">
                                 <label
                                     for="total_cholesterol"

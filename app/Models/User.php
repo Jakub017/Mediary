@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\File;
 use App\Models\Weight;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Jetstream\HasProfilePhoto;
@@ -32,11 +33,41 @@ class User extends Authenticatable
         'weight',
         'birthday',
         'age',
-        'gender', 'diseases', 'wbc', 'rbc', 'hgb', 'hct', 'mcv', 'mch', 'mchc', 'plt', 'rdw_sd', 'rdw_cv', 'pdw', 'mpv', 'p_lcr', 'pct', 'neu',
-    'lym', 'mono', 'eos', 'baso', 'tsh', 'ast', 'alt', 'bilirubin',
-    'alp', 'ggtp', 'total_cholesterol', 'hdl_cholesterol',
-    'non_hdl_cholesterol', 'ldl_cholesterol', 'triglycerides',
-    'blood_recommendations', 'proper_weight', 'proper_pressure',
+        'gender', 
+        'diseases', 
+        'wbc', 
+        'rbc', 
+        'hgb', 
+        'hct', 
+        'mcv', 
+        'mch', 
+        'mchc', 
+        'plt', 
+        'rdw_sd', 
+        'rdw_cv',
+        'pdw', 
+        'mpv', 
+        'p_lcr', 
+        'pct', 
+        'neu',
+        'lym', 
+        'mono', 
+        'eos', 
+        'baso', 
+        'tsh', 
+        'ast', 
+        'alt', 
+        'bilirubin',
+        'alp', 
+        'ggtp',
+        'total_cholesterol', 
+        'hdl_cholesterol',
+        'non_hdl_cholesterol', 
+        'ldl_cholesterol', 
+        'triglycerides',
+        'blood_recommendations', 
+        'proper_weight', 
+        'proper_pressure',
     ];
 
     /**
@@ -79,5 +110,9 @@ class User extends Authenticatable
 
     public function blood_pressures() {
         return $this->hasMany(BloodPressure::class);
+    }
+
+    public function files() {
+        return $this->hasMany(File::class);
     }
 }
