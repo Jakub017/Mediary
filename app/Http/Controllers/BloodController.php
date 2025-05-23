@@ -8,6 +8,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Cache;
 
 
 class BloodController extends Controller
@@ -81,7 +82,6 @@ class BloodController extends Controller
         ]);
 
         $other_pressures = $user->blood_pressures()->where('date', '!=', $data['date'])->get(['systolic', 'diastolic', 'date']);
-        // dd(json_decode($other_pressures));
 
         $apiKey = env('OPENAI_API_KEY');
         $response = Http::withHeaders([
@@ -95,6 +95,8 @@ class BloodController extends Controller
         $data['review'] = $response->json()['output'][0]['content'][0]['text'];
 
         $user->blood_pressures()->create($data);
+
+        Cache::forget('blood_pressures_'.$user->id);
 
         return redirect()->back();
     }

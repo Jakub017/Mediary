@@ -33,11 +33,11 @@ const props = defineProps({
     files: Array,
 });
 
-const formatDate = (myDate) => {
+const formatDate = (myDate, monthFormat = "long") => {
     let customDate = new Date(myDate);
     return customDate.toLocaleDateString("pl-PL", {
         day: "numeric",
-        month: "long",
+        month: monthFormat,
         year: "numeric",
     });
 };
@@ -228,7 +228,7 @@ const formatDate = (myDate) => {
 
                 <!-- Data -->
                 <div class="w-[100px] text-sm text-gray-600 text-right">
-                    {{ formatDate(file.created_at) }}
+                    {{ formatDate(file.created_at, "long") }}
                 </div>
 
                 <!-- Opcje -->
@@ -344,7 +344,7 @@ const formatDate = (myDate) => {
                                 <td
                                     class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0"
                                 >
-                                    {{ pressure.date }}
+                                    {{ formatDate(pressure.date, "numeric") }}
                                 </td>
                                 <td
                                     class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"

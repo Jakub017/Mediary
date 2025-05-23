@@ -6,18 +6,33 @@ use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Redirect;
 
 class ProfileController extends Controller
 {
 
-    public function index(Request $request) {
+    public function index(Request $request) 
+    {
         $user = $request->user();
-        $blood_pressures = $user->blood_pressures()->orderBy('date', 'asc')->get();
-        $files = $user->files()->orderBy('created_at', 'desc')->get();
+
+        $start = microtime(true);
+
+        $blood_pressures = Cache::rememberForever('blood_pressures_'.$user->id, function () use ($user) {
+            return $user->blood_pressures()->orderBy('date', 'asc')->get();   
+        });
+
+        $files = Cache::rememberForever('files_'.$user->id, function () use ($user) {
+            return $user->files()->orderBy('created_at', 'desc')->get();   
+        });
+
+        $end = microtime(true);
+        $time = $end - $start;
+        Log::info('Czas wczytywania profilu: '.$time);
         
         return Inertia('Profile/Index', [
             'blood_pressures' => $blood_pressures,
