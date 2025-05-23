@@ -15,6 +15,7 @@ class AppController extends Controller
 {
     public function dashboard(Request $request) {
         $user = $request->user();
+        $files = $user->files()->orderBy('created_at', 'desc')->limit(5)->get();
         $weights = $user->weights()->orderBy('date', 'asc')->limit(5)->pluck('weight');
         $dates = $user->weights()->orderBy('date', 'asc')->limit(5)->pluck('date');
 
@@ -30,7 +31,7 @@ class AppController extends Controller
         $blood_dates = $blood_dates->map(function ($date) {
             return Carbon::parse($date)->format('d.m');
         });
-        
+
         return Inertia('Dashboard', [
             'weights' => $weights,
             'dates' => $dates,
@@ -38,6 +39,7 @@ class AppController extends Controller
             'diastolics' => $diastolics,
             'blood_dates' => $blood_dates,
             'last_pressure' => $last_pressure,
+            'files' => $files,
         ]);
     }    
 }

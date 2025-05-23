@@ -17,8 +17,11 @@ class ProfileController extends Controller
     public function index(Request $request) {
         $user = $request->user();
         $blood_pressures = $user->blood_pressures()->orderBy('date', 'asc')->get();
+        $files = $user->files()->orderBy('created_at', 'desc')->get();
+        
         return Inertia('Profile/Index', [
             'blood_pressures' => $blood_pressures,
+            'files' => $files,
         ]);
     }
      

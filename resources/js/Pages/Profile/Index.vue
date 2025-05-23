@@ -1,4 +1,9 @@
 <script setup>
+import MainLayout from "@/Layouts/MainLayout.vue";
+defineOptions({
+    layout: MainLayout,
+});
+
 import { useForm, usePage } from "@inertiajs/vue3";
 import { computed } from "vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
@@ -25,14 +30,16 @@ const submitPressure = () => pressureForm.post(route("blood.pressure"));
 
 const props = defineProps({
     blood_pressures: Array,
+    files: Array,
 });
-</script>
 
-<script>
-import MainLayout from "@/Layouts/MainLayout.vue";
-export default {
-    layout: MainLayout,
-    loading: false,
+const formatDate = (myDate) => {
+    let customDate = new Date(myDate);
+    return customDate.toLocaleDateString("pl-PL", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+    });
 };
 </script>
 
@@ -189,6 +196,47 @@ export default {
                     >W tym miejscu mozesz przesłac pliki twojej dokumentacji
                     medycznej.</span
                 >
+            </div>
+            <div
+                v-for="file in files"
+                :key="file.id"
+                class="flex gap-4 items-start mt-4 w-full border-b border-gray-200 pb-4"
+            >
+                <!-- Ikona -->
+                <div
+                    class="flex-shrink-0 size-12 rounded-2xl bg-gray-100 flex justify-center items-center"
+                >
+                    <i
+                        v-if="file.type == 'doc'"
+                        class="fa-solid fa-file text-blue-600 text-xl"
+                    ></i>
+                    <i
+                        v-if="file.type == 'pdf'"
+                        class="fa-solid fa-file-pdf text-blue-600 text-xl"
+                    ></i>
+                </div>
+
+                <!-- Nazwa i rozmiar -->
+                <div class="flex-grow flex flex-col overflow-hidden">
+                    <h4 class="text-base font-normal mb-0 break-words">
+                        {{ file.filename }}
+                    </h4>
+                    <span class="text-xs text-gray-600"
+                        >{{ file.size }} MB</span
+                    >
+                </div>
+
+                <!-- Data -->
+                <div class="w-[100px] text-sm text-gray-600 text-right">
+                    {{ formatDate(file.created_at) }}
+                </div>
+
+                <!-- Opcje -->
+                <div class="ml-2 flex-shrink-0">
+                    <button class="text-gray-600">
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </button>
+                </div>
             </div>
         </div>
 

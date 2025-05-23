@@ -1,4 +1,9 @@
 <script setup>
+import MainLayout from "@/Layouts/MainLayout.vue";
+defineOptions({
+    layout: MainLayout,
+});
+
 import { useForm, usePage } from "@inertiajs/vue3";
 import { computed, onMounted } from "vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
@@ -55,13 +60,6 @@ onMounted(() => {
         });
     });
 });
-</script>
-
-<script>
-import MainLayout from "@/Layouts/MainLayout.vue";
-export default {
-    layout: MainLayout,
-};
 </script>
 
 <template class="overflow-y-auto">

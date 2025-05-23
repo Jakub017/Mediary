@@ -1,7 +1,12 @@
 <script setup>
-import { Link, usePage } from "@inertiajs/vue3";
+import MainLayout from "@/Layouts/MainLayout.vue";
+defineOptions({
+    layout: MainLayout,
+});
+
+import { Link, usePage, useForm } from "@inertiajs/vue3";
 import ApexCharts from "apexcharts";
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 
 const page = usePage();
 const user = computed(() => page.props.user);
@@ -13,6 +18,7 @@ const props = defineProps({
     diastolics: Array,
     blood_dates: Array,
     last_pressure: Object,
+    files: Array,
 });
 
 var options = {
@@ -140,6 +146,38 @@ var optionsHeart = {
     },
 };
 
+const form = useForm({
+    file: null,
+});
+
+const upload = () => {
+    form.post(route("file.store"), {
+        onSuccess: () => {
+            form.reset();
+            document.querySelector("#add-file-modal").classList.add("hidden");
+            document
+                .querySelector("#add-file-background")
+                .classList.add("hidden");
+        },
+    });
+};
+
+const addFile = (e) => {
+    form.file = e.target.files[0];
+    if (form.file) {
+        upload();
+    }
+};
+
+const formatDate = (myDate) => {
+    let customDate = new Date(myDate);
+    return customDate.toLocaleDateString("pl-PL", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+    });
+};
+
 onMounted(() => {
     var chart = new ApexCharts(document.querySelector("#chart"), options);
     chart.render();
@@ -149,19 +187,84 @@ onMounted(() => {
         optionsHeart
     );
     chartHeart.render();
+
+    const addFileBtn = document.querySelector("#add-file");
+    const addFileBackground = document.querySelector("#add-file-background");
+    const addFileModal = document.querySelector("#add-file-modal");
+    const closeModalBtn = document.querySelector("#close-file-modal");
+
+    addFileBtn.addEventListener("click", () => {
+        addFileModal.classList.remove("hidden");
+        addFileBackground.classList.remove("hidden");
+    });
+
+    closeModalBtn.addEventListener("click", () => {
+        addFileModal.classList.add("hidden");
+        addFileBackground.classList.add("hidden");
+    });
+
+    addFileBackground.addEventListener("click", () => {
+        if (!addFileModal.classList.contains("hidden")) {
+            addFileModal.classList.add("hidden");
+            addFileBackground.classList.add("hidden");
+        }
+    });
 });
 </script>
 
-<script>
-import MainLayout from "@/Layouts/MainLayout.vue";
-import { onMounted } from "vue";
-export default {
-    layout: MainLayout,
-    loading: false,
-};
-</script>
-
 <template>
+    <!-- Start popup -->
+    <div
+        id="add-file-background"
+        class="hidden fixed w-full h-full top-0 left-0 bg-black opacity-35 z-50"
+    ></div>
+
+    <div
+        id="add-file-modal"
+        class="hidden fixed bg-white rounded-2xl top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] p-4 z-[51] w-[90%] max-w-[600px]"
+    >
+        <div class="flex justify-between items-center">
+            <h2 for="cover-photo" class="text-xl font-normal">Prześlij plik</h2>
+            <button id="close-file-modal">
+                <i
+                    class="fa-solid fa-xmark text-xl text-gray-300 duration-200 hover:text-gray-400"
+                ></i>
+            </button>
+        </div>
+
+        <form
+            @submit.prevent="upload"
+            class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10"
+        >
+            <div class="text-center">
+                <i class="fa-solid fa-file text-4xl text-gray-200"></i>
+                <div
+                    class="mt-4 flex text-sm leading-6 text-gray-600 justify-center"
+                >
+                    <label
+                        for="file"
+                        class="relative cursor-pointer text-center rounded-md bg-white font-semibold duration-200 text-blue-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-blue-600 focus-within:ring-offset-2 hover:text-blue-500"
+                    >
+                        <span class="text-sm">Wybierz plik z urządzenia</span>
+                        <input
+                            id="file"
+                            @change="addFile"
+                            type="file"
+                            class="sr-only"
+                        />
+                    </label>
+                </div>
+                <p class="text-xs leading-5 text-gray-600">
+                    Pliki .pdf, .doc, .docx do 10MB
+                </p>
+                <span class="text-xs text-red-500" v-if="form.errors.file">{{
+                    form.errors.file
+                }}</span>
+            </div>
+        </form>
+    </div>
+    <!-- End popup -->
+
     <div class="flex flex-col mb-6">
         <h1 class="text-4xl font-normal">Dzień dobry, {{ user.name }}!</h1>
     </div>
@@ -193,7 +296,9 @@ export default {
                     >, aby obliczyć prawidłowy zakres wagi.</span
                 >
                 <div id="chart"></div>
-                <div class="flex justify-between items-end">
+                <div
+                    class="flex justify-between flex-col gap-4 items-start lg:flex-row lg:items-end"
+                >
                     <p v-if="user.weight" class="text-6xl font-light">
                         {{ user.weight
                         }}<span class="text-base font-ligh">kg</span>
@@ -224,12 +329,13 @@ export default {
                     >Twoje prawidłowe ciśnienie to 120-130/80-90 mmHg</span
                 >
                 <div id="chart-heart"></div>
-                <div class="flex justify-between items-end">
+                <div
+                    class="flex justify-between flex-col gap-4 items-start lg:flex-row lg:items-end"
+                >
                     <p v-if="props.last_pressure" class="text-6xl font-light">
                         {{ props.last_pressure.systolic }}/{{
                             props.last_pressure.diastolic
-                        }}
-                        <span class="text-base font-ligh">mmHg</span>
+                        }}<span class="text-base font-ligh">mmHg</span>
                     </p>
                     <p v-else class="text-2xl font-light">
                         brak danych<span class="text-base font-ligh"></span>
@@ -280,6 +386,7 @@ export default {
                     </div>
                     <h4 class="text-2xl font-normal">Twoje dokumenty</h4>
                     <button
+                        id="add-file"
                         class="text-white text-sm bg-blue-600 size-9 ml-auto mr-0 rounded-full flex justify-center items-center"
                     >
                         <i class="fa-solid fa-plus text-base"></i>
@@ -287,198 +394,41 @@ export default {
                 </div>
                 <div class="flex flex-col gap-4 w-full">
                     <div
-                        class="flex gap-6 justify-between items-center mt-4 w-full border-b border-gray-200 pb-4"
+                        v-for="file in files"
+                        :key="file.id"
+                        class="flex gap-4 items-start mt-4 w-full border-b border-gray-200 pb-4"
                     >
-                        <div class="size-12">
-                            <div
-                                class="size-12 rounded-2xl bg-gray-100 flex justify-center items-center"
-                            >
-                                <i
-                                    class="fa-solid fa-file-lines text-blue-600 text-2xl"
-                                ></i>
-                            </div>
-                        </div>
-                        <div class="flex-grow flex justify-start">
-                            <flex class="flex-col">
-                                <h4 class="text-base font-normal mb-0">
-                                    morfologia_2025.pdf
-                                </h4>
-                                <span class="text-xs text-gray-600">2 MB</span>
-                            </flex>
-                        </div>
-                        <div class="flex-grow flex justify-end">
-                            <span class="text-gray-600 text-sm"
-                                >2 Luty 2025</span
-                            >
-                        </div>
+                        <!-- Ikona -->
                         <div
-                            class="size-4 ml-auto mr-0 flex justify-end items-center"
+                            class="flex-shrink-0 size-12 rounded-2xl bg-gray-100 flex justify-center items-center"
                         >
-                            <button class="text-gray-600">
-                                <i class="fa-solid fa-ellipsis"></i>
-                            </button>
+                            <i
+                                v-if="file.type == 'doc'"
+                                class="fa-solid fa-file text-blue-600 text-xl"
+                            ></i>
+                            <i
+                                v-if="file.type == 'pdf'"
+                                class="fa-solid fa-file-pdf text-blue-600 text-xl"
+                            ></i>
                         </div>
-                    </div>
 
-                    <div
-                        class="flex gap-6 justify-between items-center mt-4 w-full border-b border-gray-200 pb-4"
-                    >
-                        <div class="size-12">
-                            <div
-                                class="size-12 rounded-2xl bg-gray-100 flex justify-center items-center"
-                            >
-                                <i
-                                    class="fa-solid fa-file-lines text-blue-600 text-2xl"
-                                ></i>
-                            </div>
-                        </div>
-                        <div class="flex-grow flex justify-start">
-                            <flex class="flex-col">
-                                <h4 class="text-base font-normal mb-0">
-                                    wyniki_krwi.pdf
-                                </h4>
-                                <span class="text-xs text-gray-600"
-                                    >1.5 MB</span
-                                >
-                            </flex>
-                        </div>
-                        <div class="flex-grow flex justify-end">
-                            <span class="text-gray-600 text-sm"
-                                >28 Styczeń 2025</span
+                        <!-- Nazwa i rozmiar -->
+                        <div class="flex-grow flex flex-col overflow-hidden">
+                            <h4 class="text-base font-normal mb-0 break-words">
+                                {{ file.filename }}
+                            </h4>
+                            <span class="text-xs text-gray-600"
+                                >{{ file.size }} MB</span
                             >
                         </div>
-                        <div class="size-4 mr-0 flex justify-end items-center">
-                            <button class="text-gray-600">
-                                <i class="fa-solid fa-ellipsis"></i>
-                            </button>
-                        </div>
-                    </div>
 
-                    <div
-                        class="flex gap-6 justify-between items-center mt-4 w-full border-b border-gray-200 pb-4"
-                    >
-                        <div class="size-12">
-                            <div
-                                class="size-12 rounded-2xl bg-gray-100 flex justify-center items-center"
-                            >
-                                <i
-                                    class="fa-solid fa-file-lines text-blue-600 text-2xl"
-                                ></i>
-                            </div>
+                        <!-- Data -->
+                        <div class="w-[100px] text-sm text-gray-600 text-right">
+                            {{ formatDate(file.created_at) }}
                         </div>
-                        <div class="flex-grow flex justify-start">
-                            <flex class="flex-col">
-                                <h4 class="text-base font-normal mb-0">
-                                    badanie_serca.pdf
-                                </h4>
-                                <span class="text-xs text-gray-600">3 MB</span>
-                            </flex>
-                        </div>
-                        <div class="flex-grow flex justify-end">
-                            <span class="text-gray-600 text-sm"
-                                >15 Styczeń 2025</span
-                            >
-                        </div>
-                        <div class="size-4 mr-0 flex justify-end items-center">
-                            <button class="text-gray-600">
-                                <i class="fa-solid fa-ellipsis"></i>
-                            </button>
-                        </div>
-                    </div>
 
-                    <div
-                        class="flex gap-6 justify-between items-center mt-4 w-full border-b border-gray-200 pb-4"
-                    >
-                        <div class="size-12">
-                            <div
-                                class="size-12 rounded-2xl bg-gray-100 flex justify-center items-center"
-                            >
-                                <i
-                                    class="fa-solid fa-file-lines text-blue-600 text-2xl"
-                                ></i>
-                            </div>
-                        </div>
-                        <div class="flex-grow flex justify-start">
-                            <flex class="flex-col">
-                                <h4
-                                    class="text-base font-normal mb-0 text-pretty"
-                                >
-                                    analiza_hormonalna.pdf
-                                </h4>
-                                <span class="text-xs text-gray-600"
-                                    >2.3 MB</span
-                                >
-                            </flex>
-                        </div>
-                        <div class="flex-grow flex justify-end">
-                            <span class="text-gray-600 text-sm"
-                                >10 Styczeń 2025</span
-                            >
-                        </div>
-                        <div class="size-4 mr-0 flex justify-end items-center">
-                            <button class="text-gray-600">
-                                <i class="fa-solid fa-ellipsis"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div
-                        class="flex gap-6 justify-between items-center mt-4 w-full border-b border-gray-200 pb-4 last:border-0 last:pb-2"
-                    >
-                        <div class="size-12">
-                            <div
-                                class="size-12 rounded-2xl bg-gray-100 flex justify-center items-center"
-                            >
-                                <i
-                                    class="fa-solid fa-file-lines text-blue-600 text-2xl"
-                                ></i>
-                            </div>
-                        </div>
-                        <div class="flex-grow flex justify-start">
-                            <flex class="flex-col">
-                                <h4 class="text-base font-normal mb-0">
-                                    skan_recepty.pdf
-                                </h4>
-                                <span class="text-xs text-gray-600">1 MB</span>
-                            </flex>
-                        </div>
-                        <div class="flex-grow flex justify-end">
-                            <span class="text-gray-600 text-sm"
-                                >5 Styczeń 2025</span
-                            >
-                        </div>
-                        <div class="size-4 mr-0 flex justify-end items-center">
-                            <button class="text-gray-600">
-                                <i class="fa-solid fa-ellipsis"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div
-                        class="flex gap-6 justify-between items-center mt-4 w-full border-b border-gray-200 pb-4 last:border-0 last:pb-2"
-                    >
-                        <div class="size-12">
-                            <div
-                                class="size-12 rounded-2xl bg-gray-100 flex justify-center items-center"
-                            >
-                                <i
-                                    class="fa-solid fa-file-lines text-blue-600 text-2xl"
-                                ></i>
-                            </div>
-                        </div>
-                        <div class="flex-grow flex justify-start">
-                            <flex class="flex-col">
-                                <h4 class="text-base font-normal mb-0">
-                                    skan_recepty.pdf
-                                </h4>
-                                <span class="text-xs text-gray-600">1 MB</span>
-                            </flex>
-                        </div>
-                        <div class="flex-grow flex justify-end">
-                            <span class="text-gray-600 text-sm"
-                                >5 Styczeń 2025</span
-                            >
-                        </div>
-                        <div class="size-4 mr-0 flex justify-end items-center">
+                        <!-- Opcje -->
+                        <div class="ml-2 flex-shrink-0">
                             <button class="text-gray-600">
                                 <i class="fa-solid fa-ellipsis"></i>
                             </button>

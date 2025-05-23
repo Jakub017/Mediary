@@ -7,6 +7,7 @@ use App\Http\Controllers\AppController;
 use App\Http\Controllers\DietController;
 use App\Http\Controllers\BloodController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\FileController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -35,6 +36,10 @@ Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'), 'verified'
 
     Route::controller(DietController::class)->group(function() {
         Route::get('/diety', 'index')->name('diet.index');
+    });
+
+    Route::controller(FileController::class)->group(function() {
+        Route::post('/przeslij-plik', 'store')->name('file.store');
     });
     
 });
