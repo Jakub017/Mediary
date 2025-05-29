@@ -192,7 +192,7 @@ const user = page.props.user;
                                         ></i>
                                     </Link>
                                 </li>
-                                <li>
+                                <!-- <li>
                                     <Link
                                         :href="route('diet.index')"
                                         :class="{
@@ -211,7 +211,7 @@ const user = page.props.user;
                                             class="fa-solid fa-utensils text-lg"
                                         ></i>
                                     </Link>
-                                </li>
+                                </li> -->
                             </ul>
                         </li>
                     </ul>

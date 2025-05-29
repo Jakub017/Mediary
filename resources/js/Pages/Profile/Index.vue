@@ -200,7 +200,7 @@ const formatDate = (myDate, monthFormat = "long") => {
             <div
                 v-for="file in files"
                 :key="file.id"
-                class="flex gap-4 items-start mt-4 w-full border-b border-gray-200 pb-4"
+                class="flex gap-4 items-start mt-4 w-full border-b border-gray-200 pb-4 last:border-none"
             >
                 <!-- Ikona -->
                 <div

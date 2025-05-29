@@ -2,22 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
 
 
 class BloodController extends Controller
 {
-    public function index() {
+    public function index() 
+    {
        return Inertia('Blood/Index');
     }
 
-    public function update(Request $request) {
+    public function update(Request $request) 
+    {
         $user = $request->user();
 
         $data = $request->validate([
@@ -72,7 +71,8 @@ class BloodController extends Controller
         return back();
     }
 
-    public function pressure(Request $request) {
+    public function pressure(Request $request) 
+    {
         $user = $request->user();
 
         $data = $request->validate([

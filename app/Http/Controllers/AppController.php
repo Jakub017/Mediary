@@ -3,17 +3,12 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
-use App\Models\Diet;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Http;
-
-
 
 class AppController extends Controller
 {
-    public function dashboard(Request $request) {
+    public function dashboard(Request $request) 
+    {
         $user = $request->user();
         $files = $user->files()->orderBy('created_at', 'desc')->limit(5)->get();
         $weights = $user->weights()->orderBy('date', 'asc')->limit(5)->pluck('weight');

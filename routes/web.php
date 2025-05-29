@@ -39,6 +39,7 @@ Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'), 'verified'
     });
 
     Route::controller(FileController::class)->group(function() {
+        Route::get('/plik/{id}', 'show')->name('file.show');
         Route::post('/przeslij-plik', 'store')->name('file.store');
     });
     

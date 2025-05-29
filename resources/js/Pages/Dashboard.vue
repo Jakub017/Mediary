@@ -232,11 +232,10 @@ onMounted(() => {
             </button>
         </div>
 
-        <form
-            @submit.prevent="upload"
-            class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10"
-        >
-            <div class="text-center">
+        <form @submit.prevent="upload" class="mt-2 flex flex-col gap-2">
+            <div
+                class="text-center flex flex-col justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10"
+            >
                 <i class="fa-solid fa-file text-4xl text-gray-200"></i>
                 <div
                     class="mt-4 flex text-sm leading-6 text-gray-600 justify-center"
@@ -261,6 +260,17 @@ onMounted(() => {
                     form.errors.file
                 }}</span>
             </div>
+            <!-- <label for="scan" class="text-sm text-gray-500"
+                ><input
+                    disabled
+                    class="rounded-md h-4 w-4"
+                    type="checkbox"
+                    v-model="scan"
+                    id="scan"
+                />
+                Wgrwyam skan
+                <span class="text-blue-600 font-semibold">Wkrótce</span>
+            </label> -->
         </form>
     </div>
     <!-- End popup -->
@@ -396,7 +406,7 @@ onMounted(() => {
                     <div
                         v-for="file in files"
                         :key="file.id"
-                        class="flex gap-4 items-start mt-4 w-full border-b border-gray-200 pb-4"
+                        class="flex gap-4 items-start mt-4 w-full border-b border-gray-200 pb-4 last:border-none"
                     >
                         <!-- Ikona -->
                         <div
@@ -414,9 +424,12 @@ onMounted(() => {
 
                         <!-- Nazwa i rozmiar -->
                         <div class="flex-grow flex flex-col overflow-hidden">
-                            <h4 class="text-base font-normal mb-0 break-words">
+                            <Link
+                                :href="route('file.show', file.id)"
+                                class="text-base font-normal mb-0 break-words"
+                            >
                                 {{ file.filename }}
-                            </h4>
+                            </Link>
                             <span class="text-xs text-gray-600"
                                 >{{ file.size }} MB</span
                             >
