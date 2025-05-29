@@ -15,8 +15,7 @@
                     <h4 class="text-2xl font-normal">Informacje o pliku</h4>
                 </div>
                 <span class="text-sm text-gray-600"
-                    >Lorem ipsum dolor sit amet consectetur adipisicing
-                    elit.</span
+                    >Podstawowe informacje oraz podsumowanie pliku.</span
                 >
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -52,6 +51,19 @@
                         class="text-sm flex flex-col gap-2"
                     ></div>
                 </div>
+                <div
+                    class="col-span-1 md:col-span-3 flex justify-between items-center"
+                >
+                    <PrimaryButton @click="back">Powrót</PrimaryButton>
+                    <Link
+                        method="delete"
+                        :href="route('file.destroy', file.id)"
+                    >
+                        <i
+                            class="fa-solid fa-trash text-red-600 duration-200 hover:text-red-700"
+                        ></i>
+                    </Link>
+                </div>
             </div>
         </div>
 
@@ -68,12 +80,13 @@
                     <h4 class="text-2xl font-normal">Podgląd pliku</h4>
                 </div>
                 <span class="text-sm text-gray-600"
-                    >Lorem ipsum dolor sit amet consectetur adipisicing
-                    elit.</span
+                    >Zobacz oryginalny plik.</span
                 >
             </div>
-            <div class="w-full max-h-full">
-                <VPdfViewer class="max-h-full" :src="'/storage/' + file.path" />
+            <div
+                class="w-full h-[600px] overflow-y-hidden border-2 rounded-xl border-gray-200"
+            >
+                <VPdfViewer :src="'/storage/' + file.path" />
             </div>
         </div>
     </div>
@@ -81,7 +94,12 @@
 
 <script setup>
 import MainLayout from "@/Layouts/MainLayout.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import SecondaryButton from "@/Components/SecondaryButton.vue";
+import DangerButton from "@/Components/DangerButton.vue";
 import { VPdfViewer } from "@vue-pdf-viewer/viewer";
+import { Link } from "@inertiajs/vue3";
+
 defineOptions({
     layout: MainLayout,
 });
@@ -89,6 +107,10 @@ defineOptions({
 const props = defineProps({
     file: Object,
 });
+
+const back = () => {
+    window.history.back();
+};
 
 const formatDate = (date) => {
     let newDate = new Date(date);

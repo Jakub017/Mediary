@@ -65,7 +65,7 @@ onMounted(() => {
 <template class="overflow-y-auto">
     <div class="flex flex-wrap gap-6">
         <div
-            class="flex flex-col gap-6 w-full lg:w-[calc(50%-12px)] bg-white rounded-2xl border-[1px] border-slate-200 p-6 h-fit"
+            class="flex flex-col gap-6 w-full lg:w-[calc(50%-12px)] bg-white rounded-2xl shadow p-6 h-fit"
         >
             <form class="w-full flex flex-col gap-6" @submit.prevent="submit">
                 <div class="flex flex-col w-full gap-6">
@@ -103,7 +103,7 @@ onMounted(() => {
                         </div>
 
                         <div
-                            class="dropdown-content w-full flex gap-4 flex-wrap"
+                            class="dropdown-content w-full grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
                         >
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="wbc" class="text-gray-600 text-xs"
@@ -117,7 +117,7 @@ onMounted(() => {
                                     type="number"
                                     v-model="form.wbc"
                                     step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
                                 />
                                 <span
                                     class="text-red-500 text-xs"
@@ -138,7 +138,7 @@ onMounted(() => {
                                     type="number"
                                     v-model="form.rbc"
                                     step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
                                 />
                                 <span
                                     class="text-red-500 text-xs"
@@ -158,7 +158,7 @@ onMounted(() => {
                                 <input
                                     type="number"
                                     step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
                                     v-model="form.hgb"
                                 />
                                 <span
@@ -179,7 +179,7 @@ onMounted(() => {
                                 <input
                                     type="number"
                                     step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
                                     v-model="form.hct"
                                 />
                                 <span
@@ -200,7 +200,7 @@ onMounted(() => {
                                 <input
                                     type="number"
                                     step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
                                     v-model="form.mcv"
                                 />
                                 <span
@@ -221,7 +221,7 @@ onMounted(() => {
                                 <input
                                     type="number"
                                     step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
                                     v-model="form.mch"
                                 />
                                 <span
@@ -242,7 +242,7 @@ onMounted(() => {
                                 <input
                                     type="number"
                                     step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
                                     v-model="form.mchc"
                                 />
                                 <span
@@ -263,7 +263,7 @@ onMounted(() => {
                                 <input
                                     type="number"
                                     step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
                                     v-model="form.plt"
                                 />
                                 <span
@@ -286,7 +286,7 @@ onMounted(() => {
                                 <input
                                     type="number"
                                     step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
                                     v-model="form.rdw_sd"
                                 />
                                 <span
@@ -309,7 +309,7 @@ onMounted(() => {
                                 <input
                                     type="number"
                                     step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
                                     v-model="form.rdw_cv"
                                 />
                                 <span
@@ -330,7 +330,7 @@ onMounted(() => {
                                 <input
                                     type="number"
                                     step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
                                     v-model="form.pdw"
                                 />
                                 <span
@@ -351,7 +351,7 @@ onMounted(() => {
                                 <input
                                     type="number"
                                     step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
                                     v-model="form.mpv"
                                 />
                                 <span
@@ -372,7 +372,7 @@ onMounted(() => {
                                 <input
                                     type="number"
                                     step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
                                     v-model="form.p_lcr"
                                 />
                                 <span
@@ -393,7 +393,7 @@ onMounted(() => {
                                 <input
                                     type="number"
                                     step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
                                     v-model="form.pct"
                                 />
                                 <span
@@ -414,7 +414,7 @@ onMounted(() => {
                                 <input
                                     type="number"
                                     step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
                                     v-model="form.neu"
                                 />
                                 <span
@@ -435,7 +435,7 @@ onMounted(() => {
                                 <input
                                     type="number"
                                     step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
                                     v-model="form.lym"
                                 />
                                 <span
@@ -456,7 +456,7 @@ onMounted(() => {
                                 <input
                                     type="number"
                                     step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
                                     v-model="form.mono"
                                 />
                                 <span
@@ -477,7 +477,7 @@ onMounted(() => {
                                 <input
                                     type="number"
                                     step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
                                     v-model="form.eos"
                                 />
                                 <span
@@ -498,7 +498,7 @@ onMounted(() => {
                                 <input
                                     type="number"
                                     step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
                                     v-model="form.baso"
                                 />
                                 <span
@@ -528,7 +528,7 @@ onMounted(() => {
                         </div>
 
                         <div
-                            class="dropdown-content w-full flex gap-4 flex-wrap"
+                            class="dropdown-content w-full grid gap-4 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
                         >
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="wbc" class="text-gray-600 text-xs"
@@ -542,7 +542,7 @@ onMounted(() => {
                                     type="number"
                                     v-model="form.ast"
                                     step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
                                 />
                                 <span
                                     class="text-red-500 text-xs"
@@ -563,7 +563,7 @@ onMounted(() => {
                                     type="number"
                                     v-model="form.alt"
                                     step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
                                 />
                                 <span
                                     class="text-red-500 text-xs"
@@ -583,7 +583,7 @@ onMounted(() => {
                                 <input
                                     type="number"
                                     step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
                                     v-model="form.bilirubin"
                                 />
                                 <span
@@ -604,7 +604,7 @@ onMounted(() => {
                                 <input
                                     type="number"
                                     step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
                                     v-model="form.alp"
                                 />
                                 <span
@@ -625,7 +625,7 @@ onMounted(() => {
                                 <input
                                     type="number"
                                     step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
                                     v-model="form.ggtp"
                                 />
                                 <span
@@ -655,7 +655,7 @@ onMounted(() => {
                         </div>
 
                         <div
-                            class="dropdown-content w-full flex gap-4 flex-wrap"
+                            class="dropdown-content w-full grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
                         >
                             <div class="flex flex-col gap-1 text-sm">
                                 <label
@@ -671,7 +671,7 @@ onMounted(() => {
                                     type="number"
                                     v-model="form.total_cholesterol"
                                     step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
                                 />
                                 <span
                                     class="text-red-500 text-xs"
@@ -694,7 +694,7 @@ onMounted(() => {
                                     type="number"
                                     v-model="form.hdl_cholesterol"
                                     step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
                                 />
                                 <span
                                     class="text-red-500 text-xs"
@@ -716,7 +716,7 @@ onMounted(() => {
                                 <input
                                     type="number"
                                     step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
                                     v-model="form.non_hdl_cholesterol"
                                 />
                                 <span
@@ -739,7 +739,7 @@ onMounted(() => {
                                 <input
                                     type="number"
                                     step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
                                     v-model="form.ldl_cholesterol"
                                 />
                                 <span
@@ -762,7 +762,7 @@ onMounted(() => {
                                 <input
                                     type="number"
                                     step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
                                     v-model="form.triglycerides"
                                 />
                                 <span
@@ -784,7 +784,7 @@ onMounted(() => {
 
         <!-- Zalecenia specjalisty -->
         <div
-            class="flex flex-col gap-6 w-full lg:w-[calc(50%-12px)] bg-white rounded-2xl border-[1px] border-slate-200 p-6 h-fit sticky lg:top-[87px]"
+            class="flex flex-col gap-6 w-full lg:w-[calc(50%-12px)] bg-white rounded-2xl shadow p-6 h-fit sticky lg:top-[87px]"
         >
             <div class="flex flex-col gap-2">
                 <div class="flex gap-2 items-center">

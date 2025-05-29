@@ -1,5 +1,7 @@
 <script setup>
 import MainLayout from "@/Layouts/MainLayout.vue";
+import MainBox from "@/Components/MainBox.vue";
+
 defineOptions({
     layout: MainLayout,
 });
@@ -283,7 +285,7 @@ onMounted(() => {
             class="flex flex-col w-full xl:w-2/3 lg:flex-row items-start flex-wrap gap-6"
         >
             <div
-                class="w-full h-fit lg:w-[calc(50%-12px)] flex bg-white border border-gray-200 rounded-2xl p-4 flex-col gap-2"
+                class="w-full h-fit lg:w-[calc(50%-12px)] flex bg-white shadow rounded-2xl p-4 flex-col gap-2"
             >
                 <div class="flex gap-2 items-center">
                     <div
@@ -325,7 +327,7 @@ onMounted(() => {
                 </div>
             </div>
             <div
-                class="w-full lg:w-[calc(50%-12px)] h-fit flex bg-white border border-gray-200 rounded-2xl p-4 flex-col gap-2"
+                class="w-full lg:w-[calc(50%-12px)] h-fit flex bg-white shadow rounded-2xl p-4 flex-col gap-2"
             >
                 <div class="flex gap-2 items-center">
                     <div
@@ -359,7 +361,7 @@ onMounted(() => {
                 </div>
             </div>
             <div
-                class="w-full h-fit flex bg-white border border-gray-200 rounded-2xl p-4 flex-col gap-2 mt-0"
+                class="w-full h-fit flex bg-white shadow rounded-2xl p-4 flex-col gap-2 mt-0"
             >
                 <div class="flex gap-2 items-center">
                     <div
@@ -384,7 +386,7 @@ onMounted(() => {
         </div>
         <div class="flex w-full xl:w-1/3">
             <div
-                class="w-full flex bg-white border border-gray-200 rounded-2xl p-4 flex-col gap-2"
+                class="w-full flex bg-white shadow rounded-2xl p-4 flex-col gap-2"
             >
                 <div class="flex gap-2 items-center">
                     <div

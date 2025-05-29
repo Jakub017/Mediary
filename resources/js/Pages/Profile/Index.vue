@@ -47,7 +47,7 @@ const formatDate = (myDate, monthFormat = "long") => {
     <div class="columns-1 lg:columns-2 gap-6 break-inside-avoid">
         <!-- Podstawowe dane -->
         <div
-            class="flex flex-col gap-6 bg-white rounded-2xl border-[1px] p-6 mb-6 break-inside-avoid"
+            class="flex flex-col gap-6 bg-white rounded-2xl shadow p-6 mb-6 break-inside-avoid"
         >
             <div class="flex flex-col gap-2">
                 <div class="flex gap-2 items-center">
@@ -67,7 +67,7 @@ const formatDate = (myDate, monthFormat = "long") => {
             <form @submit.prevent="submit" class="flex flex-wrap gap-4">
                 <div class="w-full flex flex-wrap gap-4">
                     <div
-                        class="flex flex-col gap-1 w-full lg:w-[calc(50%-12px)] text-sm"
+                        class="flex flex-col gap-1 w-full lg:w-[calc(50%-8px)] text-sm"
                     >
                         <label for="birthday" class="text-gray-600 text-xs"
                             >Data urodzenia</label
@@ -75,7 +75,7 @@ const formatDate = (myDate, monthFormat = "long") => {
                         <input
                             type="date"
                             placeholder="Twoja waga"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
                             v-model="form.birthday"
                         />
                         <span
@@ -86,14 +86,14 @@ const formatDate = (myDate, monthFormat = "long") => {
                     </div>
 
                     <div
-                        class="flex flex-col gap-1 w-full lg:w-[calc(50%-12px)] text-sm"
+                        class="flex flex-col gap-1 w-full lg:w-[calc(50%-8px)] text-sm"
                     >
                         <label for="gender" class="text-gray-600 text-xs"
                             >Płeć</label
                         >
                         <select
                             id="gender"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
                             v-model="form.gender"
                         >
                             <option value="">Wybierz płec</option>
@@ -113,7 +113,7 @@ const formatDate = (myDate, monthFormat = "long") => {
 
                 <div class="w-full flex flex-wrap gap-4">
                     <div
-                        class="flex flex-col gap-1 w-full lg:w-[calc(50%-12px)] text-sm"
+                        class="flex flex-col gap-1 w-full lg:w-[calc(50%-8px)] text-sm"
                     >
                         <label for="weight" class="text-gray-600 text-xs">
                             Waga [kg]
@@ -121,7 +121,7 @@ const formatDate = (myDate, monthFormat = "long") => {
                         <input
                             type="number"
                             placeholder="Twoja waga"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
                             v-model="form.weight"
                         />
                         <span
@@ -131,7 +131,7 @@ const formatDate = (myDate, monthFormat = "long") => {
                         >
                     </div>
                     <div
-                        class="flex flex-col gap-1 w-full lg:w-[calc(50%-12px)] text-sm"
+                        class="flex flex-col gap-1 w-full lg:w-[calc(50%-8px)] text-sm"
                     >
                         <label for="height" class="text-gray-600 text-xs">
                             Wzrost [cm]
@@ -139,7 +139,7 @@ const formatDate = (myDate, monthFormat = "long") => {
                         <input
                             type="number"
                             placeholder="Twój wzrost"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
                             v-model="form.height"
                         />
                         <span
@@ -159,7 +159,7 @@ const formatDate = (myDate, monthFormat = "long") => {
                             <textarea
                                 type="text"
                                 placeholder="Np. cukrzyca, otyłość, nadciśnienie tętnicze..."
-                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm resize-none h-28"
+                                class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm resize-none h-28"
                                 v-model="form.diseases"
                             ></textarea>
                             <span
@@ -179,7 +179,7 @@ const formatDate = (myDate, monthFormat = "long") => {
 
         <!-- Dokumentacja medyczna -->
         <div
-            class="flex flex-col gap-6 bg-white rounded-2xl border-[1px] border-slate-200 p-6 mb-6 break-inside-avoid"
+            class="flex flex-col gap-6 bg-white rounded-2xl shadow border-slate-300 p-6 mb-6 break-inside-avoid"
         >
             <div class="flex flex-col gap-2">
                 <div class="flex gap-2 items-center">
@@ -242,7 +242,7 @@ const formatDate = (myDate, monthFormat = "long") => {
 
         <!-- Pomiar ciśnienia -->
         <div
-            class="flex flex-col gap-6 bg-white rounded-2xl border-[1px] border-slate-200 p-6 break-inside-avoid"
+            class="flex flex-col gap-6 bg-white rounded-2xl shadow border-slate-300 p-6 break-inside-avoid"
         >
             <div class="flex flex-col gap-2">
                 <div class="flex gap-2 items-center">
@@ -275,7 +275,7 @@ const formatDate = (myDate, monthFormat = "long") => {
                         >
                         <input
                             type="date"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
                             v-model="pressureForm.date"
                         />
                     </div>
@@ -288,7 +288,7 @@ const formatDate = (myDate, monthFormat = "long") => {
                         <input
                             type="text"
                             placeholder="Np. 120"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
                             v-model="pressureForm.systolic"
                         />
                     </div>
@@ -303,7 +303,7 @@ const formatDate = (myDate, monthFormat = "long") => {
                             type="number"
                             v-model="pressureForm.diastolic"
                             placeholder="Np. 80"
-                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-400 p-2 text-sm"
+                            class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
                         />
                     </div>
                 </div>

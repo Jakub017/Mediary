@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use Inertia\Inertia;
 use Illuminate\Http\Request;
+use Laravel\Fortify\Features;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
@@ -27,6 +29,16 @@ class ProfileController extends Controller
         return Inertia('Profile/Index', [
             'blood_pressures' => $blood_pressures,
             'files' => $files,
+        ]);
+    }
+
+    public function edit(Request $request)
+    {
+        $user = $request->user();
+        return Inertia('Profile/Edit', [
+            'user' => $user,
+            'sessions' => $request->session()->get('auth.sessions', []),
+            'confirmsTwoFactorAuthentication' => Features::optionEnabled(Features::twoFactorAuthentication(), 'confirm'),
         ]);
     }
      
@@ -60,21 +72,12 @@ class ProfileController extends Controller
         return redirect()->route('profile.index');
     }
 
-    public function destroy(Request $request): RedirectResponse
+    // User logout
+    public function destroy(Request $request) 
     {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current_password'],
-        ]);
-
-        $user = $request->user();
-
         Auth::logout();
-
-        $user->delete();
-
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-
         return Redirect::to('/');
     }
 }

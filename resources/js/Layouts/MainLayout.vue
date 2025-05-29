@@ -1,15 +1,34 @@
 <script setup>
 import { Link } from "@inertiajs/vue3";
 import { usePage } from "@inertiajs/vue3";
+import { onMounted } from "vue";
 
 const page = usePage();
 
 const user = page.props.user;
+
+const getAvatar = () => {
+    return (
+        "https://ui-avatars.com/api/?name=" +
+        user.name +
+        "&background=2563EB&color=fff&length=1"
+    );
+};
+
+onMounted(() => {
+    const userMenuBtn = document.querySelector(".user-menu-button");
+    const userMenu = document.querySelector(".user-menu");
+
+    userMenuBtn.addEventListener("click", () => {
+        userMenu.classList.toggle("opacity-0");
+        userMenu.classList.toggle("invisible");
+        userMenu.classList.toggle("scale-95");
+    });
+});
 </script>
 
 <template>
     <div class="w-full">
-        <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
         <div class="relative z-50 lg:hidden" role="dialog" aria-modal="true">
             <div
                 class="mobile-backdrop fixed inset-0 opacity-0 duration-300 ease-linear transition-opacity h-0 bg-gray-900/80"
@@ -47,7 +66,7 @@ const user = page.props.user;
                         class="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4"
                     >
                         <div class="flex h-16 shrink-0 items-center">
-                            <img class="h-8 w-auto" src="/img/logo.webp" />
+                            <img class="h-8 w-auto" src="/img/logo_1.png" />
                         </div>
                         <nav class="flex flex-1 flex-col">
                             <ul
@@ -113,7 +132,6 @@ const user = page.props.user;
                 </div>
             </div>
         </div>
-
         <div
             class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-24 lg:flex-col justify-center items-center border-r border-gray-200"
         >
@@ -121,7 +139,7 @@ const user = page.props.user;
                 class="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4"
             >
                 <div class="flex h-16 shrink-0 items-center">
-                    <img class="-mx-2 mt-2 h-10 w-auto" src="#" />
+                    <img class="h-10 w-10" src="/img/logo_2.png" />
                 </div>
                 <nav class="flex flex-1 flex-col">
                     <ul role="list" class="flex flex-1 flex-col gap-y-7">
@@ -222,19 +240,10 @@ const user = page.props.user;
                     >
                         <li>
                             <ul role="list" class="-mx-2 space-y-1">
-                                <!-- <li>
-                                    <Link
-                                        href="#"
-                                        class="text-gray-600 hover:text-blue-600 hover:bg-gray-50 flex justify-center items-center gap-x-3 rounded-full p-3 text-sm font-semibold transition-colors duration-300 size-12"
-                                    >
-                                        <i
-                                            class="fa-solid fa-circle-exclamation text-xl"
-                                        ></i>
-                                    </Link>
-                                </li> -->
                                 <li>
                                     <Link
-                                        method=""
+                                        method="POST"
+                                        :href="route('logout')"
                                         class="text-gray-600 hover:text-blue-600 hover:bg-gray-50 flex justify-center items-center gap-x-3 rounded-full p-3 text-sm font-semibold transition-colors duration-300 size-12"
                                     >
                                         <i
@@ -251,7 +260,7 @@ const user = page.props.user;
         <div class="h-min-screen lg:pl-24">
             <main class="min-h-screen w-full bg-[#F9FAFC]">
                 <div
-                    class="sticky top-0 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8"
+                    class="sticky top-0 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 sm:gap-x-6 sm:px-6 lg:px-8 z-50"
                 >
                     <button
                         type="button"
@@ -310,7 +319,7 @@ const user = page.props.user;
                             />
                         </form>
                         <div class="flex items-center gap-x-4 lg:gap-x-6">
-                            <button
+                            <!-- <button
                                 type="button"
                                 class="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500"
                             >
@@ -329,13 +338,13 @@ const user = page.props.user;
                                         d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
                                     />
                                 </svg>
-                            </button>
+                            </button> -->
 
                             <!-- Separator -->
-                            <div
+                            <!-- <div
                                 class="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-200"
                                 aria-hidden="true"
-                            ></div>
+                            ></div> -->
 
                             <!-- Profile dropdown -->
                             <div class="relative">
@@ -347,15 +356,17 @@ const user = page.props.user;
                                     aria-haspopup="true"
                                 >
                                     <span class="sr-only">Open user menu</span>
+                                    <img
+                                        class="h-7 w-7 rounded-full bg-gray-50"
+                                        :src="getAvatar(user.name)"
+                                        alt=""
+                                    />
                                     <span
-                                        class="mr-2 text-gray-600"
+                                        class="ml-2 text-gray-600"
                                         v-if="user.name"
                                         >{{ user.name }}</span
                                     >
-                                    <img
-                                        class="h-8 w-8 rounded-full bg-gray-50"
-                                        alt=""
-                                    />
+
                                     <span
                                         class="hidden lg:flex lg:items-center"
                                     >
@@ -374,18 +385,8 @@ const user = page.props.user;
                                     </span>
                                 </button>
 
-                                <!--
-              Dropdown menu, show/hide based on menu state.
-
-              Entering: "transition ease-out duration-100"
-                From: "transform opacity-0 scale-95"
-                To: "transform opacity-100 scale-100"
-              Leaving: "transition ease-in duration-75"
-                From: "transform opacity-100 scale-100"
-                To: "transform opacity-0 scale-95"
-            -->
                                 <div
-                                    class="user-menu absolute duaration-100 opacity-0 invisible scale-95 right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none"
+                                    class="user-menu absolute duaration-100 opacity-0 invisible scale-95 right-0 z-50 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none"
                                     role="menu"
                                     aria-orientation="vertical"
                                     aria-labelledby="user-menu-button"
@@ -393,15 +394,16 @@ const user = page.props.user;
                                 >
                                     <!-- Active: "bg-gray-50", Not Active: "" -->
                                     <Link
-                                        href="{{ route('profile.show') }}"
+                                        :href="route('profile.edit')"
                                         class="block px-3 py-1 text-sm leading-6 text-gray-900 hover:bg-gray-50 {{ request()->routeIs('profile.show') ? 'bg-gray-50' : '' }}"
                                         role="menuitem"
                                         tabindex="-1"
                                         id="user-menu-item-0"
-                                        >Mój profil</Link
+                                        >Edytuj konto</Link
                                     >
                                     <Link
-                                        href="#"
+                                        method="POST"
+                                        :href="route('logout')"
                                         class="block px-3 py-1 text-sm leading-6 text-gray-900 hover:bg-gray-50"
                                         role="menuitem"
                                         tabindex="-1"

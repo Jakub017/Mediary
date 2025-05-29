@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 
 class FileController extends Controller
 {
@@ -35,8 +36,28 @@ class FileController extends Controller
             $pdf = $parser->parseFile($file->getRealPath());
             $text = $pdf->getText();
 
+            if(str_contains($text, 'PESEL')) {
+                throw \Illuminate\Validation\ValidationException::withMessages([
+                    'file' => 'Plik zawiera wrażliwe dane osobowe.',
+                ]);
+            }
+
             // OpenAI
             $api_key = env('OPENAI_API_KEY');
+            $check_text = Http::withHeaders([
+                'Authorization' => 'Bearer ' . $api_key,
+                'Content-Type' => 'application/json',
+            ])->post('https://api.openai.com/v1/responses', [
+                'model' => 'gpt-4o-mini',
+                'input' => 'Oceń, czy przesłana treść pliku ma jakikolwiek związek z medycyną. Jeśli tak - zwróć true, jeśli nie - false. Jeśli w pliku znajdują się jakieś dane typu: PESEL czy inne dane bardzo wrażliwe, zwróć - rodo. Czyli twoja odpowiedź może składać się tylko z jednego z tych trzech słów (true, false, rodo), absolutnie nic więcej. Treść pliku: '. $text,
+            ])->json()['output'][0]['content'][0]['text'];
+
+            if ($check_text !== 'true') {
+                throw \Illuminate\Validation\ValidationException::withMessages([
+                    'file' => 'Plik nie zawiera treści medycznych.',
+                ]);
+            };
+
             $response = Http::withHeaders([
                 'Authorization' => 'Bearer ' . $api_key,
                 'Content-Type' => 'application/json',
@@ -60,10 +81,9 @@ class FileController extends Controller
                 'size' => $size,
                 'review' => $review,
             ]);
+
+            Cache::forget('files_'.$user->id);
         }
-
-        Cache::forget('files_'.$user->id);
-
         return redirect()->back()->with('success', 'Plik przesłany pomyślnie.');
     }
 
@@ -74,5 +94,17 @@ class FileController extends Controller
         return Inertia('Files/Show', [
             'file' => $file,
         ]);
+    }
+
+    public function destroy(Request $request, $id) 
+    {
+        $user = $request->user();
+        $file = $user->files()->find($id);
+
+        Storage::delete($file->path);
+        $user->files()->find($id)->delete();
+        Cache::forget('files_'.$user->id);
+        
+        return redirect()->route('dashboard')->with('success', 'Plik usunięty pomyślnie.');
     }
 }
