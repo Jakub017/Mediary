@@ -13,15 +13,16 @@ return new class extends Migration
     {
         Schema::create('diets', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('diet_name');
-            $table->string('diet_kcal');
-            $table->string('meals_count');
-            $table->string('diet_type');
-            $table->string('diet_like')->nullable();
-            $table->string('diet_not_like')->nullable();
-            $table->string('diet_other_notes')->nullable();
+            $table->string('name');
+            $table->string('type');
+            $table->string('calories');
+            $table->string('meals');
+            $table->text('like')->nullable();
+            $table->text('dislike')->nullable();
+            $table->text('notes')->nullable();
+            $table->boolean('documents')->default(0);
             $table->longText('content');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

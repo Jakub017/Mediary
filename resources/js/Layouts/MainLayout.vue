@@ -210,7 +210,7 @@ onMounted(() => {
                                         ></i>
                                     </Link>
                                 </li>
-                                <!-- <li>
+                                <li>
                                     <Link
                                         :href="route('diet.index')"
                                         :class="{
@@ -229,7 +229,7 @@ onMounted(() => {
                                             class="fa-solid fa-utensils text-lg"
                                         ></i>
                                     </Link>
-                                </li> -->
+                                </li>
                             </ul>
                         </li>
                     </ul>
@@ -289,8 +289,10 @@ onMounted(() => {
                         aria-hidden="true"
                     ></div>
 
-                    <div class="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
-                        <form
+                    <div
+                        class="flex flex-1 items-center justify-end gap-x-4 self-stretch lg:gap-x-6"
+                    >
+                        <!-- <form
                             class="relative flex flex-1"
                             action="#"
                             method="GET"
@@ -317,7 +319,7 @@ onMounted(() => {
                                 type="search"
                                 name="search"
                             />
-                        </form>
+                        </form> -->
                         <div class="flex items-center gap-x-4 lg:gap-x-6">
                             <!-- <button
                                 type="button"

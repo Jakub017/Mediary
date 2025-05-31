@@ -4,22 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Diet extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $fillable = [
-        'diet_name',
-        'diet_kcal',
-        'meals_count',
-        'diet_like',
-        'diet_type', 
-        'diet_other_notes',
-        'diet_not_like',
-        'content',
+        'name',
+        'type',
+        'calories',
+        'meals',
+        'like', 
+        'dislike',
+        'notes',
+        'documents',
         'user_id',
+        'content',
     ];
 
     public function user() {

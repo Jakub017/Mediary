@@ -91,7 +91,7 @@ class FileController extends Controller
     {
         $user = $request->user();
         $file = $user->files()->find($id);
-        return Inertia('Files/Show', [
+        return Inertia('File/Show', [
             'file' => $file,
         ]);
     }

@@ -37,6 +37,8 @@ Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'), 'verified'
 
     Route::controller(DietController::class)->group(function() {
         Route::get('/diety', 'index')->name('diet.index');
+        Route::post('/diety/stworz', 'store')->name('diet.store');
+        Route::delete('/diety/usun/{diet}', 'destroy')->name('diet.destroy');
     });
 
     Route::controller(FileController::class)->group(function() {
