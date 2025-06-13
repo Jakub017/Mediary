@@ -1,381 +1,851 @@
 <script setup>
-import { Head, Link } from "@inertiajs/vue3";
+import { Link } from "@inertiajs/vue3";
+import { onMounted } from "vue";
+import Swiper from "swiper";
+import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
-defineProps({
-    canLogin: {
-        type: Boolean,
-    },
-    canRegister: {
-        type: Boolean,
-    },
-    laravelVersion: {
-        type: String,
-        required: true,
-    },
-    phpVersion: {
-        type: String,
-        required: true,
-    },
+onMounted(() => {
+    new Swiper(".swiper", {
+        modules: [Pagination],
+        direction: "horizontal", // zmień na "horizontal", bo vertical nie wygląda naturalnie w Twoim przypadku
+        loop: true,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+
+        breakpoints: {
+            640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+            },
+        },
+    });
+
+    const mobileNav = document.querySelector(".mobile-nav");
+    const dekstopNav = document.querySelector(".desktop-nav");
+    let scrollValue = 0;
+
+    window.addEventListener("scroll", () => {
+        scrollValue = window.scrollY;
+        if (scrollValue > 0) {
+            dekstopNav.classList.add("desktop-nav--active");
+            mobileNav.classList.add("mobile-nav--active");
+        } else {
+            mobileNav.classList.remove("mobile-nav--active");
+            dekstopNav.classList.remove("desktop-nav--active");
+        }
+    });
+
+    const hamburger = document.querySelector(".mobile-nav__hamburger");
+    const sidebar = document.querySelector(".mobile-nav__sidebar");
+    const closeBtn = document.querySelector(".mobile-nav__close");
+    const mobileOptions = [...document.querySelectorAll(".mobile-nav__option")];
+
+    hamburger.addEventListener("click", () => {
+        sidebar.classList.add("mobile-nav__sidebar--active");
+        closeBtn.classList.add("mobile-nav__close--active");
+        hamburger.classList.remove("mobile-nav__hamburger--active");
+    });
+
+    closeBtn.addEventListener("click", () => {
+        sidebar.classList.remove("mobile-nav__sidebar--active");
+        closeBtn.classList.remove("mobile-nav__close--active");
+        hamburger.classList.add("mobile-nav__hamburger--active");
+    });
+
+    mobileOptions.forEach((option) => {
+        option.addEventListener("click", () => {
+            sidebar.classList.remove("mobile-nav__sidebar--active");
+            closeBtn.classList.remove("mobile-nav__close--active");
+            hamburger.classList.add("mobile-nav__hamburger--active");
+        });
+    });
 });
-
-function handleImageError() {
-    document.getElementById("screenshot-container")?.classList.add("!hidden");
-    document.getElementById("docs-card")?.classList.add("!row-span-1");
-    document.getElementById("docs-card-content")?.classList.add("!flex-row");
-    document.getElementById("background")?.classList.add("!hidden");
-}
 </script>
 
 <template>
     <Head title="Welcome" />
-    <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
-        <img
-            id="background"
-            class="absolute -left-20 top-0 max-w-[877px]"
-            src="https://laravel.com/assets/img/welcome/background.svg"
-        />
-        <div
-            class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white"
-        >
-            <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
-                <header
-                    class="grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3"
+    <div class="website-container">
+        <nav class="desktop-nav">
+            <div class="desktop-nav__container">
+                <div class="desktop-nav__logo-container">
+                    <img
+                        src="/img/logo_2.png"
+                        alt=""
+                        class="desktop-nav__logo"
+                    />
+                </div>
+
+                <ul class="desktop-nav__menu">
+                    <li class="desktop-nav__option">
+                        <Link
+                            href="#start"
+                            class="desktop-nav__link desktop-nav__link--active"
+                            >Start</Link
+                        >
+                    </li>
+                    <li class="desktop-nav__option">
+                        <Link href="#about" class="desktop-nav__link"
+                            >O aplikacji</Link
+                        >
+                    </li>
+                    <li class="desktop-nav__option">
+                        <Link href="#faq" class="desktop-nav__link">FAQ</Link>
+                    </li>
+                    <li class="desktop-nav__option">
+                        <Link href="#testimonials" class="desktop-nav__link"
+                            >Opinie</Link
+                        >
+                    </li>
+                    <li class="desktop-nav__option">
+                        <Link id="#contact" class="desktop-nav__link"
+                            >Kontakt</Link
+                        >
+                    </li>
+                </ul>
+                <Link :href="route('register')" class="desktop-nav__button"
+                    >Zarejestruj się</Link
                 >
-                    <div class="flex lg:justify-center lg:col-start-2">
+            </div>
+        </nav>
+
+        <nav class="mobile-nav">
+            <div class="mobile-nav__container">
+                <img src="/img/logo_2.png" alt="" class="mobile-nav__logo" />
+                <button class="mobile-nav__hamburger-button">
+                    <i
+                        class="fa-solid fa-bars mobile-nav__hamburger mobile-nav__hamburger--active"
+                    ></i>
+                    <i class="fa-solid fa-xmark mobile-nav__close"></i>
+                </button>
+            </div>
+            <div class="mobile-nav__sidebar">
+                <ul class="mobile-nav__menu">
+                    <img
+                        src="/img/logo_2.png"
+                        alt=""
+                        class="mobile-nav__logo"
+                    />
+                    <li class="mobile-nav__option">
+                        <Link href="#start" class="mobile-nav__link"
+                            >Start</Link
+                        >
+                    </li>
+                    <li class="mobile-nav__option">
+                        <Link href="#about" class="mobile-nav__link"
+                            >O aplikacji</Link
+                        >
+                    </li>
+                    <li class="mobile-nav__option">
+                        <Link href="#faq" class="mobile-nav__link">FAQ</Link>
+                    </li>
+                    <li class="mobile-nav__option">
+                        <Link href="#testimonials" class="mobile-nav__link"
+                            >Opinie</Link
+                        >
+                    </li>
+                    <li class="mobile-nav__option">
+                        <Link href="#contact" class="mobile-nav__link"
+                            >Kontakt</Link
+                        >
+                    </li>
+                    <li class="mobile-nav__option">
+                        <Link
+                            :href="route('register')"
+                            class="mobile-nav__link mobile-nav__link--cta"
+                            >Zarejestruj się</Link
+                        >
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <section id="start" class="hero">
+            <!-- <div class="hero__circle"></div> -->
+
+            <div class="hero__container">
+                <div class="hero__text">
+                    <h1 class="hero__title">
+                        Zadbaj o zdrowie i lepsze samopoczucie z pomocą AI
+                    </h1>
+                    <p class="hero__description">
+                        Aplikacja, która analizuje Twoje wyniki badań i
+                        parametry zdrowotne, aby tworzyć dopasowane diety
+                        wspierające zdrowie i cele żywieniowe.
+                    </p>
+                    <div class="hero__buttons">
+                        <Link :href="route('register')" class="hero__button"
+                            >Wypróbuj za darmo</Link
+                        >
+                        <Link class="hero__button hero__button--empty"
+                            >Dowiedz się więcej
+                            <i class="hero__icon fa-solid fa-arrow-right"></i
+                        ></Link>
+                    </div>
+                </div>
+                <img src="/img/hero_2.png" alt="" class="hero__image" />
+            </div>
+            <div class="hero__features">
+                <div class="hero__features-container">
+                    <div class="hero__feature">
                         <svg
-                            class="h-12 w-auto text-white lg:h-16 lg:text-[#FF2D20]"
-                            viewBox="0 0 62 65"
-                            fill="none"
                             xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 -960 960 960"
+                            class="hero__feature-icon"
                         >
                             <path
-                                d="M61.8548 14.6253C61.8778 14.7102 61.8895 14.7978 61.8897 14.8858V28.5615C61.8898 28.737 61.8434 28.9095 61.7554 29.0614C61.6675 29.2132 61.5409 29.3392 61.3887 29.4265L49.9104 36.0351V49.1337C49.9104 49.4902 49.7209 49.8192 49.4118 49.9987L25.4519 63.7916C25.3971 63.8227 25.3372 63.8427 25.2774 63.8639C25.255 63.8714 25.2338 63.8851 25.2101 63.8913C25.0426 63.9354 24.8666 63.9354 24.6991 63.8913C24.6716 63.8838 24.6467 63.8689 24.6205 63.8589C24.5657 63.8389 24.5084 63.8215 24.456 63.7916L0.501061 49.9987C0.348882 49.9113 0.222437 49.7853 0.134469 49.6334C0.0465019 49.4816 0.000120578 49.3092 0 49.1337L0 8.10652C0 8.01678 0.0124642 7.92953 0.0348998 7.84477C0.0423783 7.8161 0.0598282 7.78993 0.0697995 7.76126C0.0884958 7.70891 0.105946 7.65531 0.133367 7.6067C0.152063 7.5743 0.179485 7.54812 0.20192 7.51821C0.230588 7.47832 0.256763 7.43719 0.290416 7.40229C0.319084 7.37362 0.356476 7.35243 0.388883 7.32751C0.425029 7.29759 0.457436 7.26518 0.498568 7.2415L12.4779 0.345059C12.6296 0.257786 12.8015 0.211853 12.9765 0.211853C13.1515 0.211853 13.3234 0.257786 13.475 0.345059L25.4531 7.2415H25.4556C25.4955 7.26643 25.5292 7.29759 25.5653 7.32626C25.5977 7.35119 25.6339 7.37362 25.6625 7.40104C25.6974 7.43719 25.7224 7.47832 25.7523 7.51821C25.7735 7.54812 25.8021 7.5743 25.8196 7.6067C25.8483 7.65656 25.8645 7.70891 25.8844 7.76126C25.8944 7.78993 25.9118 7.8161 25.9193 7.84602C25.9423 7.93096 25.954 8.01853 25.9542 8.10652V33.7317L35.9355 27.9844V14.8846C35.9355 14.7973 35.948 14.7088 35.9704 14.6253C35.9792 14.5954 35.9954 14.5692 36.0053 14.5405C36.0253 14.4882 36.0427 14.4346 36.0702 14.386C36.0888 14.3536 36.1163 14.3274 36.1375 14.2975C36.1674 14.2576 36.1923 14.2165 36.2272 14.1816C36.2559 14.1529 36.292 14.1317 36.3244 14.1068C36.3618 14.0769 36.3942 14.0445 36.4341 14.0208L48.4147 7.12434C48.5663 7.03694 48.7383 6.99094 48.9133 6.99094C49.0883 6.99094 49.2602 7.03694 49.4118 7.12434L61.3899 14.0208C61.4323 14.0457 61.4647 14.0769 61.5021 14.1055C61.5333 14.1305 61.5694 14.1529 61.5981 14.1803C61.633 14.2165 61.6579 14.2576 61.6878 14.2975C61.7103 14.3274 61.7377 14.3536 61.7551 14.386C61.7838 14.4346 61.8 14.4882 61.8199 14.5405C61.8312 14.5692 61.8474 14.5954 61.8548 14.6253ZM59.893 27.9844V16.6121L55.7013 19.0252L49.9104 22.3593V33.7317L59.8942 27.9844H59.893ZM47.9149 48.5566V37.1768L42.2187 40.4299L25.953 49.7133V61.2003L47.9149 48.5566ZM1.99677 9.83281V48.5566L23.9562 61.199V49.7145L12.4841 43.2219L12.4804 43.2194L12.4754 43.2169C12.4368 43.1945 12.4044 43.1621 12.3682 43.1347C12.3371 43.1097 12.3009 43.0898 12.2735 43.0624L12.271 43.0586C12.2386 43.0275 12.2162 42.9888 12.1887 42.9539C12.1638 42.9203 12.1339 42.8916 12.114 42.8567L12.1127 42.853C12.0903 42.8156 12.0766 42.7707 12.0604 42.7283C12.0442 42.6909 12.023 42.656 12.013 42.6161C12.0005 42.5688 11.998 42.5177 11.9931 42.4691C11.9881 42.4317 11.9781 42.3943 11.9781 42.3569V15.5801L6.18848 12.2446L1.99677 9.83281ZM12.9777 2.36177L2.99764 8.10652L12.9752 13.8513L22.9541 8.10527L12.9752 2.36177H12.9777ZM18.1678 38.2138L23.9574 34.8809V9.83281L19.7657 12.2459L13.9749 15.5801V40.6281L18.1678 38.2138ZM48.9133 9.14105L38.9344 14.8858L48.9133 20.6305L58.8909 14.8846L48.9133 9.14105ZM47.9149 22.3593L42.124 19.0252L37.9323 16.6121V27.9844L43.7219 31.3174L47.9149 33.7317V22.3593ZM24.9533 47.987L39.59 39.631L46.9065 35.4555L36.9352 29.7145L25.4544 36.3242L14.9907 42.3482L24.9533 47.987Z"
-                                fill="currentColor"
+                                d="M80-600v-120q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v120h-80v-120H160v120H80Zm80 440q-33 0-56.5-23.5T80-240v-120h80v120h640v-120h80v120q0 33-23.5 56.5T800-160H160Zm240-120q11 0 21-5.5t15-16.5l124-248 44 88q5 11 15 16.5t21 5.5h240v-80H665l-69-138q-5-11-15-15.5t-21-4.5q-11 0-21 4.5T524-658L400-410l-44-88q-5-11-15-16.5t-21-5.5H80v80h215l69 138q5 11 15 16.5t21 5.5Zm80-200Z"
                             />
                         </svg>
+                        <h4 class="hero__feature-name">Analiza zdrowia</h4>
+                        <p class="hero__feature-description">
+                            Wprowadź wyniki badań lub parametry organizmu, a
+                            nasza aplikacja przeanalizuje je z pomocą AI i
+                            podpowie, co warto poprawić.
+                        </p>
                     </div>
-                    <nav v-if="canLogin" class="-mx-3 flex flex-1 justify-end">
-                        <Link
-                            v-if="$page.props.auth.user"
-                            :href="route('dashboard')"
-                            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                    <div class="hero__feature">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 -960 960 960"
+                            class="hero__feature-icon"
                         >
-                            Dashboard
-                        </Link>
-
-                        <template v-else>
-                            <Link
-                                :href="route('login')"
-                                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                            >
-                                Log in
-                            </Link>
-
-                            <Link
-                                v-if="canRegister"
-                                :href="route('register')"
-                                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                            >
-                                Register
-                            </Link>
-                        </template>
-                    </nav>
-                </header>
-
-                <main class="mt-6">
-                    <div class="grid gap-6 lg:grid-cols-2 lg:gap-8">
-                        <a
-                            href="https://laravel.com/docs"
-                            id="docs-card"
-                            class="flex flex-col items-start gap-6 overflow-hidden rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] md:row-span-3 lg:p-10 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]"
+                            <path
+                                d="M240-80v-366q-54-14-87-57t-33-97v-280h80v240h40v-240h80v240h40v-240h80v280q0 54-33 97t-87 57v366h-80Zm400 0v-381q-54-18-87-75.5T520-667q0-89 47-151t113-62q66 0 113 62.5T840-666q0 73-33 130t-87 75v381h-80Z"
+                            />
+                        </svg>
+                        <h4 class="hero__feature-name">Dopasowana dieta</h4>
+                        <p class="hero__feature-description">
+                            Twórz diety dostosowane do Twoich wyników, stylu
+                            życia i celów zdrowotnych – bez liczenia kalorii i
+                            zgadywania.
+                        </p>
+                    </div>
+                    <div class="hero__feature">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 -960 960 960"
+                            class="hero__feature-icon"
                         >
-                            <div
-                                id="screenshot-container"
-                                class="relative flex w-full flex-1 items-stretch"
-                            >
+                            <path
+                                d="M440-200h80v-167l64 64 56-57-160-160-160 160 57 56 63-63v167ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z"
+                            />
+                        </svg>
+                        <h4 class="hero__feature-name">Import wyników</h4>
+                        <p class="hero__feature-description">
+                            Prześlij wyniki badań z laboratorium – aplikacja
+                            automatycznie rozpozna dane i dopasuje zalecenia.
+                        </p>
+                    </div>
+                    <div class="hero__feature">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 -960 960 960"
+                            class="hero__feature-icon"
+                        >
+                            <path
+                                d="M280-280h80v-200h-80v200Zm320 0h80v-400h-80v400Zm-160 0h80v-120h-80v120Zm0-200h80v-80h-80v80ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z"
+                            />
+                        </svg>
+                        <h4 class="hero__feature-name">Czytelne raporty</h4>
+                        <p class="hero__feature-description">
+                            Otrzymuj przejrzyste raporty i rekomendacje – w
+                            zrozumiałej formie, bez medycznego żargonu.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section bento">
+            <div class="section__container section__container--first">
+                <div class="section__heading">
+                    <h6 class="section__subtitle">Co potrafi aplikacja?</h6>
+                    <h2 class="section__title">
+                        Wszystko, czego potrzebujesz, by lepiej zadbać o zdrowie
+                    </h2>
+                </div>
+                <div class="bento__container">
+                    <div class="bento__column">
+                        <div class="bento__tile bento__tile--tall">
+                            <h3 class="bento__title">Stwórz idealną dietę</h3>
+                            <p class="bento__description">
+                                Dopasuj kalorie, posiłki i preferencje.
+                                Otrzymasz dietę stworzoną przez AI na podstawie
+                                Twoich potrzeb.
+                            </p>
+                            <div class="bento__image-wrapper">
                                 <img
-                                    src="https://laravel.com/assets/img/welcome/docs-light.svg"
-                                    alt="Laravel documentation screenshot"
-                                    class="aspect-video h-full w-full flex-1 rounded-[10px] object-top object-cover drop-shadow-[0px_4px_34px_rgba(0,0,0,0.06)] dark:hidden"
-                                    @error="handleImageError"
+                                    src="/img/bento-1.png"
+                                    class="bento__image bento__image--tall"
                                 />
-                                <img
-                                    src="https://laravel.com/assets/img/welcome/docs-dark.svg"
-                                    alt="Laravel documentation screenshot"
-                                    class="hidden aspect-video h-full w-full flex-1 rounded-[10px] object-top object-cover drop-shadow-[0px_4px_34px_rgba(0,0,0,0.25)] dark:block"
-                                />
-                                <div
-                                    class="absolute -bottom-16 -left-16 h-40 w-[calc(100%+8rem)] bg-gradient-to-b from-transparent via-white to-white dark:via-zinc-900 dark:to-zinc-900"
-                                ></div>
-                            </div>
-
-                            <div
-                                class="relative flex items-center gap-6 lg:items-end"
-                            >
-                                <div
-                                    id="docs-card-content"
-                                    class="flex items-start gap-6 lg:flex-col"
-                                >
-                                    <div
-                                        class="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#FF2D20]/10 sm:size-16"
-                                    >
-                                        <svg
-                                            class="size-5 sm:size-6"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <path
-                                                fill="#FF2D20"
-                                                d="M23 4a1 1 0 0 0-1.447-.894L12.224 7.77a.5.5 0 0 1-.448 0L2.447 3.106A1 1 0 0 0 1 4v13.382a1.99 1.99 0 0 0 1.105 1.79l9.448 4.728c.14.065.293.1.447.1.154-.005.306-.04.447-.105l9.453-4.724a1.99 1.99 0 0 0 1.1-1.789V4ZM3 6.023a.25.25 0 0 1 .362-.223l7.5 3.75a.251.251 0 0 1 .138.223v11.2a.25.25 0 0 1-.362.224l-7.5-3.75a.25.25 0 0 1-.138-.22V6.023Zm18 11.2a.25.25 0 0 1-.138.224l-7.5 3.75a.249.249 0 0 1-.329-.099.249.249 0 0 1-.033-.12V9.772a.251.251 0 0 1 .138-.224l7.5-3.75a.25.25 0 0 1 .362.224v11.2Z"
-                                            />
-                                            <path
-                                                fill="#FF2D20"
-                                                d="m3.55 1.893 8 4.048a1.008 1.008 0 0 0 .9 0l8-4.048a1 1 0 0 0-.9-1.785l-7.322 3.706a.506.506 0 0 1-.452 0L4.454.108a1 1 0 0 0-.9 1.785H3.55Z"
-                                            />
-                                        </svg>
-                                    </div>
-
-                                    <div class="pt-3 sm:pt-5 lg:pt-0">
-                                        <h2
-                                            class="text-xl font-semibold text-black dark:text-white"
-                                        >
-                                            Documentation
-                                        </h2>
-
-                                        <p class="mt-4 text-sm/relaxed">
-                                            Laravel has wonderful documentation
-                                            covering every aspect of the
-                                            framework. Whether you are a
-                                            newcomer or have prior experience
-                                            with Laravel, we recommend reading
-                                            our documentation from beginning to
-                                            end.
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <svg
-                                    class="size-6 shrink-0 stroke-[#FF2D20]"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke-width="1.5"
-                                >
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
-                                    />
-                                </svg>
-                            </div>
-                        </a>
-
-                        <a
-                            href="https://laracasts.com"
-                            class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]"
-                        >
-                            <div
-                                class="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#FF2D20]/10 sm:size-16"
-                            >
-                                <svg
-                                    class="size-5 sm:size-6"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <g fill="#FF2D20">
-                                        <path
-                                            d="M24 8.25a.5.5 0 0 0-.5-.5H.5a.5.5 0 0 0-.5.5v12a2.5 2.5 0 0 0 2.5 2.5h19a2.5 2.5 0 0 0 2.5-2.5v-12Zm-7.765 5.868a1.221 1.221 0 0 1 0 2.264l-6.626 2.776A1.153 1.153 0 0 1 8 18.123v-5.746a1.151 1.151 0 0 1 1.609-1.035l6.626 2.776ZM19.564 1.677a.25.25 0 0 0-.177-.427H15.6a.106.106 0 0 0-.072.03l-4.54 4.543a.25.25 0 0 0 .177.427h3.783c.027 0 .054-.01.073-.03l4.543-4.543ZM22.071 1.318a.047.047 0 0 0-.045.013l-4.492 4.492a.249.249 0 0 0 .038.385.25.25 0 0 0 .14.042h5.784a.5.5 0 0 0 .5-.5v-2a2.5 2.5 0 0 0-1.925-2.432ZM13.014 1.677a.25.25 0 0 0-.178-.427H9.101a.106.106 0 0 0-.073.03l-4.54 4.543a.25.25 0 0 0 .177.427H8.4a.106.106 0 0 0 .073-.03l4.54-4.543ZM6.513 1.677a.25.25 0 0 0-.177-.427H2.5A2.5 2.5 0 0 0 0 3.75v2a.5.5 0 0 0 .5.5h1.4a.106.106 0 0 0 .073-.03l4.54-4.543Z"
-                                        />
-                                    </g>
-                                </svg>
-                            </div>
-
-                            <div class="pt-3 sm:pt-5">
-                                <h2
-                                    class="text-xl font-semibold text-black dark:text-white"
-                                >
-                                    Laracasts
-                                </h2>
-
-                                <p class="mt-4 text-sm/relaxed">
-                                    Laracasts offers thousands of video
-                                    tutorials on Laravel, PHP, and JavaScript
-                                    development. Check them out, see for
-                                    yourself, and massively level up your
-                                    development skills in the process.
-                                </p>
-                            </div>
-
-                            <svg
-                                class="size-6 shrink-0 self-center stroke-[#FF2D20]"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke-width="1.5"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
-                                />
-                            </svg>
-                        </a>
-
-                        <a
-                            href="https://laravel-news.com"
-                            class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]"
-                        >
-                            <div
-                                class="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#FF2D20]/10 sm:size-16"
-                            >
-                                <svg
-                                    class="size-5 sm:size-6"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <g fill="#FF2D20">
-                                        <path
-                                            d="M8.75 4.5H5.5c-.69 0-1.25.56-1.25 1.25v4.75c0 .69.56 1.25 1.25 1.25h3.25c.69 0 1.25-.56 1.25-1.25V5.75c0-.69-.56-1.25-1.25-1.25Z"
-                                        />
-                                        <path
-                                            d="M24 10a3 3 0 0 0-3-3h-2V2.5a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2V20a3.5 3.5 0 0 0 3.5 3.5h17A3.5 3.5 0 0 0 24 20V10ZM3.5 21.5A1.5 1.5 0 0 1 2 20V3a.5.5 0 0 1 .5-.5h14a.5.5 0 0 1 .5.5v17c0 .295.037.588.11.874a.5.5 0 0 1-.484.625L3.5 21.5ZM22 20a1.5 1.5 0 1 1-3 0V9.5a.5.5 0 0 1 .5-.5H21a1 1 0 0 1 1 1v10Z"
-                                        />
-                                        <path
-                                            d="M12.751 6.047h2a.75.75 0 0 1 .75.75v.5a.75.75 0 0 1-.75.75h-2A.75.75 0 0 1 12 7.3v-.5a.75.75 0 0 1 .751-.753ZM12.751 10.047h2a.75.75 0 0 1 .75.75v.5a.75.75 0 0 1-.75.75h-2A.75.75 0 0 1 12 11.3v-.5a.75.75 0 0 1 .751-.753ZM4.751 14.047h10a.75.75 0 0 1 .75.75v.5a.75.75 0 0 1-.75.75h-10A.75.75 0 0 1 4 15.3v-.5a.75.75 0 0 1 .751-.753ZM4.75 18.047h7.5a.75.75 0 0 1 .75.75v.5a.75.75 0 0 1-.75.75h-7.5A.75.75 0 0 1 4 19.3v-.5a.75.75 0 0 1 .75-.753Z"
-                                        />
-                                    </g>
-                                </svg>
-                            </div>
-
-                            <div class="pt-3 sm:pt-5">
-                                <h2
-                                    class="text-xl font-semibold text-black dark:text-white"
-                                >
-                                    Laravel News
-                                </h2>
-
-                                <p class="mt-4 text-sm/relaxed">
-                                    Laravel News is a community driven portal
-                                    and newsletter aggregating all of the latest
-                                    and most important news in the Laravel
-                                    ecosystem, including new package releases
-                                    and tutorials.
-                                </p>
-                            </div>
-
-                            <svg
-                                class="size-6 shrink-0 self-center stroke-[#FF2D20]"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke-width="1.5"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
-                                />
-                            </svg>
-                        </a>
-
-                        <div
-                            class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800"
-                        >
-                            <div
-                                class="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#FF2D20]/10 sm:size-16"
-                            >
-                                <svg
-                                    class="size-5 sm:size-6"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <g fill="#FF2D20">
-                                        <path
-                                            d="M16.597 12.635a.247.247 0 0 0-.08-.237 2.234 2.234 0 0 1-.769-1.68c.001-.195.03-.39.084-.578a.25.25 0 0 0-.09-.267 8.8 8.8 0 0 0-4.826-1.66.25.25 0 0 0-.268.181 2.5 2.5 0 0 1-2.4 1.824.045.045 0 0 0-.045.037 12.255 12.255 0 0 0-.093 3.86.251.251 0 0 0 .208.214c2.22.366 4.367 1.08 6.362 2.118a.252.252 0 0 0 .32-.079 10.09 10.09 0 0 0 1.597-3.733ZM13.616 17.968a.25.25 0 0 0-.063-.407A19.697 19.697 0 0 0 8.91 15.98a.25.25 0 0 0-.287.325c.151.455.334.898.548 1.328.437.827.981 1.594 1.619 2.28a.249.249 0 0 0 .32.044 29.13 29.13 0 0 0 2.506-1.99ZM6.303 14.105a.25.25 0 0 0 .265-.274 13.048 13.048 0 0 1 .205-4.045.062.062 0 0 0-.022-.07 2.5 2.5 0 0 1-.777-.982.25.25 0 0 0-.271-.149 11 11 0 0 0-5.6 2.815.255.255 0 0 0-.075.163c-.008.135-.02.27-.02.406.002.8.084 1.598.246 2.381a.25.25 0 0 0 .303.193 19.924 19.924 0 0 1 5.746-.438ZM9.228 20.914a.25.25 0 0 0 .1-.393 11.53 11.53 0 0 1-1.5-2.22 12.238 12.238 0 0 1-.91-2.465.248.248 0 0 0-.22-.187 18.876 18.876 0 0 0-5.69.33.249.249 0 0 0-.179.336c.838 2.142 2.272 4 4.132 5.353a.254.254 0 0 0 .15.048c1.41-.01 2.807-.282 4.117-.802ZM18.93 12.957l-.005-.008a.25.25 0 0 0-.268-.082 2.21 2.21 0 0 1-.41.081.25.25 0 0 0-.217.2c-.582 2.66-2.127 5.35-5.75 7.843a.248.248 0 0 0-.09.299.25.25 0 0 0 .065.091 28.703 28.703 0 0 0 2.662 2.12.246.246 0 0 0 .209.037c2.579-.701 4.85-2.242 6.456-4.378a.25.25 0 0 0 .048-.189 13.51 13.51 0 0 0-2.7-6.014ZM5.702 7.058a.254.254 0 0 0 .2-.165A2.488 2.488 0 0 1 7.98 5.245a.093.093 0 0 0 .078-.062 19.734 19.734 0 0 1 3.055-4.74.25.25 0 0 0-.21-.41 12.009 12.009 0 0 0-10.4 8.558.25.25 0 0 0 .373.281 12.912 12.912 0 0 1 4.826-1.814ZM10.773 22.052a.25.25 0 0 0-.28-.046c-.758.356-1.55.635-2.365.833a.25.25 0 0 0-.022.48c1.252.43 2.568.65 3.893.65.1 0 .2 0 .3-.008a.25.25 0 0 0 .147-.444c-.526-.424-1.1-.917-1.673-1.465ZM18.744 8.436a.249.249 0 0 0 .15.228 2.246 2.246 0 0 1 1.352 2.054c0 .337-.08.67-.23.972a.25.25 0 0 0 .042.28l.007.009a15.016 15.016 0 0 1 2.52 4.6.25.25 0 0 0 .37.132.25.25 0 0 0 .096-.114c.623-1.464.944-3.039.945-4.63a12.005 12.005 0 0 0-5.78-10.258.25.25 0 0 0-.373.274c.547 2.109.85 4.274.901 6.453ZM9.61 5.38a.25.25 0 0 0 .08.31c.34.24.616.561.8.935a.25.25 0 0 0 .3.127.631.631 0 0 1 .206-.034c2.054.078 4.036.772 5.69 1.991a.251.251 0 0 0 .267.024c.046-.024.093-.047.141-.067a.25.25 0 0 0 .151-.23A29.98 29.98 0 0 0 15.957.764a.25.25 0 0 0-.16-.164 11.924 11.924 0 0 0-2.21-.518.252.252 0 0 0-.215.076A22.456 22.456 0 0 0 9.61 5.38Z"
-                                        />
-                                    </g>
-                                </svg>
-                            </div>
-
-                            <div class="pt-3 sm:pt-5">
-                                <h2
-                                    class="text-xl font-semibold text-black dark:text-white"
-                                >
-                                    Vibrant Ecosystem
-                                </h2>
-
-                                <p class="mt-4 text-sm/relaxed">
-                                    Laravel's robust library of first-party
-                                    tools and libraries, such as
-                                    <a
-                                        href="https://forge.laravel.com"
-                                        class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white dark:focus-visible:ring-[#FF2D20]"
-                                        >Forge</a
-                                    >,
-                                    <a
-                                        href="https://vapor.laravel.com"
-                                        class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
-                                        >Vapor</a
-                                    >,
-                                    <a
-                                        href="https://nova.laravel.com"
-                                        class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
-                                        >Nova</a
-                                    >, and
-                                    <a
-                                        href="https://envoyer.io"
-                                        class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
-                                        >Envoyer</a
-                                    >
-                                    help you take your projects to the next
-                                    level. Pair them with powerful open source
-                                    libraries like
-                                    <a
-                                        href="https://laravel.com/docs/billing"
-                                        class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
-                                        >Cashier</a
-                                    >,
-                                    <a
-                                        href="https://laravel.com/docs/dusk"
-                                        class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
-                                        >Dusk</a
-                                    >,
-                                    <a
-                                        href="https://laravel.com/docs/broadcasting"
-                                        class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
-                                        >Echo</a
-                                    >,
-                                    <a
-                                        href="https://laravel.com/docs/horizon"
-                                        class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
-                                        >Horizon</a
-                                    >,
-                                    <a
-                                        href="https://laravel.com/docs/sanctum"
-                                        class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
-                                        >Sanctum</a
-                                    >,
-                                    <a
-                                        href="https://laravel.com/docs/telescope"
-                                        class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
-                                        >Telescope</a
-                                    >, and more.
-                                </p>
                             </div>
                         </div>
                     </div>
-                </main>
-
-                <footer
-                    class="py-16 text-center text-sm text-black dark:text-white/70"
-                >
-                    Laravel v{{ laravelVersion }} (PHP v{{ phpVersion }})
-                </footer>
+                    <div class="bento__column">
+                        <div class="bento__tile">
+                            <h3 class="bento__title">
+                                Monitoruj ciśnienie krwi
+                            </h3>
+                            <p class="bento__description">
+                                Zapisuj ciśnienie krwi, a asystent AI analizuje
+                                historię i generuje opinię przy każdym pomiarze.
+                            </p>
+                            <img
+                                src="/img/bento-2.png"
+                                class="bento__image bento__image--border"
+                            />
+                        </div>
+                        <div class="bento__tile">
+                            <h3 class="bento__title">Śledź swoją wagę</h3>
+                            <p class="bento__description">
+                                Dodawaj pomiary wagi, a AI uwzględni zmiany w
+                                analizie wyników i dopasuje zalecenia oraz dietę
+                                do aktualnej sytuacji.
+                            </p>
+                            <img
+                                src="/img/bento-3.png"
+                                class="bento__image bento__image--border"
+                            />
+                        </div>
+                    </div>
+                    <div class="bento__column">
+                        <div class="bento__tile bento__tile--tall">
+                            <h3 class="bento__title">Oceń wyniki badań</h3>
+                            <p class="bento__description">
+                                Wgraj plik z laboratorium, a AI przeanalizuje
+                                kluczowe wskaźniki i wyjaśni, co mogą oznaczać.
+                            </p>
+                            <div class="bento__image-wrapper">
+                                <img
+                                    src="/img/bento-4.png"
+                                    class="bento__image bento__image--tall"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
+
+        <section id="faq" class="section faq">
+            <div class="section__container">
+                <div class="section__heading section__heading--left">
+                    <h6 class="section__subtitle">FAQ</h6>
+                    <h2 class="section__title">Najczęściej zadawane pytania</h2>
+                    <p class="section__description">
+                        Masz pytania dotyczące działania aplikacji, prywatności
+                        lub obsługi danych? Zebraliśmy odpowiedzi na najczęściej
+                        pojawiające się wątpliwości, aby ułatwić Ci start i
+                        pokazać, jak w praktyce działa nasz system analizy
+                        zdrowia wspierany przez AI.
+                    </p>
+                </div>
+                <div class="faq__container">
+                    <div class="faq__item">
+                        <span class="faq__question">Jak działa aplikacja?</span>
+                        <p class="faq__answer">
+                            Analizuje Twoje dane zdrowotne i pomaga lepiej
+                            zrozumieć wyniki oraz stan organizmu.
+                        </p>
+                    </div>
+                    <div class="faq__item">
+                        <span class="faq__question"
+                            >Jakie pliki mogę przesłać?</span
+                        >
+                        <p class="faq__answer">
+                            Na razie obsługiwane są tylko pliki PDF z wynikami
+                            badań.
+                        </p>
+                    </div>
+                    <div class="faq__item">
+                        <span class="faq__question"
+                            >Czy otrzymam konkretne zalecenia?</span
+                        >
+                        <p class="faq__answer">
+                            Tak – AI generuje opinie na podstawie Twoich danych
+                            i historii pomiarów.
+                        </p>
+                    </div>
+                    <div class="faq__item">
+                        <span class="faq__question"
+                            >Czy mogę aktualizować swoje pomiary?</span
+                        >
+                        <p class="faq__answer">
+                            Tak – możesz dodawać wagę, ciśnienie i inne dane, a
+                            aplikacja uwzględnia je w analizie.
+                        </p>
+                    </div>
+                    <div class="faq__item">
+                        <span class="faq__question"
+                            >Czy mogę aktualizować swoje pomiary?</span
+                        >
+                        <p class="faq__answer">
+                            Tak – możesz dodawać wagę, ciśnienie i inne dane, a
+                            aplikacja uwzględnia je w analizie.
+                        </p>
+                    </div>
+                    <div class="faq__item">
+                        <span class="faq__question"
+                            >Czy mogę aktualizować swoje pomiary?</span
+                        >
+                        <p class="faq__answer">
+                            Tak – możesz dodawać wagę, ciśnienie i inne dane, a
+                            aplikacja uwzględnia je w analizie.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="section testimonials">
+            <div class="section__container">
+                <div class="section__heading">
+                    <h6 class="section__subtitle">
+                        Co mówią nasi użytkownicy?
+                    </h6>
+                    <h2 class="section__title">
+                        Zobacz, jak aplikacja wspiera zdrowie na co dzień
+                    </h2>
+                </div>
+                <div class="swiper testimonials__swiper">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper testimonials__swiper-wrapper">
+                        <!-- Slides -->
+
+                        <div class="swiper-slide">
+                            <div class="testimonials__item">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 -960 960 960"
+                                    class="testimonials__icon"
+                                >
+                                    <path
+                                        d="m228-240 92-160q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 23-5.5 42.5T458-480L320-240h-92Zm360 0 92-160q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 23-5.5 42.5T818-480L680-240h-92ZM320-500q25 0 42.5-17.5T380-560q0-25-17.5-42.5T320-620q-25 0-42.5 17.5T260-560q0 25 17.5 42.5T320-500Zm360 0q25 0 42.5-17.5T740-560q0-25-17.5-42.5T680-620q-25 0-42.5 17.5T620-560q0 25 17.5 42.5T680-500Zm0-60Zm-360 0Z"
+                                    />
+                                </svg>
+                                <p class="testimonials__content">
+                                    W końcu znalazłam aplikację, która nie tylko
+                                    liczy kalorie, ale rozumie kontekst
+                                    zdrowotny. Świetnie dopasowuje zalecenia pod
+                                    moje wyniki badań.
+                                </p>
+                                <div class="testimonials__line"></div>
+                                <div class="testimonials__bottom">
+                                    <p class="testimonials__name">
+                                        Marta, trenerka personalna
+                                    </p>
+                                    <div class="testimonials__rating-container">
+                                        <div class="testimonials__stars">
+                                            <i
+                                                class="fa-solid fa-star testimonials__star"
+                                            ></i>
+                                            <i
+                                                class="fa-solid fa-star testimonials__star"
+                                            ></i>
+                                            <i
+                                                class="fa-solid fa-star testimonials__star"
+                                            ></i>
+                                            <i
+                                                class="fa-solid fa-star testimonials__star"
+                                            ></i>
+                                            <i
+                                                class="fa-solid fa-star testimonials__star"
+                                            ></i>
+                                        </div>
+                                        <span class="testimonials__rating"
+                                            >Ocena
+                                            <span
+                                                class="testimonials__rating testimonials__rating--bold"
+                                                >5.0</span
+                                            >
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="testimonials__item">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 -960 960 960"
+                                    class="testimonials__icon"
+                                >
+                                    <path
+                                        d="m228-240 92-160q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 23-5.5 42.5T458-480L320-240h-92Zm360 0 92-160q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 23-5.5 42.5T818-480L680-240h-92ZM320-500q25 0 42.5-17.5T380-560q0-25-17.5-42.5T320-620q-25 0-42.5 17.5T260-560q0 25 17.5 42.5T320-500Zm360 0q25 0 42.5-17.5T740-560q0-25-17.5-42.5T680-620q-25 0-42.5 17.5T620-560q0 25 17.5 42.5T680-500Zm0-60Zm-360 0Z"
+                                    />
+                                </svg>
+                                <p class="testimonials__content">
+                                    Zaczęło się od wysokiego ciśnienia. Teraz
+                                    regularnie dodaję pomiary, a AI podpowiada,
+                                    czy coś się zmienia. Czuję się spokojniejszy
+                                    i bardziej świadomy.
+                                </p>
+                                <div class="testimonials__line"></div>
+                                <div class="testimonials__bottom">
+                                    <p class="testimonials__name">
+                                        Paweł, biegacz amator
+                                    </p>
+                                    <div class="testimonials__rating-container">
+                                        <div class="testimonials__stars">
+                                            <i
+                                                class="fa-solid fa-star testimonials__star"
+                                            ></i>
+                                            <i
+                                                class="fa-solid fa-star testimonials__star"
+                                            ></i>
+                                            <i
+                                                class="fa-solid fa-star testimonials__star"
+                                            ></i>
+                                            <i
+                                                class="fa-solid fa-star testimonials__star"
+                                            ></i>
+                                            <i
+                                                class="fa-solid fa-star testimonials__star"
+                                            ></i>
+                                        </div>
+                                        <span class="testimonials__rating"
+                                            >Ocena
+                                            <span
+                                                class="testimonials__rating testimonials__rating--bold"
+                                                >5.0</span
+                                            >
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="testimonials__item">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 -960 960 960"
+                                    class="testimonials__icon"
+                                >
+                                    <path
+                                        d="m228-240 92-160q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 23-5.5 42.5T458-480L320-240h-92Zm360 0 92-160q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 23-5.5 42.5T818-480L680-240h-92ZM320-500q25 0 42.5-17.5T380-560q0-25-17.5-42.5T320-620q-25 0-42.5 17.5T260-560q0 25 17.5 42.5T320-500Zm360 0q25 0 42.5-17.5T740-560q0-25-17.5-42.5T680-620q-25 0-42.5 17.5T620-560q0 25 17.5 42.5T680-500Zm0-60Zm-360 0Z"
+                                    />
+                                </svg>
+                                <p class="testimonials__content">
+                                    Uwielbiam prostotę tej aplikacji. Wszystko
+                                    jest jasno wyjaśnione – nawet analiza badań
+                                    z laboratorium. Już nie muszę googlować
+                                    wyników."
+                                </p>
+                                <div class="testimonials__line"></div>
+                                <div class="testimonials__bottom">
+                                    <p class="testimonials__name">
+                                        Justyna, instruktorka pilatesu
+                                    </p>
+                                    <div class="testimonials__rating-container">
+                                        <div class="testimonials__stars">
+                                            <i
+                                                class="fa-solid fa-star testimonials__star"
+                                            ></i>
+                                            <i
+                                                class="fa-solid fa-star testimonials__star"
+                                            ></i>
+                                            <i
+                                                class="fa-solid fa-star testimonials__star"
+                                            ></i>
+                                            <i
+                                                class="fa-solid fa-star testimonials__star"
+                                            ></i>
+                                            <i
+                                                class="fa-solid fa-star testimonials__star"
+                                            ></i>
+                                        </div>
+                                        <span class="testimonials__rating"
+                                            >Ocena
+                                            <span
+                                                class="testimonials__rating testimonials__rating--bold"
+                                                >5.0</span
+                                            >
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="testimonials__item">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 -960 960 960"
+                                    class="testimonials__icon"
+                                >
+                                    <path
+                                        d="m228-240 92-160q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 23-5.5 42.5T458-480L320-240h-92Zm360 0 92-160q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 23-5.5 42.5T818-480L680-240h-92ZM320-500q25 0 42.5-17.5T380-560q0-25-17.5-42.5T320-620q-25 0-42.5 17.5T260-560q0 25 17.5 42.5T320-500Zm360 0q25 0 42.5-17.5T740-560q0-25-17.5-42.5T680-620q-25 0-42.5 17.5T620-560q0 25 17.5 42.5T680-500Zm0-60Zm-360 0Z"
+                                    />
+                                </svg>
+                                <p class="testimonials__content">
+                                    Trenuję siłowo i testuję różne diety. Ta
+                                    aplikacja pozwala mi łatwo sprawdzić, czy
+                                    idę w dobrą stronę – bez pisania wszystkiego
+                                    w Excelu.
+                                </p>
+                                <div class="testimonials__line"></div>
+                                <div class="testimonials__bottom">
+                                    <p class="testimonials__name">
+                                        Michał, student fizjoterapii
+                                    </p>
+                                    <div class="testimonials__rating-container">
+                                        <div class="testimonials__stars">
+                                            <i
+                                                class="fa-solid fa-star testimonials__star"
+                                            ></i>
+                                            <i
+                                                class="fa-solid fa-star testimonials__star"
+                                            ></i>
+                                            <i
+                                                class="fa-solid fa-star testimonials__star"
+                                            ></i>
+                                            <i
+                                                class="fa-solid fa-star testimonials__star"
+                                            ></i>
+                                            <i
+                                                class="fa-solid fa-star testimonials__star"
+                                            ></i>
+                                        </div>
+                                        <span class="testimonials__rating"
+                                            >Ocena
+                                            <span
+                                                class="testimonials__rating testimonials__rating--bold"
+                                                >5.0</span
+                                            >
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="testimonials__item">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 -960 960 960"
+                                    class="testimonials__icon"
+                                >
+                                    <path
+                                        d="m228-240 92-160q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 23-5.5 42.5T458-480L320-240h-92Zm360 0 92-160q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 23-5.5 42.5T818-480L680-240h-92ZM320-500q25 0 42.5-17.5T380-560q0-25-17.5-42.5T320-620q-25 0-42.5 17.5T260-560q0 25 17.5 42.5T320-500Zm360 0q25 0 42.5-17.5T740-560q0-25-17.5-42.5T680-620q-25 0-42.5 17.5T620-560q0 25 17.5 42.5T680-500Zm0-60Zm-360 0Z"
+                                    />
+                                </svg>
+                                <p class="testimonials__content">
+                                    Polecam aplikację klientom, którzy się gubią
+                                    w swoich wynikach. Dostają jasne
+                                    podsumowanie i mogą obserwować progres
+                                    zdrowotny w czasie.
+                                </p>
+                                <div class="testimonials__line"></div>
+                                <div class="testimonials__bottom">
+                                    <p class="testimonials__name">
+                                        Agnieszka, dietetyczka kliniczna
+                                    </p>
+                                    <div class="testimonials__rating-container">
+                                        <div class="testimonials__stars">
+                                            <i
+                                                class="fa-solid fa-star testimonials__star"
+                                            ></i>
+                                            <i
+                                                class="fa-solid fa-star testimonials__star"
+                                            ></i>
+                                            <i
+                                                class="fa-solid fa-star testimonials__star"
+                                            ></i>
+                                            <i
+                                                class="fa-solid fa-star testimonials__star"
+                                            ></i>
+                                            <i
+                                                class="fa-solid fa-star testimonials__star"
+                                            ></i>
+                                        </div>
+                                        <span class="testimonials__rating"
+                                            >Ocena
+                                            <span
+                                                class="testimonials__rating testimonials__rating--bold"
+                                                >5.0</span
+                                            >
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="testimonials__item">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 -960 960 960"
+                                    class="testimonials__icon"
+                                >
+                                    <path
+                                        d="m228-240 92-160q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 23-5.5 42.5T458-480L320-240h-92Zm360 0 92-160q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 23-5.5 42.5T818-480L680-240h-92ZM320-500q25 0 42.5-17.5T380-560q0-25-17.5-42.5T320-620q-25 0-42.5 17.5T260-560q0 25 17.5 42.5T320-500Zm360 0q25 0 42.5-17.5T740-560q0-25-17.5-42.5T680-620q-25 0-42.5 17.5T620-560q0 25 17.5 42.5T680-500Zm0-60Zm-360 0Z"
+                                    />
+                                </svg>
+                                <p class="testimonials__content">
+                                    Mam swoich podopiecznych, którzy przesyłają
+                                    mi screeny z raportów z tej apki. Jestem pod
+                                    wrażeniem – prosto, konkretnie i bez lania
+                                    wody.
+                                </p>
+                                <div class="testimonials__line"></div>
+                                <div class="testimonials__bottom">
+                                    <p class="testimonials__name">
+                                        Kuba, trener crossfitu
+                                    </p>
+                                    <div class="testimonials__rating-container">
+                                        <div class="testimonials__stars">
+                                            <i
+                                                class="fa-solid fa-star testimonials__star"
+                                            ></i>
+                                            <i
+                                                class="fa-solid fa-star testimonials__star"
+                                            ></i>
+                                            <i
+                                                class="fa-solid fa-star testimonials__star"
+                                            ></i>
+                                            <i
+                                                class="fa-solid fa-star testimonials__star"
+                                            ></i>
+                                            <i
+                                                class="fa-solid fa-star testimonials__star"
+                                            ></i>
+                                        </div>
+                                        <span class="testimonials__rating"
+                                            >Ocena
+                                            <span
+                                                class="testimonials__rating testimonials__rating--bold"
+                                                >5.0</span
+                                            >
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- If we need pagination -->
+                    <div class="swiper-pagination"></div>
+                </div>
+                <p class="testimonials__text">
+                    Przedstawione opinie mają charakter przykładowy i zostały
+                    wygenerowane na potrzeby prezentacji aplikacji w ramach
+                    projektu portfolio.
+                </p>
+            </div>
+        </section>
+
+        <footer id="contact" class="footer">
+            <div class="footer__container">
+                <div class="footer__column">
+                    <img src="/img/logo_2.png" alt="" class="footer__logo" />
+                    <p class="footer__text">
+                        Zadbaj o zdrowie dzięki analizie wyników badań, danych
+                        zdrowotnych i inteligentnym rekomendacjom AI.
+                    </p>
+                </div>
+                <div class="footer__column">
+                    <h6 class="footer__heading">Szybki dostęp</h6>
+                    <ul class="footer__menu">
+                        <li class="footer__option">
+                            <Link href="#start" class="footer__link"
+                                >Start</Link
+                            >
+                        </li>
+                        <li class="footer__option">
+                            <Link href="#about" class="footer__link"
+                                >O aplikacji</Link
+                            >
+                        </li>
+                        <li class="footer__option">
+                            <Link href="#faq" class="footer__link">FAQ</Link>
+                        </li>
+                        <li class="footer__option">
+                            <Link href="#testimonials" class="footer__link"
+                                >Opinie</Link
+                            >
+                        </li>
+                        <li class="footer__option">
+                            <Link href="#contact" class="footer__link"
+                                >Kontakt</Link
+                            >
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer__column">
+                    <h6 class="footer__heading">Informacje</h6>
+                    <ul class="footer__menu">
+                        <li class="footer__option">
+                            <a
+                                target="_blank"
+                                href="https://platform.openai.com/docs/overview"
+                                class="footer__link"
+                                >API OpenAI</a
+                            >
+                        </li>
+                        <li class="footer__option">
+                            <a
+                                target="_blank"
+                                href="https://github.com/Jakub017/Healthcare-AI"
+                                class="footer__link"
+                                >Repozytorium Github</a
+                            >
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="footer__column">
+                    <h6 class="footer__heading">Kontakt</h6>
+                    <ul class="footer__menu">
+                        <li class="footer__option">
+                            <a
+                                href="mailto:contact@domain.com"
+                                class="footer__link"
+                                >kontakt@domain.com</a
+                            >
+                        </li>
+                        <li class="footer__option">
+                            <a
+                                href="mailto:contact@domain.com"
+                                class="footer__link"
+                                >kontakt@lipinskijakub.pl</a
+                            >
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <div class="footer__bottom-container">
+                    <p class="footer__text">
+                        Projekt i realizacja:
+                        <a
+                            class="footer__link footer__link--colored"
+                            target="_blank"
+                            href="https://lipinskijakub.pl/pl"
+                            >Jakub Lipiński</a
+                        >
+                    </p>
+                    <div class="footer__links">
+                        <a
+                            target="_blank"
+                            href="https://www.linkedin.com/in/jakub-lipinski/"
+                            class="footer__social"
+                            ><i class="fa-brands fa-linkedin"></i
+                        ></a>
+                        <a
+                            target="_blank"
+                            href="https://github.com/Jakub017"
+                            class="footer__social"
+                            ><i class="fa-brands fa-github"></i
+                        ></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
 </template>

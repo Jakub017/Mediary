@@ -42,7 +42,7 @@
                     <span class="text-sm">{{ file.size }} MB</span>
                 </div>
 
-                <div class="col-span-1 md:col-span-3 flex flex-col gap-1">
+                <div class="col-span-3 flex flex-col gap-1">
                     <span class="text-sm font-semibold text-blue-600"
                         >Podsumowanie</span
                     >
@@ -52,7 +52,7 @@
                     ></div>
                 </div>
                 <div
-                    class="col-span-1 md:col-span-3 flex justify-between items-center"
+                    class="w-full col-span-3 flex justify-between items-center"
                 >
                     <PrimaryButton @click="back">Powrót</PrimaryButton>
                     <Link
