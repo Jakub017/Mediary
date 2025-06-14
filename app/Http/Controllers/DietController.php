@@ -67,12 +67,18 @@ class DietController extends Controller
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . $api_key,
             'Content-Type' => 'application/json',
-        ])->timeout(60)->post('https://api.openai.com/v1/responses', [
-            'model' => 'gpt-4o-mini',
-            'input' => $input,
-        ])->json();
-
-        $content = $response['output'][0]['content'][0]['text'];
+        ])->timeout(60)->post('https://api.openai.com/v1/chat/completions', [
+            'model' => 'gpt-4o',
+            'messages' => [
+                [
+                    'role' => 'user',
+                    'content' => $input,
+                ],
+            ],
+            'temperature' => 0.7,
+        ]);
+    
+        $content = $response->json()['choices'][0]['message']['content'] ?? 'Nie udało się wygenerować diety.';
 
         $user->diets()->create([
             'name' => $data['name'],
