@@ -111,12 +111,8 @@ onMounted(() => {
                         >
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="wbc" class="text-gray-600 text-xs"
-                                    >Leukocyty
-                                    <i
-                                        data-tooltip="wbc"
-                                        class="fa-solid fa-circle-info text-sm text-gray-400"
-                                    ></i
-                                ></label>
+                                    >Leukocyty (WBC) [tys/μl]</label
+                                >
                                 <input
                                     type="number"
                                     v-model="form.wbc"
@@ -132,12 +128,8 @@ onMounted(() => {
 
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="rbc" class="text-gray-600 text-xs"
-                                    >Erytrocyty
-                                    <i
-                                        class="fa-solid fa-circle-info text-sm text-gray-400"
-                                        data-tooltip="rbc"
-                                    ></i
-                                ></label>
+                                    >Erytrocyty (RBC) [mln/μl]
+                                </label>
                                 <input
                                     type="number"
                                     v-model="form.rbc"
@@ -153,12 +145,8 @@ onMounted(() => {
 
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="hgb" class="text-gray-600 text-xs"
-                                    >Hemoglobina
-                                    <i
-                                        class="fa-solid fa-circle-info text-sm text-gray-400"
-                                        data-tooltip="hgb"
-                                    ></i
-                                ></label>
+                                    >Hemoglobina (HGB) [g/dl]
+                                </label>
                                 <input
                                     type="number"
                                     step="0.01"
@@ -174,12 +162,8 @@ onMounted(() => {
 
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="hct" class="text-gray-600 text-xs"
-                                    >Hematokryt
-                                    <i
-                                        class="fa-solid fa-circle-info text-gray-400 text-sm"
-                                        data-tooltip="hct"
-                                    ></i
-                                ></label>
+                                    >Hematokryt (HCT) [%]
+                                </label>
                                 <input
                                     type="number"
                                     step="0.01"
@@ -195,12 +179,8 @@ onMounted(() => {
 
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="mcv" class="text-gray-600 text-xs"
-                                    >MCV
-                                    <i
-                                        class="fa-solid fa-circle-info text-sm text-gray-400"
-                                        data-tooltip="mcv"
-                                    ></i
-                                ></label>
+                                    >MCV [fl]
+                                </label>
                                 <input
                                     type="number"
                                     step="0.01"
@@ -216,12 +196,8 @@ onMounted(() => {
 
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="mch" class="text-gray-600 text-xs"
-                                    >MCH
-                                    <i
-                                        class="fa-solid fa-circle-info text-sm text-gray-400"
-                                        data-tooltip="mch"
-                                    ></i
-                                ></label>
+                                    >MCH [pg]
+                                </label>
                                 <input
                                     type="number"
                                     step="0.01"
@@ -237,12 +213,8 @@ onMounted(() => {
 
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="mchc" class="text-gray-600 text-xs"
-                                    >MCHC
-                                    <i
-                                        class="fa-solid fa-circle-info text-sm text-gray-400"
-                                        data-tooltip="mchc"
-                                    ></i
-                                ></label>
+                                    >MCHC [g/dl]
+                                </label>
                                 <input
                                     type="number"
                                     step="0.01"
@@ -258,12 +230,8 @@ onMounted(() => {
 
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="plt" class="text-gray-600 text-xs"
-                                    >Płytki krwi
-                                    <i
-                                        class="fa-solid fa-circle-info text-sm text-gray-400"
-                                        data-tooltip="plt"
-                                    ></i
-                                ></label>
+                                    >Płytki krwi (PLT) [tys./μl]
+                                </label>
                                 <input
                                     type="number"
                                     step="0.01"
@@ -281,12 +249,8 @@ onMounted(() => {
                                 <label
                                     for="rdw_sd"
                                     class="text-gray-600 text-xs"
-                                    >RDW-SD
-                                    <i
-                                        class="fa-solid fa-circle-info text-sm text-gray-400"
-                                        data-tooltip="rdw_sd"
-                                    ></i
-                                ></label>
+                                    >RDW-SD [fl]
+                                </label>
                                 <input
                                     type="number"
                                     step="0.01"
@@ -304,12 +268,8 @@ onMounted(() => {
                                 <label
                                     for="rdw_cv"
                                     class="text-gray-600 text-xs"
-                                    >RDW-CV
-                                    <i
-                                        class="fa-solid fa-circle-info text-sm text-gray-400"
-                                        data-tooltip="rdw_cv"
-                                    ></i
-                                ></label>
+                                    >RDW-CV [%]
+                                </label>
                                 <input
                                     type="number"
                                     step="0.01"
@@ -325,12 +285,8 @@ onMounted(() => {
 
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="pdw" class="text-gray-600 text-xs"
-                                    >PDW
-                                    <i
-                                        class="fa-solid fa-circle-info text-sm text-gray-400"
-                                        data-tooltip="pdw"
-                                    ></i
-                                ></label>
+                                    >PDW [%]
+                                </label>
                                 <input
                                     type="number"
                                     step="0.01"
@@ -346,12 +302,8 @@ onMounted(() => {
 
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="mpv" class="text-gray-600 text-xs"
-                                    >MPV
-                                    <i
-                                        class="fa-solid fa-circle-info text-sm text-gray-400"
-                                        data-tooltip="mpv"
-                                    ></i
-                                ></label>
+                                    >MPV [fl]
+                                </label>
                                 <input
                                     type="number"
                                     step="0.01"
@@ -367,12 +319,8 @@ onMounted(() => {
 
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="p_lcr" class="text-gray-600 text-xs"
-                                    >P-LCR
-                                    <i
-                                        class="fa-solid fa-circle-info text-sm text-gray-400"
-                                        data-tooltip="p_lcr"
-                                    ></i
-                                ></label>
+                                    >P-LCR [%]
+                                </label>
                                 <input
                                     type="number"
                                     step="0.01"
@@ -388,12 +336,8 @@ onMounted(() => {
 
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="pct" class="text-gray-600 text-xs"
-                                    >PCT
-                                    <i
-                                        class="fa-solid fa-circle-info text-sm text-gray-400"
-                                        data-tooltip="pct"
-                                    ></i
-                                ></label>
+                                    >PCT [%]
+                                </label>
                                 <input
                                     type="number"
                                     step="0.01"
@@ -409,12 +353,8 @@ onMounted(() => {
 
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="neu" class="text-gray-600 text-xs"
-                                    >Neutrofile
-                                    <i
-                                        class="fa-solid fa-circle-info text-sm text-gray-400"
-                                        data-tooltip="neu"
-                                    ></i
-                                ></label>
+                                    >Neutrofile (NEU) [tys./μl]
+                                </label>
                                 <input
                                     type="number"
                                     step="0.01"
@@ -430,12 +370,8 @@ onMounted(() => {
 
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="lym" class="text-gray-600 text-xs"
-                                    >Limfocyty
-                                    <i
-                                        class="fa-solid fa-circle-info text-sm text-gray-400"
-                                        data-tooltip="lym"
-                                    ></i
-                                ></label>
+                                    >Limfocyty (LYM) [tys./μl]
+                                </label>
                                 <input
                                     type="number"
                                     step="0.01"
@@ -451,12 +387,8 @@ onMounted(() => {
 
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="mono" class="text-gray-600 text-xs"
-                                    >Monocyty
-                                    <i
-                                        class="fa-solid fa-circle-info text-sm text-gray-400"
-                                        data-tooltip="mono"
-                                    ></i
-                                ></label>
+                                    >Monocyty (MONO) [tys./μl]
+                                </label>
                                 <input
                                     type="number"
                                     step="0.01"
@@ -472,12 +404,8 @@ onMounted(() => {
 
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="eos" class="text-gray-600 text-xs"
-                                    >Eozynofile
-                                    <i
-                                        class="fa-solid fa-circle-info text-sm text-gray-400"
-                                        data-tooltip="eos"
-                                    ></i
-                                ></label>
+                                    >Eozynofile (EOS) [tys./μl]
+                                </label>
                                 <input
                                     type="number"
                                     step="0.01"
@@ -493,12 +421,8 @@ onMounted(() => {
 
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="baso" class="text-gray-600 text-xs"
-                                    >Bazofile
-                                    <i
-                                        class="fa-solid fa-circle-info text-sm text-gray-400"
-                                        data-tooltip="baso"
-                                    ></i
-                                ></label>
+                                    >Bazofile (BASO) [tys./μl]
+                                </label>
                                 <input
                                     type="number"
                                     step="0.01"
@@ -558,11 +482,7 @@ onMounted(() => {
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="alt" class="text-gray-600 text-xs"
                                     >ALT
-                                    <i
-                                        class="fa-solid fa-circle-info text-sm text-gray-400"
-                                        data-tooltip="alt"
-                                    ></i
-                                ></label>
+                                </label>
                                 <input
                                     type="number"
                                     v-model="form.alt"
@@ -803,8 +723,14 @@ onMounted(() => {
                         Zalecenia wirtualnego specjalisty
                     </h4>
                 </div>
-                <span class="text-sm text-gray-600"
-                    >Twoje kluczowe parametry krwi w jednym miejscu.</span
+                <span
+                    v-if="user.blood_recommendations"
+                    class="text-sm text-gray-600"
+                    >Ocena na podstawie twoich wyników badań.</span
+                >
+                <span v-else class="text-sm text-gray-600"
+                    >Wypełnij wyniki swoich badań aby uzyskać
+                    rekomendacje.</span
                 >
             </div>
             <div

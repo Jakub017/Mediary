@@ -14,7 +14,7 @@ const user = computed(() => page.props.user);
 
 const form = useForm({
     birthday: user.value.birthday,
-    gender: user.value.gender,
+    gender: user.value.gender || "",
     weight: user.value.weight,
     height: user.value.height,
     diseases: user.value.diseases,

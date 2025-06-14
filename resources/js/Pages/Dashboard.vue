@@ -342,7 +342,8 @@ onMounted(() => {
                     <h4 class="text-2xl font-normal">Ciśnienie krwi</h4>
                 </div>
                 <span class="text-sm text-gray-600"
-                    >Twoje prawidłowe ciśnienie to 120-130/80-90 mmHg</span
+                    >Twoje ciśnienie powinno mieścić się w granicach 90–129 /
+                    60–84 mmHg.</span
                 >
                 <div id="chart-heart"></div>
                 <div
@@ -377,8 +378,16 @@ onMounted(() => {
                     </div>
                     <h4 class="text-2xl font-normal">Wirtualny specjalista</h4>
                 </div>
-                <span class="text-sm text-gray-600"
+                <span
+                    v-if="user.blood_recommendations"
+                    class="text-sm text-gray-600"
                     >Ocena na podstawie twoich wyników badań.</span
+                >
+                <span v-else class="text-sm text-gray-600">
+                    <Link class="text-blue-600" :href="route('blood.index')"
+                        >Wypełnij wyniki</Link
+                    >
+                    swoich badań aby uzyskać rekomendacje.</span
                 >
                 <div class="flex">
                     <div
