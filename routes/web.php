@@ -5,9 +5,10 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\DietController;
-use App\Http\Controllers\BloodController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\BloodController;
+use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -16,6 +17,11 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
+});
+
+Route::controller(GoogleController::class)->group(function() {
+    Route::get('/auth/google/redirect', 'redirect')->name('google.redirect');
+    Route::get('/auth/google/callback', 'callback')->name('google.callback');
 });
 
 Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'), 'verified', ])->group(function () {
@@ -48,3 +54,4 @@ Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'), 'verified'
     });
     
 });
+

@@ -131,12 +131,13 @@ const submit = () => {
                         >lub</span
                     >
                 </div>
-                <button
+                <a
+                    :href="route('google.redirect')"
                     class="w-full flex gap-2 text-sm border rounded-full px-4 py-2 bg-gray-50 border-slate-300 justify-center items-center duration-200 hover:bg-gray-100"
                 >
                     Zaloguj się z
                     <img class="size-4" src="/img/logo_google.png" alt="" />
-                </button>
+                </a>
                 <p class="text-sm text-gray-600">
                     Nie masz jeszcze konta?
                     <Link
