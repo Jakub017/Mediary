@@ -5,6 +5,7 @@ defineOptions({
 });
 
 import { useForm, usePage } from "@inertiajs/vue3";
+import { Head } from "@inertiajs/vue3";
 import { computed } from "vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 
@@ -44,6 +45,9 @@ const formatDate = (myDate, monthFormat = "long") => {
 </script>
 
 <template>
+    <Head>
+        <title>Profil</title>
+    </Head>
     <div class="columns-1 lg:columns-2 gap-6 break-inside-avoid">
         <!-- Podstawowe dane -->
         <div

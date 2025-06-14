@@ -1,6 +1,6 @@
 <script setup>
 import MainLayout from "@/Layouts/MainLayout.vue";
-import MainBox from "@/Components/MainBox.vue";
+import { Head } from "@inertiajs/vue3";
 
 defineOptions({
     layout: MainLayout,
@@ -8,6 +8,7 @@ defineOptions({
 
 import { Link, usePage, useForm } from "@inertiajs/vue3";
 import ApexCharts from "apexcharts";
+
 import { computed, onMounted } from "vue";
 
 const page = usePage();
@@ -215,6 +216,9 @@ onMounted(() => {
 </script>
 
 <template>
+    <Head>
+        <title>Pulpit</title>
+    </Head>
     <!-- Start popup -->
     <div
         id="add-file-background"

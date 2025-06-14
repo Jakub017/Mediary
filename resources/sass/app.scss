@@ -627,8 +627,9 @@
             color: #000;
             font-size: 16px;
             font-weight: 500;
+            transition: 0.2s color ease-in-out;
 
-            &--active {
+            &:hover {
                 color: #2563eb;
             }
         }

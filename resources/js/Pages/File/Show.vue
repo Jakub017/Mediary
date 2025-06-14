@@ -1,4 +1,43 @@
+<script setup>
+import MainLayout from "@/Layouts/MainLayout.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import { VPdfViewer } from "@vue-pdf-viewer/viewer";
+import { Link, Head } from "@inertiajs/vue3";
+
+defineOptions({
+    layout: MainLayout,
+});
+
+const props = defineProps({
+    file: Object,
+});
+
+const back = () => {
+    window.history.back();
+};
+
+const formatDate = (date) => {
+    let newDate = new Date(date);
+    return newDate.toLocaleDateString("pl-PL", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+    });
+};
+</script>
+
 <template>
+    <Head>
+        <title>Podgląd pliku</title>
+        <meta
+            name="description"
+            content="Spersonalizowana analiza wyników badań i dopasowana dieta. Zadbaj o zdrowie z pomocą AI – bezpłatnie, bezpiecznie i w kilka minut."
+        />
+        <meta
+            name="keywords"
+            content="analiza wyników badań, dieta AI, zdrowie, asystent zdrowia, aplikacja zdrowotna, sztuczna inteligencja, dopasowana dieta, ciśnienie krwi, kontrola wagi, import wyników badań, raporty medyczne"
+        />
+    </Head>
     <div class="flex flex-wrap gap-6">
         <div
             class="flex flex-col gap-6 w-full lg:w-[calc(50%-12px)] bg-white rounded-2xl border-[1px] border-slate-200 p-6 h-fit"
@@ -91,33 +130,3 @@
         </div>
     </div>
 </template>
-
-<script setup>
-import MainLayout from "@/Layouts/MainLayout.vue";
-import PrimaryButton from "@/Components/PrimaryButton.vue";
-import SecondaryButton from "@/Components/SecondaryButton.vue";
-import DangerButton from "@/Components/DangerButton.vue";
-import { VPdfViewer } from "@vue-pdf-viewer/viewer";
-import { Link } from "@inertiajs/vue3";
-
-defineOptions({
-    layout: MainLayout,
-});
-
-const props = defineProps({
-    file: Object,
-});
-
-const back = () => {
-    window.history.back();
-};
-
-const formatDate = (date) => {
-    let newDate = new Date(date);
-    return newDate.toLocaleDateString("pl-PL", {
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-    });
-};
-</script>

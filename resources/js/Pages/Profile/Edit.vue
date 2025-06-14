@@ -6,6 +6,7 @@ import SectionBorder from "@/Components/SectionBorder.vue";
 import TwoFactorAuthenticationForm from "@/Pages/Profile/Partials/TwoFactorAuthenticationForm.vue";
 import UpdatePasswordForm from "@/Pages/Profile/Partials/UpdatePasswordForm.vue";
 import UpdateProfileInformationForm from "@/Pages/Profile/Partials/UpdateProfileInformationForm.vue";
+import { Head } from "@inertiajs/vue3";
 
 defineOptions({
     layout: MainLayout,
@@ -18,6 +19,9 @@ defineProps({
 </script>
 
 <template>
+    <Head>
+        <title>Edytuj konto</title>
+    </Head>
     <div>
         <div class="flex flex-col gap-6">
             <div v-if="$page.props.jetstream.canUpdateProfileInformation">

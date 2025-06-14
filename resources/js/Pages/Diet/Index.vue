@@ -3,6 +3,7 @@ import MainLayout from "@/Layouts/MainLayout.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import { useForm, Link } from "@inertiajs/vue3";
 import { onMounted } from "vue";
+import { Head } from "@inertiajs/vue3";
 
 defineOptions({
     layout: MainLayout,
@@ -55,6 +56,9 @@ onMounted(() => {
 </script>
 
 <template>
+    <Head>
+        <title>Diety</title>
+    </Head>
     <div class="columns-1 lg:columns-2 gap-6 break-inside-avoid">
         <div
             class="flex flex-col gap-6 bg-white rounded-2xl shadow p-6 mb-6 break-inside-avoid"

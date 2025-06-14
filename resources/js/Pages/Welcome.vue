@@ -3,6 +3,7 @@ import { Link } from "@inertiajs/vue3";
 import { onMounted } from "vue";
 import Swiper from "swiper";
 import { Navigation, Pagination } from "swiper/modules";
+import { Head } from "@inertiajs/vue3";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -68,7 +69,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <Head title="Welcome" />
+    <Head title="Strona główna" />
     <div class="website-container">
         <nav class="desktop-nav">
             <div class="desktop-nav__container">
@@ -82,29 +83,23 @@ onMounted(() => {
 
                 <ul class="desktop-nav__menu">
                     <li class="desktop-nav__option">
-                        <Link
-                            href="#start"
-                            class="desktop-nav__link desktop-nav__link--active"
-                            >Start</Link
+                        <a href="#start" class="desktop-nav__link">Start</a>
+                    </li>
+                    <li class="desktop-nav__option">
+                        <a href="#about" class="desktop-nav__link"
+                            >O aplikacji</a
                         >
                     </li>
                     <li class="desktop-nav__option">
-                        <Link href="#about" class="desktop-nav__link"
-                            >O aplikacji</Link
+                        <a href="#faq" class="desktop-nav__link">FAQ</a>
+                    </li>
+                    <li class="desktop-nav__option">
+                        <a href="#testimonials" class="desktop-nav__link"
+                            >Opinie</a
                         >
                     </li>
                     <li class="desktop-nav__option">
-                        <Link href="#faq" class="desktop-nav__link">FAQ</Link>
-                    </li>
-                    <li class="desktop-nav__option">
-                        <Link href="#testimonials" class="desktop-nav__link"
-                            >Opinie</Link
-                        >
-                    </li>
-                    <li class="desktop-nav__option">
-                        <Link id="#contact" class="desktop-nav__link"
-                            >Kontakt</Link
-                        >
+                        <a href="#contact" class="desktop-nav__link">Kontakt</a>
                     </li>
                 </ul>
                 <Link :href="route('register')" class="desktop-nav__button"
@@ -131,27 +126,23 @@ onMounted(() => {
                         class="mobile-nav__logo"
                     />
                     <li class="mobile-nav__option">
-                        <Link href="#start" class="mobile-nav__link"
-                            >Start</Link
+                        <a href="#start" class="mobile-nav__link">Start</a>
+                    </li>
+                    <li class="mobile-nav__option">
+                        <a href="#about" class="mobile-nav__link"
+                            >O aplikacji</a
                         >
                     </li>
                     <li class="mobile-nav__option">
-                        <Link href="#about" class="mobile-nav__link"
-                            >O aplikacji</Link
+                        <a href="#faq" class="mobile-nav__link">FAQ</a>
+                    </li>
+                    <li class="mobile-nav__option">
+                        <a href="#testimonials" class="mobile-nav__link"
+                            >Opinie</a
                         >
                     </li>
                     <li class="mobile-nav__option">
-                        <Link href="#faq" class="mobile-nav__link">FAQ</Link>
-                    </li>
-                    <li class="mobile-nav__option">
-                        <Link href="#testimonials" class="mobile-nav__link"
-                            >Opinie</Link
-                        >
-                    </li>
-                    <li class="mobile-nav__option">
-                        <Link href="#contact" class="mobile-nav__link"
-                            >Kontakt</Link
-                        >
+                        <a href="#contact" class="mobile-nav__link">Kontakt</a>
                     </li>
                     <li class="mobile-nav__option">
                         <Link
@@ -181,10 +172,12 @@ onMounted(() => {
                         <Link :href="route('register')" class="hero__button"
                             >Wypróbuj za darmo</Link
                         >
-                        <Link class="hero__button hero__button--empty"
+                        <a
+                            href="#about"
+                            class="hero__button hero__button--empty"
                             >Dowiedz się więcej
                             <i class="hero__icon fa-solid fa-arrow-right"></i
-                        ></Link>
+                        ></a>
                     </div>
                 </div>
                 <img src="/img/hero_2.png" alt="" class="hero__image" />
@@ -382,20 +375,21 @@ onMounted(() => {
                     </div>
                     <div class="faq__item">
                         <span class="faq__question"
-                            >Czy mogę aktualizować swoje pomiary?</span
+                            >Czy aplikacja działa na telefonie?</span
                         >
                         <p class="faq__answer">
-                            Tak – możesz dodawać wagę, ciśnienie i inne dane, a
-                            aplikacja uwzględnia je w analizie.
+                            Tak – aplikacja jest responsywna i działa zarówno na
+                            komputerze, jak i smartfonie.
                         </p>
                     </div>
                     <div class="faq__item">
                         <span class="faq__question"
-                            >Czy mogę aktualizować swoje pomiary?</span
-                        >
+                            >Czy mogę w pełni ufać zaleceniom?
+                        </span>
                         <p class="faq__answer">
-                            Tak – możesz dodawać wagę, ciśnienie i inne dane, a
-                            aplikacja uwzględnia je w analizie.
+                            To sugestie wygenerowane przez AI na podstawie
+                            danych. Mogą nie być w pełni trafne – zawsze należy
+                            skonsultować je z lekarzem.
                         </p>
                     </div>
                 </div>
@@ -753,27 +747,23 @@ onMounted(() => {
                     <h6 class="footer__heading">Szybki dostęp</h6>
                     <ul class="footer__menu">
                         <li class="footer__option">
-                            <Link href="#start" class="footer__link"
-                                >Start</Link
+                            <a href="#start" class="footer__link">Start</a>
+                        </li>
+                        <li class="footer__option">
+                            <a href="#about" class="footer__link"
+                                >O aplikacji</a
                             >
                         </li>
                         <li class="footer__option">
-                            <Link href="#about" class="footer__link"
-                                >O aplikacji</Link
+                            <a href="#faq" class="footer__link">FAQ</a>
+                        </li>
+                        <li class="footer__option">
+                            <a href="#testimonials" class="footer__link"
+                                >Opinie</a
                             >
                         </li>
                         <li class="footer__option">
-                            <Link href="#faq" class="footer__link">FAQ</Link>
-                        </li>
-                        <li class="footer__option">
-                            <Link href="#testimonials" class="footer__link"
-                                >Opinie</Link
-                            >
-                        </li>
-                        <li class="footer__option">
-                            <Link href="#contact" class="footer__link"
-                                >Kontakt</Link
-                            >
+                            <a href="#contact" class="footer__link">Kontakt</a>
                         </li>
                     </ul>
                 </div>
@@ -804,9 +794,9 @@ onMounted(() => {
                     <ul class="footer__menu">
                         <li class="footer__option">
                             <a
-                                href="mailto:contact@domain.com"
+                                href="mailto:kontakt@mediary.pl"
                                 class="footer__link"
-                                >kontakt@domain.com</a
+                                >kontakt@mediary.pl</a
                             >
                         </li>
                         <li class="footer__option">

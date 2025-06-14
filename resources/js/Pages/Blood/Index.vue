@@ -6,6 +6,7 @@ defineOptions({
 
 import { useForm, usePage } from "@inertiajs/vue3";
 import { computed, onMounted } from "vue";
+import { Head } from "@inertiajs/vue3";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 
 const page = usePage();
@@ -63,6 +64,9 @@ onMounted(() => {
 </script>
 
 <template class="overflow-y-auto">
+    <Head>
+        <title>Wyniki badań</title>
+    </Head>
     <div class="flex flex-wrap gap-6">
         <div
             class="flex flex-col gap-6 w-full lg:w-[calc(50%-12px)] bg-white rounded-2xl shadow p-6 h-fit"
