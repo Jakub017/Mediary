@@ -32,7 +32,7 @@ class DietController extends Controller
             'documents' => 'nullable',
         ]);
 
-        $api_key = env('OPENAI_API_KEY');
+        $api_key = config('services.openai.key');
 
         // Input building
         $input = 'Jesteś wykształconym dietetykiem. Otrzymujesz informacje od swojego klienta i musisz stworzyć dla niego plan żywieniowy, rozpisać posiłki na cały tydzień. Typ diety to: '. $data['type']. '. Ilość kalorii: '. $data['calories'] .'. Ilość posiłków w ciągu dnia: '. $data['meals'] .'. Klient ma ' . $user->age . ' lat, ma ' . $user->height . 'cm wzrostu i waży ' . $user->weight . 'kg.';
@@ -67,18 +67,12 @@ class DietController extends Controller
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . $api_key,
             'Content-Type' => 'application/json',
-        ])->timeout(60)->post('https://api.openai.com/v1/chat/completions', [
-            'model' => 'gpt-4o',
-            'messages' => [
-                [
-                    'role' => 'user',
-                    'content' => $input,
-                ],
-            ],
-            'temperature' => 0.7,
-        ]);
-    
-        $content = $response->json()['choices'][0]['message']['content'] ?? 'Nie udało się wygenerować diety.';
+        ])->timeout(60)->post('https://api.openai.com/v1/responses', [
+            'model' => 'gpt-4o-mini',
+            'input' => $input,
+        ])->json();
+
+        $content = $response['output'][0]['content'][0]['text'];
 
         $user->diets()->create([
             'name' => $data['name'],
