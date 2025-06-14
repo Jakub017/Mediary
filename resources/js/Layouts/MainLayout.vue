@@ -66,7 +66,7 @@ onMounted(() => {
                         class="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4"
                     >
                         <div class="flex h-16 shrink-0 items-center">
-                            <img class="h-8 w-auto" src="/img/logo_1.png" />
+                            <img class="h-8 w-auto" src="/img/logo.png" />
                         </div>
                         <nav class="flex flex-1 flex-col">
                             <ul
@@ -139,7 +139,7 @@ onMounted(() => {
                 class="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4"
             >
                 <div class="flex h-16 shrink-0 items-center">
-                    <img class="h-10 w-10" src="/img/logo_2.png" />
+                    <img class="h-10 w-10" src="/img/logo.png" />
                 </div>
                 <nav class="flex flex-1 flex-col">
                     <ul role="list" class="flex flex-1 flex-col gap-y-7">

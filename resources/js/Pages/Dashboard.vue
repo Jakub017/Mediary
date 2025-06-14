@@ -322,12 +322,12 @@ onMounted(() => {
                     <p v-else class="text-2xl font-light">
                         brak danych<span class="text-base font-ligh"></span>
                     </p>
-                    <button
-                        href=""
+                    <Link
+                        :href="route('profile.index')"
                         class="text-white text-sm bg-blue-600 px-4 py-2 rounded-full flex justify-center items-center gap-2"
                     >
                         Dodaj pomiar <i class="fa-solid fa-plus"></i>
-                    </button>
+                    </Link>
                 </div>
             </div>
             <div
@@ -356,12 +356,12 @@ onMounted(() => {
                     <p v-else class="text-2xl font-light">
                         brak danych<span class="text-base font-ligh"></span>
                     </p>
-                    <button
-                        href=""
+                    <Link
+                        :href="route('profile.index')"
                         class="text-white text-sm bg-red-600 px-4 py-2 rounded-full flex justify-center items-center gap-2"
                     >
                         Dodaj pomiar <i class="fa-solid fa-plus"></i>
-                    </button>
+                    </Link>
                 </div>
             </div>
             <div

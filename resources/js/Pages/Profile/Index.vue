@@ -5,7 +5,7 @@ defineOptions({
 });
 
 import { useForm, usePage } from "@inertiajs/vue3";
-import { Head } from "@inertiajs/vue3";
+import { Head, Link } from "@inertiajs/vue3";
 import { computed } from "vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 
@@ -222,9 +222,12 @@ const formatDate = (myDate, monthFormat = "long") => {
 
                 <!-- Nazwa i rozmiar -->
                 <div class="flex-grow flex flex-col overflow-hidden">
-                    <h4 class="text-base font-normal mb-0 break-words">
+                    <Link
+                        :href="route('file.show', file.id)"
+                        class="text-base font-normal mb-0 break-words"
+                    >
                         {{ file.filename }}
-                    </h4>
+                    </Link>
                     <span class="text-xs text-gray-600"
                         >{{ file.size }} MB</span
                     >
