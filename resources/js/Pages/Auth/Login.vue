@@ -135,7 +135,7 @@ const submit = () => {
                     class="w-full flex gap-2 text-sm border rounded-full px-4 py-2 bg-gray-50 border-slate-300 justify-center items-center duration-200 hover:bg-gray-100"
                 >
                     Zaloguj się z
-                    <img class="size-4" src="/img/logo-google.png" alt="" />
+                    <img class="size-4" src="/img/logo_google.png" alt="" />
                 </button>
                 <p class="text-sm text-gray-600">
                     Nie masz jeszcze konta?
@@ -150,7 +150,7 @@ const submit = () => {
         <div class="hidden md:flex md:w-1/2 md:h-screen md:p-4">
             <div class="w-full rounded-2xl h-full overflow-hidden">
                 <img
-                    src="/img/login_screen_2.jpeg"
+                    src="/img/login_screen.jpeg"
                     class="w-full h-full object-cover"
                     alt=""
                 />

@@ -74,11 +74,7 @@ onMounted(() => {
         <nav class="desktop-nav">
             <div class="desktop-nav__container">
                 <div class="desktop-nav__logo-container">
-                    <img
-                        src="/img/logo_2.png"
-                        alt=""
-                        class="desktop-nav__logo"
-                    />
+                    <img src="/img/logo.png" alt="" class="desktop-nav__logo" />
                 </div>
 
                 <ul class="desktop-nav__menu">
@@ -110,7 +106,7 @@ onMounted(() => {
 
         <nav class="mobile-nav">
             <div class="mobile-nav__container">
-                <img src="/img/logo_2.png" alt="" class="mobile-nav__logo" />
+                <img src="/img/logo.png" alt="" class="mobile-nav__logo" />
                 <button class="mobile-nav__hamburger-button">
                     <i
                         class="fa-solid fa-bars mobile-nav__hamburger mobile-nav__hamburger--active"
@@ -120,11 +116,7 @@ onMounted(() => {
             </div>
             <div class="mobile-nav__sidebar">
                 <ul class="mobile-nav__menu">
-                    <img
-                        src="/img/logo_2.png"
-                        alt=""
-                        class="mobile-nav__logo"
-                    />
+                    <img src="/img/logo.png" alt="" class="mobile-nav__logo" />
                     <li class="mobile-nav__option">
                         <a href="#start" class="mobile-nav__link">Start</a>
                     </li>
@@ -180,7 +172,7 @@ onMounted(() => {
                         ></a>
                     </div>
                 </div>
-                <img src="/img/hero_2.png" alt="" class="hero__image" />
+                <img src="/img/hero.png" alt="" class="hero__image" />
             </div>
             <div class="hero__features">
                 <div class="hero__features-container">
@@ -273,7 +265,7 @@ onMounted(() => {
                             </p>
                             <div class="bento__image-wrapper">
                                 <img
-                                    src="/img/bento-1.png"
+                                    src="/img/bento_1.png"
                                     class="bento__image bento__image--tall"
                                 />
                             </div>
@@ -289,7 +281,7 @@ onMounted(() => {
                                 historię i generuje opinię przy każdym pomiarze.
                             </p>
                             <img
-                                src="/img/bento-2.png"
+                                src="/img/bento_2.png"
                                 class="bento__image bento__image--border"
                             />
                         </div>
@@ -301,7 +293,7 @@ onMounted(() => {
                                 do aktualnej sytuacji.
                             </p>
                             <img
-                                src="/img/bento-3.png"
+                                src="/img/bento_3.png"
                                 class="bento__image bento__image--border"
                             />
                         </div>
@@ -315,7 +307,7 @@ onMounted(() => {
                             </p>
                             <div class="bento__image-wrapper">
                                 <img
-                                    src="/img/bento-4.png"
+                                    src="/img/bento_4.png"
                                     class="bento__image bento__image--tall"
                                 />
                             </div>
@@ -737,7 +729,7 @@ onMounted(() => {
         <footer id="contact" class="footer">
             <div class="footer__container">
                 <div class="footer__column">
-                    <img src="/img/logo_2.png" alt="" class="footer__logo" />
+                    <img src="/img/logo.png" alt="" class="footer__logo" />
                     <p class="footer__text">
                         Zadbaj o zdrowie dzięki analizie wyników badań, danych
                         zdrowotnych i inteligentnym rekomendacjom AI.
