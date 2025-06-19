@@ -1,1 +1,0 @@
-import{c as r,o,k as n}from"./app-CAQgCQ-k.js";const s=["type"],c={__name:"DangerButton",props:{type:{type:String,default:"button"}},setup(t){return(e,a)=>(o(),r("button",{type:t.type,class:"text-white text-sm bg-red-400 px-4 py-2 rounded-full flex justify-center items-center gap-2 duration-200 hover:bg-red-500"},[n(e.$slots,"default")],8,s))}};export{c as _};

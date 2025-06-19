@@ -1,0 +1,1 @@
+import{c as r,o,k as s}from"./app-DmAHP-ZF.js";const n=["type"],u={__name:"PrimaryButton",props:{type:{type:String,default:"submit"}},setup(t){return(e,a)=>(o(),r("button",{type:t.type,class:"text-white text-sm bg-blue-600 px-4 py-2 rounded-full flex justify-center items-center gap-2 duration-200 hover:bg-blue-700"},[s(e.$slots,"default")],8,n))}};export{u as _};
