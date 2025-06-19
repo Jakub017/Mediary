@@ -18,6 +18,31 @@ const getAvatar = () => {
 onMounted(() => {
     const userMenuBtn = document.querySelector(".user-menu-button");
     const userMenu = document.querySelector(".user-menu");
+    const MobileMenuOpen = document.querySelector(".mobile-menu-open");
+
+    MobileMenuOpen.addEventListener("click", () => {
+        if (
+            document
+                .querySelector(".mobile-backdrop")
+                .classList.contains("opacity-0")
+        ) {
+            document
+                .querySelector(".mobile-backdrop")
+                .classList.remove("opacity-0");
+
+            document
+                .querySelector(".mobile-menu")
+                .classList.remove("-translate-x-full");
+        } else {
+            document
+                .querySelector(".mobile-backdrop")
+                .classList.add("opacity-0");
+
+            document
+                .querySelector(".mobile-menu")
+                .classList.add("-translate-x-full");
+        }
+    });
 
     userMenuBtn.addEventListener("click", () => {
         userMenu.classList.toggle("opacity-0");
@@ -31,13 +56,15 @@ onMounted(() => {
     <div class="w-full">
         <div class="relative z-50" role="dialog" aria-modal="true">
             <div
-                class="mobile-backdrop fixed inset-0 opacity-0 duration-300 ease-linear transition-opacity h-0 bg-gray-900/80"
+                class="mobile-backdrop fixed inset-0 opacity-0 duration-300 ease-linear transition-opacity h-screen bg-gray-900/50"
             ></div>
 
             <div
-                class="mobile-menu duration-300 -translate-x-full ease-in-out fixed inset-0 flex"
+                class="mobile-menu duration-300 -translate-x-full ease-in-out fixed inset-0 flex w-fit"
             >
-                <div class="relative mr-16 flex w-full max-w-xs flex-1">
+                <div
+                    class="relative mr-16 flex w-full max-w-xs flex-1 border-r border-gray-200"
+                >
                     <div
                         class="absolute left-full top-0 flex w-16 justify-center pt-5"
                     >
@@ -63,12 +90,12 @@ onMounted(() => {
                         </button>
                     </div>
                     <div
-                        class="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4"
+                        class="flex flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4"
                     >
                         <div class="flex h-16 shrink-0 items-center">
                             <img class="h-8 w-auto" src="/img/logo.png" />
                         </div>
-                        <nav class="flex flex-1 flex-col">
+                        <!-- <nav class="flex flex-1 flex-col">
                             <ul
                                 role="list"
                                 class="flex flex-1 flex-col gap-y-7"
@@ -127,11 +154,149 @@ onMounted(() => {
                                     </ul>
                                 </li>
                             </ul>
+                        </nav> -->
+                        <nav class="flex flex-1 flex-col">
+                            <ul
+                                role="list"
+                                class="flex flex-1 flex-col gap-y-7"
+                            >
+                                <li>
+                                    <ul role="list" class="-mx-2 space-y-1">
+                                        <li>
+                                            <Link
+                                                :href="route('dashboard')"
+                                                :class="{
+                                                    'bg-blue-600 text-blue-600 shadow-2xl':
+                                                        route().current(
+                                                            'dashboard'
+                                                        ),
+                                                    'text-gray-600 hover:text-blue-600 hover:bg-gray-50':
+                                                        !route().current(
+                                                            'dashboard'
+                                                        ),
+                                                }"
+                                                class="flex justify-center items-center gap-x-3 rounded-full p-3 text-sm font-semibold transition-colors duration-300 size-12"
+                                            >
+                                                <i
+                                                    :class="{
+                                                        'text-white':
+                                                            route().current(
+                                                                'dashboard'
+                                                            ),
+                                                    }"
+                                                    class="fa-solid fa-house text-lg"
+                                                ></i>
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link
+                                                :href="route('profile.index')"
+                                                :class="{
+                                                    'bg-blue-600 text-blue-600 shadow-2xl':
+                                                        route().current(
+                                                            'profile.*'
+                                                        ),
+                                                    'text-gray-600 hover:text-blue-600 hover:bg-gray-50':
+                                                        !route().current(
+                                                            'profile.*'
+                                                        ),
+                                                }"
+                                                class="flex justify-center items-center gap-x-3 rounded-full p-3 text-sm font-semibold transition-colors duration-300 size-12"
+                                            >
+                                                <i
+                                                    :class="{
+                                                        'text-white':
+                                                            route().current(
+                                                                'profile.*'
+                                                            ),
+                                                    }"
+                                                    class="fa-solid fa-user text-lg"
+                                                ></i>
+                                            </Link>
+                                        </li>
+
+                                        <li>
+                                            <Link
+                                                :href="route('blood.index')"
+                                                :class="{
+                                                    'bg-blue-600 text-blue-600 shadow-2xl':
+                                                        route().current(
+                                                            'blood.*'
+                                                        ),
+                                                    'text-gray-600 hover:text-blue-600 hover:bg-gray-50':
+                                                        !route().current(
+                                                            'blood.*'
+                                                        ),
+                                                }"
+                                                class="flex justify-center items-center gap-x-3 rounded-full p-3 text-sm font-semibold transition-colors duration-300 size-12"
+                                            >
+                                                <i
+                                                    :class="{
+                                                        'text-white':
+                                                            route().current(
+                                                                'blood.*'
+                                                            ),
+                                                    }"
+                                                    class="fa-solid fa-flask-vial text-lg"
+                                                ></i>
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link
+                                                :href="route('diet.index')"
+                                                :class="{
+                                                    'bg-blue-600 text-blue-600 shadow-2xl':
+                                                        route().current(
+                                                            'diet.*'
+                                                        ),
+                                                    'text-gray-600 hover:text-blue-600 hover:bg-gray-50':
+                                                        !route().current(
+                                                            'diet.*'
+                                                        ),
+                                                }"
+                                                class="flex justify-center items-center gap-x-3 rounded-full p-3 text-sm font-semibold transition-colors duration-300 size-12"
+                                            >
+                                                <i
+                                                    :class="{
+                                                        'text-white':
+                                                            route().current(
+                                                                'diet.*'
+                                                            ),
+                                                    }"
+                                                    class="fa-solid fa-utensils text-lg"
+                                                ></i>
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <ul
+                                role="list"
+                                class="flex flex-1 flex-col gap-y-7 mt-auto mb-0 justify-end items-end"
+                            >
+                                <li>
+                                    <ul role="list" class="-mx-2 space-y-1">
+                                        <li>
+                                            <Link
+                                                method="POST"
+                                                :href="route('logout')"
+                                                class="text-gray-600 hover:text-blue-600 hover:bg-gray-50 flex justify-center items-center gap-x-3 rounded-full p-3 text-sm font-semibold transition-colors duration-300 size-12"
+                                            >
+                                                <i
+                                                    class="fa-solid fa-arrow-right-from-bracket text-xl"
+                                                ></i>
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
                         </nav>
                     </div>
                 </div>
             </div>
         </div>
+
         <!-- Destop sidebar start -->
         <div
             class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-24 lg:flex-col justify-center items-center border-r border-gray-200"
@@ -259,6 +424,7 @@ onMounted(() => {
             </div>
         </div>
         <!-- Desktop sidebar end -->
+
         <div class="h-min-screen lg:pl-24">
             <main class="min-h-screen w-full bg-[#F9FAFC]">
                 <div
