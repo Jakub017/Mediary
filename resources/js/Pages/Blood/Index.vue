@@ -111,14 +111,22 @@ onMounted(() => {
                         >
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="wbc" class="text-gray-600 text-xs"
-                                    >Leukocyty (WBC) [tys/μl]</label
+                                    >Leukocyty (WBC)</label
                                 >
-                                <input
-                                    type="number"
-                                    v-model="form.wbc"
-                                    step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
-                                />
+                                <div class="w-full relative">
+                                    <input
+                                        type="number"
+                                        v-model="form.wbc"
+                                        step="0.01"
+                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-14 text-sm"
+                                    />
+                                    <span
+                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
+                                    >
+                                        tys/μl
+                                    </span>
+                                </div>
+
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.wbc"
@@ -128,14 +136,21 @@ onMounted(() => {
 
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="rbc" class="text-gray-600 text-xs"
-                                    >Erytrocyty (RBC) [mln/μl]
+                                    >Erytrocyty (RBC)
                                 </label>
-                                <input
-                                    type="number"
-                                    v-model="form.rbc"
-                                    step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
-                                />
+                                <div class="w-full relative">
+                                    <input
+                                        type="number"
+                                        v-model="form.rbc"
+                                        step="0.01"
+                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-14 text-sm"
+                                    />
+                                    <span
+                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
+                                    >
+                                        mln/μl
+                                    </span>
+                                </div>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.rbc"
@@ -145,14 +160,21 @@ onMounted(() => {
 
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="hgb" class="text-gray-600 text-xs"
-                                    >Hemoglobina (HGB) [g/dl]
+                                    >Hemoglobina (HGB)
                                 </label>
-                                <input
-                                    type="number"
-                                    step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
-                                    v-model="form.hgb"
-                                />
+                                <div class="w-full relative">
+                                    <input
+                                        type="number"
+                                        step="0.01"
+                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-12 text-sm"
+                                        v-model="form.hgb"
+                                    />
+                                    <span
+                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
+                                    >
+                                        g/dl
+                                    </span>
+                                </div>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.hgb"
@@ -162,14 +184,21 @@ onMounted(() => {
 
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="hct" class="text-gray-600 text-xs"
-                                    >Hematokryt (HCT) [%]
+                                    >Hematokryt (HCT)
                                 </label>
-                                <input
-                                    type="number"
-                                    step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
-                                    v-model="form.hct"
-                                />
+                                <div class="w-full relative">
+                                    <input
+                                        type="number"
+                                        step="0.01"
+                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-8 text-sm"
+                                        v-model="form.hct"
+                                    />
+                                    <span
+                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
+                                    >
+                                        %
+                                    </span>
+                                </div>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.hct"
@@ -179,14 +208,21 @@ onMounted(() => {
 
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="mcv" class="text-gray-600 text-xs"
-                                    >MCV [fl]
+                                    >MCV
                                 </label>
-                                <input
-                                    type="number"
-                                    step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
-                                    v-model="form.mcv"
-                                />
+                                <div class="w-full relative">
+                                    <input
+                                        type="number"
+                                        step="0.01"
+                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-8 text-sm"
+                                        v-model="form.mcv"
+                                    />
+                                    <span
+                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
+                                    >
+                                        fl
+                                    </span>
+                                </div>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.mcv"
@@ -196,14 +232,21 @@ onMounted(() => {
 
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="mch" class="text-gray-600 text-xs"
-                                    >MCH [pg]
+                                    >MCH
                                 </label>
-                                <input
-                                    type="number"
-                                    step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
-                                    v-model="form.mch"
-                                />
+                                <div class="w-full relative">
+                                    <input
+                                        type="number"
+                                        step="0.01"
+                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-9 text-sm"
+                                        v-model="form.mch"
+                                    />
+                                    <span
+                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
+                                    >
+                                        pg
+                                    </span>
+                                </div>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.mch"
@@ -213,14 +256,21 @@ onMounted(() => {
 
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="mchc" class="text-gray-600 text-xs"
-                                    >MCHC [g/dl]
+                                    >MCHC
                                 </label>
-                                <input
-                                    type="number"
-                                    step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
-                                    v-model="form.mchc"
-                                />
+                                <div class="w-full relative">
+                                    <input
+                                        type="number"
+                                        step="0.01"
+                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-10 text-sm"
+                                        v-model="form.mchc"
+                                    />
+                                    <span
+                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
+                                    >
+                                        g/dl
+                                    </span>
+                                </div>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.mchc"
@@ -230,14 +280,21 @@ onMounted(() => {
 
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="plt" class="text-gray-600 text-xs"
-                                    >Płytki krwi (PLT) [tys./μl]
+                                    >Płytki krwi (PLT)
                                 </label>
-                                <input
-                                    type="number"
-                                    step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
-                                    v-model="form.plt"
-                                />
+                                <div class="w-full relative">
+                                    <input
+                                        type="number"
+                                        step="0.01"
+                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-14 text-sm"
+                                        v-model="form.plt"
+                                    />
+                                    <span
+                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
+                                    >
+                                        tys./μl
+                                    </span>
+                                </div>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.plt"
@@ -249,14 +306,21 @@ onMounted(() => {
                                 <label
                                     for="rdw_sd"
                                     class="text-gray-600 text-xs"
-                                    >RDW-SD [fl]
+                                    >RDW-SD
                                 </label>
-                                <input
-                                    type="number"
-                                    step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
-                                    v-model="form.rdw_sd"
-                                />
+                                <div class="w-full relative">
+                                    <input
+                                        type="number"
+                                        step="0.01"
+                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-8 text-sm"
+                                        v-model="form.rdw_sd"
+                                    />
+                                    <span
+                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
+                                    >
+                                        fl
+                                    </span>
+                                </div>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.rdw_sd"
@@ -268,14 +332,21 @@ onMounted(() => {
                                 <label
                                     for="rdw_cv"
                                     class="text-gray-600 text-xs"
-                                    >RDW-CV [%]
+                                    >RDW-CV
                                 </label>
-                                <input
-                                    type="number"
-                                    step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
-                                    v-model="form.rdw_cv"
-                                />
+                                <div class="w-full relative">
+                                    <input
+                                        type="number"
+                                        step="0.01"
+                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-8 text-sm"
+                                        v-model="form.rdw_cv"
+                                    />
+                                    <span
+                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
+                                    >
+                                        %
+                                    </span>
+                                </div>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.rdw_cv"
@@ -285,14 +356,21 @@ onMounted(() => {
 
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="pdw" class="text-gray-600 text-xs"
-                                    >PDW [%]
+                                    >PDW
                                 </label>
-                                <input
-                                    type="number"
-                                    step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
-                                    v-model="form.pdw"
-                                />
+                                <div class="w-full relative">
+                                    <input
+                                        type="number"
+                                        step="0.01"
+                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-8 text-sm"
+                                        v-model="form.pdw"
+                                    />
+                                    <span
+                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
+                                    >
+                                        fl
+                                    </span>
+                                </div>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.pdw"
@@ -302,14 +380,21 @@ onMounted(() => {
 
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="mpv" class="text-gray-600 text-xs"
-                                    >MPV [fl]
+                                    >MPV
                                 </label>
-                                <input
-                                    type="number"
-                                    step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
-                                    v-model="form.mpv"
-                                />
+                                <div class="w-full relative">
+                                    <input
+                                        type="number"
+                                        step="0.01"
+                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-8 text-sm"
+                                        v-model="form.mpv"
+                                    />
+                                    <span
+                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
+                                    >
+                                        fl
+                                    </span>
+                                </div>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.mpv"
@@ -319,14 +404,21 @@ onMounted(() => {
 
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="p_lcr" class="text-gray-600 text-xs"
-                                    >P-LCR [%]
+                                    >P-LCR
                                 </label>
-                                <input
-                                    type="number"
-                                    step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
-                                    v-model="form.p_lcr"
-                                />
+                                <div class="w-full relative">
+                                    <input
+                                        type="number"
+                                        step="0.01"
+                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-8 text-sm"
+                                        v-model="form.p_lcr"
+                                    />
+                                    <span
+                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
+                                    >
+                                        %
+                                    </span>
+                                </div>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.p_lcr"
@@ -336,14 +428,21 @@ onMounted(() => {
 
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="pct" class="text-gray-600 text-xs"
-                                    >PCT [%]
+                                    >PCT
                                 </label>
-                                <input
-                                    type="number"
-                                    step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
-                                    v-model="form.pct"
-                                />
+                                <div class="w-full relative">
+                                    <input
+                                        type="number"
+                                        step="0.01"
+                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-8 text-sm"
+                                        v-model="form.pct"
+                                    />
+                                    <span
+                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
+                                    >
+                                        %
+                                    </span>
+                                </div>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.pct"
@@ -353,14 +452,21 @@ onMounted(() => {
 
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="neu" class="text-gray-600 text-xs"
-                                    >Neutrofile (NEU) [tys./μl]
+                                    >Neutrofile (NEU)
                                 </label>
-                                <input
-                                    type="number"
-                                    step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
-                                    v-model="form.neu"
-                                />
+                                <div class="w-full relative">
+                                    <input
+                                        type="number"
+                                        step="0.01"
+                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-14 text-sm"
+                                        v-model="form.neu"
+                                    />
+                                    <span
+                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
+                                    >
+                                        tys./μl
+                                    </span>
+                                </div>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.neu"
@@ -370,14 +476,21 @@ onMounted(() => {
 
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="lym" class="text-gray-600 text-xs"
-                                    >Limfocyty (LYM) [tys./μl]
+                                    >Limfocyty (LYM)
                                 </label>
-                                <input
-                                    type="number"
-                                    step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
-                                    v-model="form.lym"
-                                />
+                                <div class="w-full relative">
+                                    <input
+                                        type="number"
+                                        step="0.01"
+                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-14 text-sm"
+                                        v-model="form.lym"
+                                    />
+                                    <span
+                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
+                                    >
+                                        tys./μl
+                                    </span>
+                                </div>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.lym"
@@ -387,14 +500,21 @@ onMounted(() => {
 
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="mono" class="text-gray-600 text-xs"
-                                    >Monocyty (MONO) [tys./μl]
+                                    >Monocyty (MON)
                                 </label>
-                                <input
-                                    type="number"
-                                    step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
-                                    v-model="form.mono"
-                                />
+                                <div class="w-full relative">
+                                    <input
+                                        type="number"
+                                        step="0.01"
+                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-14 text-sm"
+                                        v-model="form.mono"
+                                    />
+                                    <span
+                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
+                                    >
+                                        tys./μl
+                                    </span>
+                                </div>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.mono"
@@ -404,14 +524,21 @@ onMounted(() => {
 
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="eos" class="text-gray-600 text-xs"
-                                    >Eozynofile (EOS) [tys./μl]
+                                    >Eozynofile (EOS)
                                 </label>
-                                <input
-                                    type="number"
-                                    step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
-                                    v-model="form.eos"
-                                />
+                                <div class="w-full relative">
+                                    <input
+                                        type="number"
+                                        step="0.01"
+                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-14 text-sm"
+                                        v-model="form.eos"
+                                    />
+                                    <span
+                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
+                                    >
+                                        tys./μl
+                                    </span>
+                                </div>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.eos"
@@ -421,14 +548,21 @@ onMounted(() => {
 
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="baso" class="text-gray-600 text-xs"
-                                    >Bazofile (BASO) [tys./μl]
+                                    >Bazofile (BAS)
                                 </label>
-                                <input
-                                    type="number"
-                                    step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
-                                    v-model="form.baso"
-                                />
+                                <div class="w-full relative">
+                                    <input
+                                        type="number"
+                                        step="0.01"
+                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-14 text-sm"
+                                        v-model="form.baso"
+                                    />
+                                    <span
+                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
+                                    >
+                                        tys./μl
+                                    </span>
+                                </div>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.baso"
@@ -461,17 +595,20 @@ onMounted(() => {
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="wbc" class="text-gray-600 text-xs"
                                     >AST
-                                    <i
-                                        data-tooltip="wbc"
-                                        class="fa-solid fa-circle-info text-sm text-gray-400"
-                                    ></i
-                                ></label>
-                                <input
-                                    type="number"
-                                    v-model="form.ast"
-                                    step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
-                                />
+                                </label>
+                                <div class="w-full relative">
+                                    <input
+                                        type="number"
+                                        v-model="form.ast"
+                                        step="0.01"
+                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-10 text-sm"
+                                    />
+                                    <span
+                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
+                                    >
+                                        U/l
+                                    </span>
+                                </div>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.ast"
@@ -483,12 +620,19 @@ onMounted(() => {
                                 <label for="alt" class="text-gray-600 text-xs"
                                     >ALT
                                 </label>
-                                <input
-                                    type="number"
-                                    v-model="form.alt"
-                                    step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
-                                />
+                                <div class="w-full relative">
+                                    <input
+                                        type="number"
+                                        v-model="form.alt"
+                                        step="0.01"
+                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-10 text-sm"
+                                    />
+                                    <span
+                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
+                                    >
+                                        U/l
+                                    </span>
+                                </div>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.alt"
@@ -497,19 +641,24 @@ onMounted(() => {
                             </div>
 
                             <div class="flex flex-col gap-1 text-sm">
-                                <label for="hgb" class="text-gray-600 text-xs"
+                                <label
+                                    for="bilirubin"
+                                    class="text-gray-600 text-xs"
                                     >Bilirubina całkowita
-                                    <i
-                                        class="fa-solid fa-circle-info text-sm text-gray-400"
-                                        data-tooltip="bilirubin"
-                                    ></i
-                                ></label>
-                                <input
-                                    type="number"
-                                    step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
-                                    v-model="form.bilirubin"
-                                />
+                                </label>
+                                <div class="w-full relative">
+                                    <input
+                                        type="number"
+                                        step="0.01"
+                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-14 text-sm"
+                                        v-model="form.bilirubin"
+                                    />
+                                    <span
+                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
+                                    >
+                                        mg/dl
+                                    </span>
+                                </div>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.bilirubin"
@@ -518,19 +667,22 @@ onMounted(() => {
                             </div>
 
                             <div class="flex flex-col gap-1 text-sm">
-                                <label for="hct" class="text-gray-600 text-xs"
-                                    >Fosfataza zasadowa
-                                    <i
-                                        class="fa-solid fa-circle-info text-gray-400 text-sm"
-                                        data-tooltip="alp"
-                                    ></i
-                                ></label>
-                                <input
-                                    type="number"
-                                    step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
-                                    v-model="form.alp"
-                                />
+                                <label for="alp" class="text-gray-600 text-xs"
+                                    >Fosfataza zasadowa (ALP)
+                                </label>
+                                <div class="w-full relative">
+                                    <input
+                                        type="number"
+                                        step="0.01"
+                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-10 text-sm"
+                                        v-model="form.alp"
+                                    />
+                                    <span
+                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
+                                    >
+                                        U/l
+                                    </span>
+                                </div>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.alp"
@@ -541,17 +693,20 @@ onMounted(() => {
                             <div class="flex flex-col gap-1 text-sm">
                                 <label for="mcv" class="text-gray-600 text-xs"
                                     >GGTP
-                                    <i
-                                        class="fa-solid fa-circle-info text-sm text-gray-400"
-                                        data-tooltip="ggtp"
-                                    ></i
-                                ></label>
-                                <input
-                                    type="number"
-                                    step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
-                                    v-model="form.ggtp"
-                                />
+                                </label>
+                                <div class="w-full relative">
+                                    <input
+                                        type="number"
+                                        step="0.01"
+                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-10 text-sm"
+                                        v-model="form.ggtp"
+                                    />
+                                    <span
+                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
+                                    >
+                                        U/l
+                                    </span>
+                                </div>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.ggtp"
@@ -585,18 +740,21 @@ onMounted(() => {
                                 <label
                                     for="total_cholesterol"
                                     class="text-gray-600 text-xs"
-                                    >Cholesterol całkowity
-                                    <i
-                                        data-tooltip="total_cholesterol"
-                                        class="fa-solid fa-circle-info text-sm text-gray-400"
-                                    ></i
-                                ></label>
-                                <input
-                                    type="number"
-                                    v-model="form.total_cholesterol"
-                                    step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
-                                />
+                                    >Cholesterol całk. (CHOL)
+                                </label>
+                                <div class="w-full relative">
+                                    <input
+                                        type="number"
+                                        v-model="form.total_cholesterol"
+                                        step="0.01"
+                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-14 text-sm"
+                                    />
+                                    <span
+                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
+                                    >
+                                        mg/dl
+                                    </span>
+                                </div>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.total_cholesterol"
@@ -609,17 +767,20 @@ onMounted(() => {
                                     for="hdl_cholesterol"
                                     class="text-gray-600 text-xs"
                                     >Cholesterol HDL
-                                    <i
-                                        class="fa-solid fa-circle-info text-sm text-gray-400"
-                                        data-tooltip="hdl_cholesterol"
-                                    ></i
-                                ></label>
-                                <input
-                                    type="number"
-                                    v-model="form.hdl_cholesterol"
-                                    step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
-                                />
+                                </label>
+                                <div class="w-full relative">
+                                    <input
+                                        type="number"
+                                        v-model="form.hdl_cholesterol"
+                                        step="0.01"
+                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-14 text-sm"
+                                    />
+                                    <span
+                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
+                                    >
+                                        mg/dl
+                                    </span>
+                                </div>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.hdl_cholesterol"
@@ -632,17 +793,20 @@ onMounted(() => {
                                     for="non_hdl_cholesterol"
                                     class="text-gray-600 text-xs"
                                     >Cholesterol nie-HDL
-                                    <i
-                                        class="fa-solid fa-circle-info text-sm text-gray-400"
-                                        data-tooltip="non_hdl_cholesterol"
-                                    ></i
-                                ></label>
-                                <input
-                                    type="number"
-                                    step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
-                                    v-model="form.non_hdl_cholesterol"
-                                />
+                                </label>
+                                <div class="w-full relative">
+                                    <input
+                                        type="number"
+                                        step="0.01"
+                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-14 text-sm"
+                                        v-model="form.non_hdl_cholesterol"
+                                    />
+                                    <span
+                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
+                                    >
+                                        mg/dl
+                                    </span>
+                                </div>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.non_hdl_cholesterol"
@@ -655,17 +819,20 @@ onMounted(() => {
                                     for="ldl_cholesterol"
                                     class="text-gray-600 text-xs"
                                     >Cholesterol LDL
-                                    <i
-                                        class="fa-solid fa-circle-info text-gray-400 text-sm"
-                                        data-tooltip="ldl_cholesterol"
-                                    ></i
-                                ></label>
-                                <input
-                                    type="number"
-                                    step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
-                                    v-model="form.ldl_cholesterol"
-                                />
+                                </label>
+                                <div class="w-full relative">
+                                    <input
+                                        type="number"
+                                        step="0.01"
+                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-14 text-sm"
+                                        v-model="form.ldl_cholesterol"
+                                    />
+                                    <span
+                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
+                                    >
+                                        mg/dl
+                                    </span>
+                                </div>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.ldl_cholesterol"
@@ -677,18 +844,21 @@ onMounted(() => {
                                 <label
                                     for="triglycerides"
                                     class="text-gray-600 text-xs"
-                                    >Triglicerydy
-                                    <i
-                                        class="fa-solid fa-circle-info text-sm text-gray-400"
-                                        data-tooltip="triglycerides"
-                                    ></i
-                                ></label>
-                                <input
-                                    type="number"
-                                    step="0.01"
-                                    class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 text-sm"
-                                    v-model="form.triglycerides"
-                                />
+                                    >Triglicerydy (TG)
+                                </label>
+                                <div class="w-full relative">
+                                    <input
+                                        type="number"
+                                        step="0.01"
+                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-14 text-sm"
+                                        v-model="form.triglycerides"
+                                    />
+                                    <span
+                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
+                                    >
+                                        mg/dl
+                                    </span>
+                                </div>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.triglycerides"
