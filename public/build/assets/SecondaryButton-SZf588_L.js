@@ -1,1 +1,0 @@
-import{c as o,o as r,k as n}from"./app-DmAHP-ZF.js";const a=["type"],p={__name:"SecondaryButton",props:{type:{type:String,default:"button"}},setup(t){return(e,s)=>(r(),o("button",{type:t.type,class:"text-black text-sm bg-gray-300 px-4 py-2 rounded-full flex justify-center items-center gap-2 duration-200 hover:bg-gray-400"},[n(e.$slots,"default")],8,a))}};export{p as _};

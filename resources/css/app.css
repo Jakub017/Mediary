@@ -10,9 +10,15 @@
     font-family: "Roboto", sans-serif;
 }
 
-.diet-content h3 {
+/* .diet-content h3 {
     margin-bottom: 5px;
     font-size: 105%;
+} */
+
+.diet-text ul {
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
 }
 
 /* Remove arrows from number inputs */

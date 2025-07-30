@@ -24,12 +24,9 @@ class GoogleController extends Controller
             'email' => $google_user->email,
         ], [
             'name' => strstr($google_user->name, ' ', true),
-            // 'name' => $google_user->name,
             'email' => $google_user->email,
             'password' => Hash::make(Str::random(40)),
         ]);
-
-        // dd($user);
 
         Auth::login($user);
 

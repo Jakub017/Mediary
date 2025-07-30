@@ -1,5 +1,6 @@
 <script setup>
 import MainLayout from "@/Layouts/MainLayout.vue";
+import MainBox from "@/Components/MainBox.vue";
 import { Head } from "@inertiajs/vue3";
 
 defineOptions({

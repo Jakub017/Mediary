@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Diet;
 
+use App\Models\DietDay;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -13,7 +14,7 @@ class DietController extends Controller
     public function index(Request $request)
     {
        return Inertia('Diet/Index', [
-            'diets' => $request->user()->diets()->get(),
+            'diets' => $request->user()->diets()->with('days')->get(),
        ]);
     }
 
@@ -58,7 +59,16 @@ class DietController extends Controller
             $input .= ' Klient przesłał również jego dokumentację medyczną, oto opinie specjalisty na ich temat: '. implode('; ', $reviews) .'.';
         }
 
-        $input .= 'Twoja odpowiedź musi być w formie html, bez użycia ``` lub Markdown. Nie dodawaj kodu programistycznego. Zwróć tylko czysty HTML. <div><h3>Dzień tygodnia</h3> <ul><li><b>Nazwa posiłku</b>: treść posiłku (gramatura potrzebnych produktów do wykonania posiłku) - ilosć kalorii</li></ul></div>';
+        $input .= 'Twoja odpowiedź musi być w formie json, bez użycia ``` lub Markdown. Format
+        [
+        {
+            "day" : Dzień tygodnia,
+            "protein" : liczba,
+            "fat" : liczba,
+            "carbohydrates" : liczba,
+            "content": Dieta w formacie html, <ul><li><b>Nazwa posiłku:</b> Treść posiłku (gramatura użytych produktów) - ilosc kalorii.</li></ul>
+        }
+        ]';
 
         $input .= ' Dni tygodnia to: Poniedziałek, Wtorek, Środa, Czwartek, Piątek, Sobota, Niedziela. Nazwy posiłku nadaj w zależności od ilości posiłków w ciągu dnia. Jeśli klient wybrał 5, to: Śniadanie, Drugie śniadanie, Obiad, Podwieczorek, Kolacja. Jeśli 4 to: Sniadanie, Obiad, Podwieczorek, Kolacja. Jeśli 3 to: Sniadanie, Obiad, Kolacja.';
 
@@ -73,8 +83,9 @@ class DietController extends Controller
         ])->json();
 
         $content = $response['output'][0]['content'][0]['text'];
+        $parsed = json_decode($content, true);
 
-        $user->diets()->create([
+        $diet = $user->diets()->create([
             'name' => $data['name'],
             'type' => $data['type'],
             'calories' => $data['calories'],
@@ -84,8 +95,18 @@ class DietController extends Controller
             'notes' => $data['notes'],
             'documents' => $data['documents'],
             'user_id' => $user->id,
-            'content' => $content,
         ]);
+
+        foreach($parsed as $day) {
+            DietDay::create([
+               'diet_id' => $diet->id,
+               'day' => $day['day'],
+               'protein' => $day['protein'],
+               'fat' => $day['fat'],
+               'carbohydrates' => $day['carbohydrates'],
+               'content' => $day['content'],
+            ]);
+        }
 
         return redirect()->back()->with('success', 'Dieta stworzona pomyślnie.');
     }
@@ -93,7 +114,7 @@ class DietController extends Controller
     public function destroy(Diet $diet)
     {
         $user = Auth::user();
-        $user->diets($diet)->delete();
+        $user->diets()->where('id', $diet->id)->delete();
         return redirect()->back()->with('success', 'Dieta usunieta pomyślnie.');
     }
 }

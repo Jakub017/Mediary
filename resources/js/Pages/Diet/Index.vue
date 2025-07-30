@@ -320,18 +320,7 @@ onMounted(() => {
                                         {{ formatDate(diet.created_at) }}
                                     </p>
                                 </div>
-                                <!-- <svg
-                                    class="h-5 w-5 flex-none text-gray-400"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                    aria-hidden="true"
-                                >
-                                    <path
-                                        fill-rule="evenodd"
-                                        d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
-                                        clip-rule="evenodd"
-                                    />
-                                </svg> -->
+
                                 <Link
                                     method="DELETE"
                                     :href="route('diet.destroy', diet)"
@@ -343,9 +332,123 @@ onMounted(() => {
                             </div>
                         </div>
                         <div
-                            class="border-t border-slate-300 p-4 diet-content text-sm flex-col gap-4 hidden"
-                            v-html="diet.content"
-                        ></div>
+                            class="border-t border-slate-300 p-4 diet-content text-sm flex-col gap-6 hidden"
+                        >
+                            <div
+                                v-for="day in diet.days"
+                                :key="day.id"
+                                class="flex flex-col items-start justify-between gap-2 mb-2"
+                            >
+                                <div
+                                    class="flex w-full justify-between items-center"
+                                >
+                                    <h3
+                                        class="font-semibold text-xl text-blue-600"
+                                    >
+                                        {{ day.day }}
+                                    </h3>
+
+                                    <div class="flex gap-2 items-center">
+                                        <span class="text-sm"
+                                            >Białko:
+                                            <span
+                                                class="text-blue-600 font-semibold"
+                                                >{{
+                                                    Math.round(day.protein)
+                                                }}
+                                                g</span
+                                            ></span
+                                        >
+
+                                        <span class="text-sm"
+                                            >Tłuszcz:
+                                            <span
+                                                class="text-yellow-600 font-semibold"
+                                                >{{
+                                                    Math.round(day.fat)
+                                                }}
+                                                g</span
+                                            ></span
+                                        >
+                                        <span class="text-sm"
+                                            >Węglowodany:
+                                            <span
+                                                class="text-purple-600 font-semibold"
+                                                >{{
+                                                    Math.round(
+                                                        day.carbohydrates
+                                                    )
+                                                }}
+                                                g</span
+                                            ></span
+                                        >
+                                    </div>
+                                </div>
+
+                                <div
+                                    v-html="day.content"
+                                    class="diet-text text-sm"
+                                ></div>
+                                <!-- <div class="flex gap-4">
+                                    <div
+                                        class="w-20 flex gap-1 items-center justify-start flex-col"
+                                    >
+                                        <div
+                                            class="flex items-center justify-center w-[70px] h-[70px] rounded-full border-[7px] border-blue-500"
+                                        >
+                                            <span
+                                                class="text-base font-semibold"
+                                                >{{
+                                                    Math.round(day.protein)
+                                                }}
+                                                g</span
+                                            >
+                                        </div>
+                                        <span class="text-sm font-semibold"
+                                            >Białko</span
+                                        >
+                                    </div>
+                                    <div
+                                        class="w-20 flex gap-1 items-center justify-start flex-col"
+                                    >
+                                        <div
+                                            class="flex items-center justify-center w-[70px] h-[70px] rounded-full border-[7px] border-yellow-400"
+                                        >
+                                            <span
+                                                class="text-base font-semibold"
+                                                >{{
+                                                    Math.round(day.fat)
+                                                }}
+                                                g</span
+                                            >
+                                        </div>
+                                        <span class="text-sm font-semibold"
+                                            >Tłuszcz</span
+                                        >
+                                    </div>
+                                    <div
+                                        class="w-20 flex gap-1 items-center justify-start flex-col"
+                                    >
+                                        <div
+                                            class="flex items-center justify-center w-[70px] h-[70px] rounded-full border-[7px] border-purple-500"
+                                        >
+                                            <span
+                                                class="text-base font-semibold"
+                                                >{{
+                                                    Math.round(
+                                                        day.carbohydrates
+                                                    )
+                                                }}
+                                                g</span
+                                            >
+                                        </div>
+                                        <span class="text-sm font-semibold"
+                                            >Węglowodany</span
+                                        >
+                                    </div>
+                                </div> -->
+                            </div>
+                        </div>
                     </div>
                 </ul>
             </div>

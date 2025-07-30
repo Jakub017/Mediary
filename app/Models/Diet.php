@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\DietDay;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Diet extends Model
 {
@@ -24,5 +25,9 @@ class Diet extends Model
 
     public function user() {
         return $this->belongsTo(User::class);
+    }
+
+    public function days() {
+        return $this->hasMany(DietDay::class);
     }
 }
