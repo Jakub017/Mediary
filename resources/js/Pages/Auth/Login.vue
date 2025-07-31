@@ -108,16 +108,21 @@ const submit = () => {
                             />
                         </div>
 
-                        <div class="block">
+                        <div class="flex items-center w-full justify-between">
                             <label class="flex items-center">
                                 <Checkbox
                                     v-model:checked="form.remember"
                                     name="remember"
                                 />
-                                <span class="ms-2 text-xs text-gray-600"
+                                <span class="ms-2 text-sm text-gray-600"
                                     >Nie wylogowuj mnie</span
                                 >
                             </label>
+                            <Link
+                                class="text-sm text-blue-600"
+                                :href="route('password.request')"
+                                >Zapomniałem/am hasła</Link
+                            >
                         </div>
 
                         <PrimaryButton :type="'submit'" class="w-full"

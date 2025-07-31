@@ -36,7 +36,7 @@ class DietController extends Controller
         $api_key = config('services.openai.key');
 
         // Input building
-        $input = 'Jesteś wykształconym dietetykiem. Otrzymujesz informacje od swojego klienta i musisz stworzyć dla niego plan żywieniowy, rozpisać posiłki na cały tydzień. Typ diety to: '. $data['type']. '. Ilość kalorii: '. $data['calories'] .'. Ilość posiłków w ciągu dnia: '. $data['meals'] .'. Klient ma ' . $user->age . ' lat, ma ' . $user->height . 'cm wzrostu i waży ' . $user->weight . 'kg.';
+        $input = 'Przyjmij rolę dietetyka. Otrzymujesz informacje od swojego klienta i musisz stworzyć dla niego plan żywieniowy, rozpisać posiłki na cały tydzień. Typ diety to: '. $data['type']. '. Ilość kalorii: '. $data['calories'] .'. Ilość posiłków w ciągu dnia: '. $data['meals'] .'. Klient ma ' . $user->age . ' lat, ma ' . $user->height . 'cm wzrostu i waży ' . $user->weight . 'kg.';
 
         if($user->diseases) {
             $input .= ' Klient ma stwierdzone następujące choroby: '. $user->diseases .'.';

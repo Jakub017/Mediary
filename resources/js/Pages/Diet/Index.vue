@@ -246,7 +246,12 @@ onMounted(() => {
                 </div>
 
                 <div class="w-full">
-                    <PrimaryButton :type="'submit'">Stwórz</PrimaryButton>
+                    <PrimaryButton
+                        :type="'submit'"
+                        :class="{ 'opacity-25': form.processing }"
+                        :disabled="form.processing"
+                        >Stwórz</PrimaryButton
+                    >
                 </div>
             </form>
         </div>

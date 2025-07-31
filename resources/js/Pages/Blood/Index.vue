@@ -871,7 +871,12 @@ onMounted(() => {
                 </div>
 
                 <div class="w-full">
-                    <PrimaryButton :type="'submit'">Zapisz</PrimaryButton>
+                    <PrimaryButton
+                        :type="'submit'"
+                        :class="{ 'opacity-25': form.processing }"
+                        :disabled="form.processing"
+                        >Zapisz</PrimaryButton
+                    >
                 </div>
             </form>
         </div>
