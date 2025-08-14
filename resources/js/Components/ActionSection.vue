@@ -1,10 +1,14 @@
-<script setup>
-import SectionTitle from './SectionTitle.vue';
+<script setup lang="ts">
+import SectionTitle from "./SectionTitle.vue";
+
+defineProps<{
+    icon: string;
+}>();
 </script>
 
 <template>
-    <div class="md:grid md:grid-cols-3 md:gap-6">
-        <SectionTitle>
+    <div class="flex flex-col w-full">
+        <SectionTitle :icon="icon">
             <template #title>
                 <slot name="title" />
             </template>
@@ -13,10 +17,8 @@ import SectionTitle from './SectionTitle.vue';
             </template>
         </SectionTitle>
 
-        <div class="mt-5 md:mt-0 md:col-span-2">
-            <div class="px-4 py-5 sm:p-6 bg-white shadow sm:rounded-lg">
-                <slot name="content" />
-            </div>
+        <div class="mt-4">
+            <slot name="content" />
         </div>
     </div>
 </template>

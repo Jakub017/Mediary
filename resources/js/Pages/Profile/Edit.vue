@@ -23,33 +23,43 @@ defineProps({
         <title>Edytuj konto</title>
     </Head>
     <div>
-        <div class="flex flex-col gap-6">
-            <div v-if="$page.props.jetstream.canUpdateProfileInformation">
+        <div class="flex flex-col items-stretch gap-6">
+            <div
+                class="w-full h-fit flex bg-white shadow rounded-2xl p-4 flex-col gap-2"
+                v-if="$page.props.jetstream.canUpdateProfileInformation"
+            >
                 <UpdateProfileInformationForm :user="$page.props.auth.user" />
             </div>
 
-            <div v-if="$page.props.jetstream.canUpdatePassword">
+            <div
+                class="w-full h-fit flex bg-white shadow rounded-2xl p-4 flex-col gap-2"
+                v-if="$page.props.jetstream.canUpdatePassword"
+            >
                 <UpdatePasswordForm class="mt-10 sm:mt-0" />
             </div>
 
-            <div v-if="$page.props.jetstream.canManageTwoFactorAuthentication">
+            <div
+                class="w-full h-fit flex bg-white shadow rounded-2xl p-4 flex-col gap-2"
+                v-if="$page.props.jetstream.canManageTwoFactorAuthentication"
+            >
                 <TwoFactorAuthenticationForm
                     :requires-confirmation="confirmsTwoFactorAuthentication"
                     class="mt-10 sm:mt-0"
                 />
-
-                <SectionBorder />
             </div>
 
             <LogoutOtherBrowserSessionsForm
                 :sessions="sessions"
-                class="mt-10 sm:mt-0"
+                class="w-full h-fit flex bg-white shadow rounded-2xl p-4 flex-col gap-2"
             />
 
-            <template v-if="$page.props.jetstream.hasAccountDeletionFeatures">
-                <SectionBorder />
-
-                <DeleteUserForm class="mt-10 sm:mt-0" />
+            <template
+                class="w-full h-fit flex bg-white shadow rounded-2xl p-4 flex-col gap-2"
+                v-if="$page.props.jetstream.hasAccountDeletionFeatures"
+            >
+                <DeleteUserForm
+                    class="w-full h-fit flex bg-white shadow rounded-2xl p-4 flex-col gap-2"
+                />
             </template>
         </div>
     </div>
