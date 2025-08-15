@@ -154,7 +154,11 @@ const submit = () => {
                             />
                         </div>
 
-                        <PrimaryButton :type="'submit'" class="w-full"
+                        <PrimaryButton
+                            :class="{ 'opacity-25': form.processing }"
+                            :disabled="form.processing"
+                            :type="'submit'"
+                            class="w-full"
                             >Zarejestruj się</PrimaryButton
                         >
                     </div>

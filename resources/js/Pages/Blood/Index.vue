@@ -8,6 +8,8 @@ import { useForm, usePage } from "@inertiajs/vue3";
 import { computed, onMounted } from "vue";
 import { Head } from "@inertiajs/vue3";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
+import LabInput from "@/Components/LabInput.vue";
+import InputLabel from "@/Components/InputLabel.vue";
 
 const page = usePage();
 const user = computed(() => page.props.user);
@@ -110,47 +112,23 @@ onMounted(() => {
                             class="dropdown-content w-full grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
                         >
                             <div class="flex flex-col gap-1 text-sm">
-                                <label for="wbc" class="text-gray-600 text-xs"
-                                    >Leukocyty (WBC)</label
-                                >
-                                <div class="w-full relative">
-                                    <input
-                                        type="number"
-                                        v-model="form.wbc"
-                                        step="0.01"
-                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-14 text-sm"
-                                    />
-                                    <span
-                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
-                                    >
-                                        tys/μl
-                                    </span>
-                                </div>
-
+                                <InputLabel value="Leukocyty (WBC)" />
+                                <LabInput
+                                    :modelValue="form.wbc"
+                                    unit="tys/μl"
+                                ></LabInput>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.wbc"
                                     >{{ form.errors.wbc }}</span
                                 >
                             </div>
-
                             <div class="flex flex-col gap-1 text-sm">
-                                <label for="rbc" class="text-gray-600 text-xs"
-                                    >Erytrocyty (RBC)
-                                </label>
-                                <div class="w-full relative">
-                                    <input
-                                        type="number"
-                                        v-model="form.rbc"
-                                        step="0.01"
-                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-14 text-sm"
-                                    />
-                                    <span
-                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
-                                    >
-                                        mln/μl
-                                    </span>
-                                </div>
+                                <InputLabel value="Erytrocyty (RBC)" />
+                                <LabInput
+                                    :modelValue="form.rbc"
+                                    unit="mln/μl"
+                                ></LabInput>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.rbc"
@@ -159,22 +137,11 @@ onMounted(() => {
                             </div>
 
                             <div class="flex flex-col gap-1 text-sm">
-                                <label for="hgb" class="text-gray-600 text-xs"
-                                    >Hemoglobina (HGB)
-                                </label>
-                                <div class="w-full relative">
-                                    <input
-                                        type="number"
-                                        step="0.01"
-                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-12 text-sm"
-                                        v-model="form.hgb"
-                                    />
-                                    <span
-                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
-                                    >
-                                        g/dl
-                                    </span>
-                                </div>
+                                <InputLabel value="Hemoglobina (HGB)" />
+                                <LabInput
+                                    :modelValue="form.hgb"
+                                    unit="g/dl"
+                                ></LabInput>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.hgb"
@@ -183,22 +150,11 @@ onMounted(() => {
                             </div>
 
                             <div class="flex flex-col gap-1 text-sm">
-                                <label for="hct" class="text-gray-600 text-xs"
-                                    >Hematokryt (HCT)
-                                </label>
-                                <div class="w-full relative">
-                                    <input
-                                        type="number"
-                                        step="0.01"
-                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-8 text-sm"
-                                        v-model="form.hct"
-                                    />
-                                    <span
-                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
-                                    >
-                                        %
-                                    </span>
-                                </div>
+                                <InputLabel value="Hematokryt (HCT)" />
+                                <LabInput
+                                    :modelValue="form.hct"
+                                    unit="%"
+                                ></LabInput>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.hct"
@@ -207,22 +163,11 @@ onMounted(() => {
                             </div>
 
                             <div class="flex flex-col gap-1 text-sm">
-                                <label for="mcv" class="text-gray-600 text-xs"
-                                    >MCV
-                                </label>
-                                <div class="w-full relative">
-                                    <input
-                                        type="number"
-                                        step="0.01"
-                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-8 text-sm"
-                                        v-model="form.mcv"
-                                    />
-                                    <span
-                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
-                                    >
-                                        fl
-                                    </span>
-                                </div>
+                                <InputLabel value="MCV" />
+                                <LabInput
+                                    :modelValue="form.mcv"
+                                    unit="fl"
+                                ></LabInput>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.mcv"
@@ -231,22 +176,11 @@ onMounted(() => {
                             </div>
 
                             <div class="flex flex-col gap-1 text-sm">
-                                <label for="mch" class="text-gray-600 text-xs"
-                                    >MCH
-                                </label>
-                                <div class="w-full relative">
-                                    <input
-                                        type="number"
-                                        step="0.01"
-                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-9 text-sm"
-                                        v-model="form.mch"
-                                    />
-                                    <span
-                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
-                                    >
-                                        pg
-                                    </span>
-                                </div>
+                                <InputLabel value="MCH" />
+                                <LabInput
+                                    :modelValue="form.mch"
+                                    unit="pg"
+                                ></LabInput>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.mch"
@@ -255,22 +189,11 @@ onMounted(() => {
                             </div>
 
                             <div class="flex flex-col gap-1 text-sm">
-                                <label for="mchc" class="text-gray-600 text-xs"
-                                    >MCHC
-                                </label>
-                                <div class="w-full relative">
-                                    <input
-                                        type="number"
-                                        step="0.01"
-                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-10 text-sm"
-                                        v-model="form.mchc"
-                                    />
-                                    <span
-                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
-                                    >
-                                        g/dl
-                                    </span>
-                                </div>
+                                <InputLabel value="MCHC" />
+                                <LabInput
+                                    :modelValue="form.mchc"
+                                    unit="g/dl"
+                                ></LabInput>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.mchc"
@@ -279,22 +202,11 @@ onMounted(() => {
                             </div>
 
                             <div class="flex flex-col gap-1 text-sm">
-                                <label for="plt" class="text-gray-600 text-xs"
-                                    >Płytki krwi (PLT)
-                                </label>
-                                <div class="w-full relative">
-                                    <input
-                                        type="number"
-                                        step="0.01"
-                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-14 text-sm"
-                                        v-model="form.plt"
-                                    />
-                                    <span
-                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
-                                    >
-                                        tys./μl
-                                    </span>
-                                </div>
+                                <InputLabel value="Płytki krwi (PLT)" />
+                                <LabInput
+                                    :modelValue="form.plt"
+                                    unit="tys./μl"
+                                ></LabInput>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.plt"
@@ -303,24 +215,11 @@ onMounted(() => {
                             </div>
 
                             <div class="flex flex-col gap-1 text-sm">
-                                <label
-                                    for="rdw_sd"
-                                    class="text-gray-600 text-xs"
-                                    >RDW-SD
-                                </label>
-                                <div class="w-full relative">
-                                    <input
-                                        type="number"
-                                        step="0.01"
-                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-8 text-sm"
-                                        v-model="form.rdw_sd"
-                                    />
-                                    <span
-                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
-                                    >
-                                        fl
-                                    </span>
-                                </div>
+                                <InputLabel value="RDW-SD" />
+                                <LabInput
+                                    :modelValue="form.rdw_sd"
+                                    unit="fl"
+                                ></LabInput>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.rdw_sd"
@@ -329,24 +228,11 @@ onMounted(() => {
                             </div>
 
                             <div class="flex flex-col gap-1 text-sm">
-                                <label
-                                    for="rdw_cv"
-                                    class="text-gray-600 text-xs"
-                                    >RDW-CV
-                                </label>
-                                <div class="w-full relative">
-                                    <input
-                                        type="number"
-                                        step="0.01"
-                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-8 text-sm"
-                                        v-model="form.rdw_cv"
-                                    />
-                                    <span
-                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
-                                    >
-                                        %
-                                    </span>
-                                </div>
+                                <InputLabel value="RDW-CV" />
+                                <LabInput
+                                    :modelValue="form.rdw_cv"
+                                    unit="%"
+                                ></LabInput>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.rdw_cv"
@@ -355,22 +241,11 @@ onMounted(() => {
                             </div>
 
                             <div class="flex flex-col gap-1 text-sm">
-                                <label for="pdw" class="text-gray-600 text-xs"
-                                    >PDW
-                                </label>
-                                <div class="w-full relative">
-                                    <input
-                                        type="number"
-                                        step="0.01"
-                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-8 text-sm"
-                                        v-model="form.pdw"
-                                    />
-                                    <span
-                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
-                                    >
-                                        fl
-                                    </span>
-                                </div>
+                                <InputLabel value="PDW" />
+                                <LabInput
+                                    :modelValue="form.pdw"
+                                    unit="fl"
+                                ></LabInput>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.pdw"
@@ -379,22 +254,11 @@ onMounted(() => {
                             </div>
 
                             <div class="flex flex-col gap-1 text-sm">
-                                <label for="mpv" class="text-gray-600 text-xs"
-                                    >MPV
-                                </label>
-                                <div class="w-full relative">
-                                    <input
-                                        type="number"
-                                        step="0.01"
-                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-8 text-sm"
-                                        v-model="form.mpv"
-                                    />
-                                    <span
-                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
-                                    >
-                                        fl
-                                    </span>
-                                </div>
+                                <InputLabel value="MPV" />
+                                <LabInput
+                                    :modelValue="form.mpv"
+                                    unit="fl"
+                                ></LabInput>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.mpv"
@@ -403,22 +267,11 @@ onMounted(() => {
                             </div>
 
                             <div class="flex flex-col gap-1 text-sm">
-                                <label for="p_lcr" class="text-gray-600 text-xs"
-                                    >P-LCR
-                                </label>
-                                <div class="w-full relative">
-                                    <input
-                                        type="number"
-                                        step="0.01"
-                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-8 text-sm"
-                                        v-model="form.p_lcr"
-                                    />
-                                    <span
-                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
-                                    >
-                                        %
-                                    </span>
-                                </div>
+                                <InputLabel value="P-LCR" />
+                                <LabInput
+                                    :modelValue="form.p_lcr"
+                                    unit="%"
+                                ></LabInput>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.p_lcr"
@@ -427,22 +280,11 @@ onMounted(() => {
                             </div>
 
                             <div class="flex flex-col gap-1 text-sm">
-                                <label for="pct" class="text-gray-600 text-xs"
-                                    >PCT
-                                </label>
-                                <div class="w-full relative">
-                                    <input
-                                        type="number"
-                                        step="0.01"
-                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-8 text-sm"
-                                        v-model="form.pct"
-                                    />
-                                    <span
-                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
-                                    >
-                                        %
-                                    </span>
-                                </div>
+                                <InputLabel value="PCT" />
+                                <LabInput
+                                    :modelValue="form.pct"
+                                    unit="%"
+                                ></LabInput>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.pct"
@@ -451,22 +293,11 @@ onMounted(() => {
                             </div>
 
                             <div class="flex flex-col gap-1 text-sm">
-                                <label for="neu" class="text-gray-600 text-xs"
-                                    >Neutrofile (NEU)
-                                </label>
-                                <div class="w-full relative">
-                                    <input
-                                        type="number"
-                                        step="0.01"
-                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-14 text-sm"
-                                        v-model="form.neu"
-                                    />
-                                    <span
-                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
-                                    >
-                                        tys./μl
-                                    </span>
-                                </div>
+                                <InputLabel value="Neutrofile (NEU)" />
+                                <LabInput
+                                    :modelValue="form.neu"
+                                    unit="tys./μl"
+                                ></LabInput>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.neu"
@@ -475,22 +306,11 @@ onMounted(() => {
                             </div>
 
                             <div class="flex flex-col gap-1 text-sm">
-                                <label for="lym" class="text-gray-600 text-xs"
-                                    >Limfocyty (LYM)
-                                </label>
-                                <div class="w-full relative">
-                                    <input
-                                        type="number"
-                                        step="0.01"
-                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-14 text-sm"
-                                        v-model="form.lym"
-                                    />
-                                    <span
-                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
-                                    >
-                                        tys./μl
-                                    </span>
-                                </div>
+                                <InputLabel value="Limfocyty (LYM)" />
+                                <LabInput
+                                    :modelValue="form.lym"
+                                    unit="tys./μl"
+                                ></LabInput>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.lym"
@@ -499,22 +319,11 @@ onMounted(() => {
                             </div>
 
                             <div class="flex flex-col gap-1 text-sm">
-                                <label for="mono" class="text-gray-600 text-xs"
-                                    >Monocyty (MON)
-                                </label>
-                                <div class="w-full relative">
-                                    <input
-                                        type="number"
-                                        step="0.01"
-                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-14 text-sm"
-                                        v-model="form.mono"
-                                    />
-                                    <span
-                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
-                                    >
-                                        tys./μl
-                                    </span>
-                                </div>
+                                <InputLabel value="Monocyty (MON)" />
+                                <LabInput
+                                    :modelValue="form.mono"
+                                    unit="tys./μl"
+                                ></LabInput>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.mono"
@@ -523,22 +332,11 @@ onMounted(() => {
                             </div>
 
                             <div class="flex flex-col gap-1 text-sm">
-                                <label for="eos" class="text-gray-600 text-xs"
-                                    >Eozynofile (EOS)
-                                </label>
-                                <div class="w-full relative">
-                                    <input
-                                        type="number"
-                                        step="0.01"
-                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-14 text-sm"
-                                        v-model="form.eos"
-                                    />
-                                    <span
-                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
-                                    >
-                                        tys./μl
-                                    </span>
-                                </div>
+                                <InputLabel value="Eozynofile (EOS)" />
+                                <LabInput
+                                    :modelValue="form.eos"
+                                    unit="tys./μl"
+                                ></LabInput>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.eos"
@@ -547,22 +345,11 @@ onMounted(() => {
                             </div>
 
                             <div class="flex flex-col gap-1 text-sm">
-                                <label for="baso" class="text-gray-600 text-xs"
-                                    >Bazofile (BAS)
-                                </label>
-                                <div class="w-full relative">
-                                    <input
-                                        type="number"
-                                        step="0.01"
-                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-14 text-sm"
-                                        v-model="form.baso"
-                                    />
-                                    <span
-                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
-                                    >
-                                        tys./μl
-                                    </span>
-                                </div>
+                                <InputLabel value="Bazofile (BAS)" />
+                                <LabInput
+                                    :modelValue="form.baso"
+                                    unit="tys./μl"
+                                ></LabInput>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.baso"
@@ -593,22 +380,11 @@ onMounted(() => {
                             class="dropdown-content w-full grid gap-4 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
                         >
                             <div class="flex flex-col gap-1 text-sm">
-                                <label for="wbc" class="text-gray-600 text-xs"
-                                    >AST
-                                </label>
-                                <div class="w-full relative">
-                                    <input
-                                        type="number"
-                                        v-model="form.ast"
-                                        step="0.01"
-                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-10 text-sm"
-                                    />
-                                    <span
-                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
-                                    >
-                                        U/l
-                                    </span>
-                                </div>
+                                <InputLabel value="AST" />
+                                <LabInput
+                                    :modelValue="form.ast"
+                                    unit="U/l"
+                                ></LabInput>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.ast"
@@ -617,22 +393,11 @@ onMounted(() => {
                             </div>
 
                             <div class="flex flex-col gap-1 text-sm">
-                                <label for="alt" class="text-gray-600 text-xs"
-                                    >ALT
-                                </label>
-                                <div class="w-full relative">
-                                    <input
-                                        type="number"
-                                        v-model="form.alt"
-                                        step="0.01"
-                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-10 text-sm"
-                                    />
-                                    <span
-                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
-                                    >
-                                        U/l
-                                    </span>
-                                </div>
+                                <InputLabel value="ALT" />
+                                <LabInput
+                                    :modelValue="form.alt"
+                                    unit="U/l"
+                                ></LabInput>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.alt"
@@ -641,24 +406,11 @@ onMounted(() => {
                             </div>
 
                             <div class="flex flex-col gap-1 text-sm">
-                                <label
-                                    for="bilirubin"
-                                    class="text-gray-600 text-xs"
-                                    >Bilirubina całkowita
-                                </label>
-                                <div class="w-full relative">
-                                    <input
-                                        type="number"
-                                        step="0.01"
-                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-14 text-sm"
-                                        v-model="form.bilirubin"
-                                    />
-                                    <span
-                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
-                                    >
-                                        mg/dl
-                                    </span>
-                                </div>
+                                <InputLabel value="Bilirubina całkowita" />
+                                <LabInput
+                                    :modelValue="form.bilirubin"
+                                    unit="mg/dl"
+                                ></LabInput>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.bilirubin"
@@ -667,22 +419,11 @@ onMounted(() => {
                             </div>
 
                             <div class="flex flex-col gap-1 text-sm">
-                                <label for="alp" class="text-gray-600 text-xs"
-                                    >Fosfataza zasadowa (ALP)
-                                </label>
-                                <div class="w-full relative">
-                                    <input
-                                        type="number"
-                                        step="0.01"
-                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-10 text-sm"
-                                        v-model="form.alp"
-                                    />
-                                    <span
-                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
-                                    >
-                                        U/l
-                                    </span>
-                                </div>
+                                <InputLabel value="Fosfataza zasadowa (ALP)" />
+                                <LabInput
+                                    :modelValue="form.alp"
+                                    unit="U/l"
+                                ></LabInput>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.alp"
@@ -691,22 +432,11 @@ onMounted(() => {
                             </div>
 
                             <div class="flex flex-col gap-1 text-sm">
-                                <label for="mcv" class="text-gray-600 text-xs"
-                                    >GGTP
-                                </label>
-                                <div class="w-full relative">
-                                    <input
-                                        type="number"
-                                        step="0.01"
-                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-10 text-sm"
-                                        v-model="form.ggtp"
-                                    />
-                                    <span
-                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
-                                    >
-                                        U/l
-                                    </span>
-                                </div>
+                                <InputLabel value="GGTP" />
+                                <LabInput
+                                    :modelValue="form.ggtp"
+                                    unit="U/l"
+                                ></LabInput>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.ggtp"
@@ -737,24 +467,11 @@ onMounted(() => {
                             class="dropdown-content w-full grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
                         >
                             <div class="flex flex-col gap-1 text-sm">
-                                <label
-                                    for="total_cholesterol"
-                                    class="text-gray-600 text-xs"
-                                    >Cholesterol całk. (CHOL)
-                                </label>
-                                <div class="w-full relative">
-                                    <input
-                                        type="number"
-                                        v-model="form.total_cholesterol"
-                                        step="0.01"
-                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-14 text-sm"
-                                    />
-                                    <span
-                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
-                                    >
-                                        mg/dl
-                                    </span>
-                                </div>
+                                <InputLabel value="Cholesterol całk. (CHOL)" />
+                                <LabInput
+                                    :modelValue="form.total_cholesterol"
+                                    unit="mg/dl"
+                                ></LabInput>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.total_cholesterol"
@@ -763,24 +480,11 @@ onMounted(() => {
                             </div>
 
                             <div class="flex flex-col gap-1 text-sm">
-                                <label
-                                    for="hdl_cholesterol"
-                                    class="text-gray-600 text-xs"
-                                    >Cholesterol HDL
-                                </label>
-                                <div class="w-full relative">
-                                    <input
-                                        type="number"
-                                        v-model="form.hdl_cholesterol"
-                                        step="0.01"
-                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-14 text-sm"
-                                    />
-                                    <span
-                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
-                                    >
-                                        mg/dl
-                                    </span>
-                                </div>
+                                <InputLabel value="Cholesterol HDL" />
+                                <LabInput
+                                    :modelValue="form.hdl_cholesterol"
+                                    unit="mg/dl"
+                                ></LabInput>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.hdl_cholesterol"
@@ -789,24 +493,11 @@ onMounted(() => {
                             </div>
 
                             <div class="flex flex-col gap-1 text-sm">
-                                <label
-                                    for="non_hdl_cholesterol"
-                                    class="text-gray-600 text-xs"
-                                    >Cholesterol nie-HDL
-                                </label>
-                                <div class="w-full relative">
-                                    <input
-                                        type="number"
-                                        step="0.01"
-                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-14 text-sm"
-                                        v-model="form.non_hdl_cholesterol"
-                                    />
-                                    <span
-                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
-                                    >
-                                        mg/dl
-                                    </span>
-                                </div>
+                                <InputLabel value="Cholesterol nie-HDL" />
+                                <LabInput
+                                    :modelValue="form.non_hdl_cholesterol"
+                                    unit="mg/dl"
+                                ></LabInput>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.non_hdl_cholesterol"
@@ -815,24 +506,11 @@ onMounted(() => {
                             </div>
 
                             <div class="flex flex-col gap-1 text-sm">
-                                <label
-                                    for="ldl_cholesterol"
-                                    class="text-gray-600 text-xs"
-                                    >Cholesterol LDL
-                                </label>
-                                <div class="w-full relative">
-                                    <input
-                                        type="number"
-                                        step="0.01"
-                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-14 text-sm"
-                                        v-model="form.ldl_cholesterol"
-                                    />
-                                    <span
-                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
-                                    >
-                                        mg/dl
-                                    </span>
-                                </div>
+                                <InputLabel value="Cholesterol LDL" />
+                                <LabInput
+                                    :modelValue="form.ldl_cholesterol"
+                                    unit="mg/dl"
+                                ></LabInput>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.ldl_cholesterol"
@@ -841,24 +519,11 @@ onMounted(() => {
                             </div>
 
                             <div class="flex flex-col gap-1 text-sm">
-                                <label
-                                    for="triglycerides"
-                                    class="text-gray-600 text-xs"
-                                    >Triglicerydy (TG)
-                                </label>
-                                <div class="w-full relative">
-                                    <input
-                                        type="number"
-                                        step="0.01"
-                                        class="w-full rounded-md bg-[#FFF] border-[1px] border-slate-300 p-2 pr-14 text-sm"
-                                        v-model="form.triglycerides"
-                                    />
-                                    <span
-                                        class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-[-50%]"
-                                    >
-                                        mg/dl
-                                    </span>
-                                </div>
+                                <InputLabel value="Triglicerydy (TG)" />
+                                <LabInput
+                                    :modelValue="form.triglycerides"
+                                    unit="mg/dl"
+                                ></LabInput>
                                 <span
                                     class="text-red-500 text-xs"
                                     v-if="form.errors.triglycerides"

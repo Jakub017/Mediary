@@ -176,7 +176,12 @@ const formatDate = (myDate, monthFormat = "long") => {
                 </div>
 
                 <div class="w-full">
-                    <PrimaryButton :type="'submit'">Zapisz</PrimaryButton>
+                    <PrimaryButton
+                        :class="{ 'opacity-25': form.processing }"
+                        :disabled="form.processing"
+                        :type="'submit'"
+                        >Zapisz</PrimaryButton
+                    >
                 </div>
             </form>
         </div>
@@ -314,7 +319,12 @@ const formatDate = (myDate, monthFormat = "long") => {
                         />
                     </div>
                 </div>
-                <PrimaryButton :type="'submit'">Dodaj</PrimaryButton>
+                <PrimaryButton
+                    :class="{ 'opacity-25': form.processing }"
+                    :disabled="form.processing"
+                    :type="'submit'"
+                    >Dodaj</PrimaryButton
+                >
             </form>
 
             <div class="flow-root">
