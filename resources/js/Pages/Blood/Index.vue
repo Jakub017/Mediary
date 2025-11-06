@@ -12,39 +12,39 @@ import LabInput from "@/Components/LabInput.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 
 const page = usePage();
-const user = computed(() => page.props.user);
+const user = computed(() => page.props.user || {});
 
 const form = useForm({
-    wbc: user.value.wbc,
-    rbc: user.value.rbc,
-    hgb: user.value.hgb,
-    hct: user.value.hct,
-    mcv: user.value.mcv,
-    mch: user.value.mch,
-    mchc: user.value.mchc,
-    plt: user.value.plt,
-    rdw_sd: user.value.rdw_sd,
-    rdw_cv: user.value.rdw_cv,
-    pdw: user.value.pdw,
-    mpv: user.value.mpv,
-    p_lcr: user.value.p_lcr,
-    pct: user.value.pct,
-    neu: user.value.neu,
-    lym: user.value.lym,
-    mono: user.value.mono,
-    eos: user.value.eos,
-    baso: user.value.baso,
-    tsh: user.value.tsh,
-    ast: user.value.ast,
-    alt: user.value.alt,
-    bilirubin: user.value.bilirubin,
-    alp: user.value.alp,
-    ggtp: user.value.ggtp,
-    total_cholesterol: user.value.total_cholesterol,
-    hdl_cholesterol: user.value.hdl_cholesterol,
-    non_hdl_cholesterol: user.value.non_hdl_cholesterol,
-    ldl_cholesterol: user.value.ldl_cholesterol,
-    triglycerides: user.value.triglycerides,
+    wbc: user.value.wbc ?? null,
+    rbc: user.value.rbc ?? null,
+    hgb: user.value.hgb ?? null,
+    hct: user.value.hct ?? null,
+    mcv: user.value.mcv ?? null,
+    mch: user.value.mch ?? null,
+    mchc: user.value.mchc ?? null,
+    plt: user.value.plt ?? null,
+    rdw_sd: user.value.rdw_sd ?? null,
+    rdw_cv: user.value.rdw_cv ?? null,
+    pdw: user.value.pdw ?? null,
+    mpv: user.value.mpv ?? null,
+    p_lcr: user.value.p_lcr ?? null,
+    pct: user.value.pct ?? null,
+    neu: user.value.neu ?? null,
+    lym: user.value.lym ?? null,
+    mono: user.value.mono ?? null,
+    eos: user.value.eos ?? null,
+    baso: user.value.baso ?? null,
+    tsh: user.value.tsh ?? null,
+    ast: user.value.ast ?? null,
+    alt: user.value.alt ?? null,
+    bilirubin: user.value.bilirubin ?? null,
+    alp: user.value.alp ?? null,
+    ggtp: user.value.ggtp ?? null,
+    total_cholesterol: user.value.total_cholesterol ?? null,
+    hdl_cholesterol: user.value.hdl_cholesterol ?? null,
+    non_hdl_cholesterol: user.value.non_hdl_cholesterol ?? null,
+    ldl_cholesterol: user.value.ldl_cholesterol ?? null,
+    triglycerides: user.value.triglycerides ?? null,
 });
 
 const submit = () => form.patch(route("blood.update"));
@@ -114,7 +114,7 @@ onMounted(() => {
                             <div class="flex flex-col gap-1 text-sm">
                                 <InputLabel value="Leukocyty (WBC)" />
                                 <LabInput
-                                    :modelValue="form.wbc"
+                                    v-model="form.wbc"
                                     unit="tys/μl"
                                 ></LabInput>
                                 <span
@@ -126,7 +126,7 @@ onMounted(() => {
                             <div class="flex flex-col gap-1 text-sm">
                                 <InputLabel value="Erytrocyty (RBC)" />
                                 <LabInput
-                                    :modelValue="form.rbc"
+                                    v-model="form.rbc"
                                     unit="mln/μl"
                                 ></LabInput>
                                 <span
@@ -139,7 +139,7 @@ onMounted(() => {
                             <div class="flex flex-col gap-1 text-sm">
                                 <InputLabel value="Hemoglobina (HGB)" />
                                 <LabInput
-                                    :modelValue="form.hgb"
+                                    v-model="form.hgb"
                                     unit="g/dl"
                                 ></LabInput>
                                 <span
@@ -152,7 +152,7 @@ onMounted(() => {
                             <div class="flex flex-col gap-1 text-sm">
                                 <InputLabel value="Hematokryt (HCT)" />
                                 <LabInput
-                                    :modelValue="form.hct"
+                                    v-model="form.hct"
                                     unit="%"
                                 ></LabInput>
                                 <span
@@ -165,7 +165,7 @@ onMounted(() => {
                             <div class="flex flex-col gap-1 text-sm">
                                 <InputLabel value="MCV" />
                                 <LabInput
-                                    :modelValue="form.mcv"
+                                    v-model="form.mcv"
                                     unit="fl"
                                 ></LabInput>
                                 <span
@@ -178,7 +178,7 @@ onMounted(() => {
                             <div class="flex flex-col gap-1 text-sm">
                                 <InputLabel value="MCH" />
                                 <LabInput
-                                    :modelValue="form.mch"
+                                    v-model="form.mch"
                                     unit="pg"
                                 ></LabInput>
                                 <span
@@ -191,7 +191,7 @@ onMounted(() => {
                             <div class="flex flex-col gap-1 text-sm">
                                 <InputLabel value="MCHC" />
                                 <LabInput
-                                    :modelValue="form.mchc"
+                                    v-model="form.mchc"
                                     unit="g/dl"
                                 ></LabInput>
                                 <span
@@ -204,7 +204,7 @@ onMounted(() => {
                             <div class="flex flex-col gap-1 text-sm">
                                 <InputLabel value="Płytki krwi (PLT)" />
                                 <LabInput
-                                    :modelValue="form.plt"
+                                    v-model="form.plt"
                                     unit="tys./μl"
                                 ></LabInput>
                                 <span
@@ -217,7 +217,7 @@ onMounted(() => {
                             <div class="flex flex-col gap-1 text-sm">
                                 <InputLabel value="RDW-SD" />
                                 <LabInput
-                                    :modelValue="form.rdw_sd"
+                                    v-model="form.rdw_sd"
                                     unit="fl"
                                 ></LabInput>
                                 <span
@@ -230,7 +230,7 @@ onMounted(() => {
                             <div class="flex flex-col gap-1 text-sm">
                                 <InputLabel value="RDW-CV" />
                                 <LabInput
-                                    :modelValue="form.rdw_cv"
+                                    v-model="form.rdw_cv"
                                     unit="%"
                                 ></LabInput>
                                 <span
@@ -243,7 +243,7 @@ onMounted(() => {
                             <div class="flex flex-col gap-1 text-sm">
                                 <InputLabel value="PDW" />
                                 <LabInput
-                                    :modelValue="form.pdw"
+                                    v-model="form.pdw"
                                     unit="fl"
                                 ></LabInput>
                                 <span
@@ -256,7 +256,7 @@ onMounted(() => {
                             <div class="flex flex-col gap-1 text-sm">
                                 <InputLabel value="MPV" />
                                 <LabInput
-                                    :modelValue="form.mpv"
+                                    v-model="form.mpv"
                                     unit="fl"
                                 ></LabInput>
                                 <span
@@ -269,7 +269,7 @@ onMounted(() => {
                             <div class="flex flex-col gap-1 text-sm">
                                 <InputLabel value="P-LCR" />
                                 <LabInput
-                                    :modelValue="form.p_lcr"
+                                    v-model="form.p_lcr"
                                     unit="%"
                                 ></LabInput>
                                 <span
@@ -282,7 +282,7 @@ onMounted(() => {
                             <div class="flex flex-col gap-1 text-sm">
                                 <InputLabel value="PCT" />
                                 <LabInput
-                                    :modelValue="form.pct"
+                                    v-model="form.pct"
                                     unit="%"
                                 ></LabInput>
                                 <span
@@ -295,7 +295,7 @@ onMounted(() => {
                             <div class="flex flex-col gap-1 text-sm">
                                 <InputLabel value="Neutrofile (NEU)" />
                                 <LabInput
-                                    :modelValue="form.neu"
+                                    v-model="form.neu"
                                     unit="tys./μl"
                                 ></LabInput>
                                 <span
@@ -308,7 +308,7 @@ onMounted(() => {
                             <div class="flex flex-col gap-1 text-sm">
                                 <InputLabel value="Limfocyty (LYM)" />
                                 <LabInput
-                                    :modelValue="form.lym"
+                                    v-model="form.lym"
                                     unit="tys./μl"
                                 ></LabInput>
                                 <span
@@ -321,7 +321,7 @@ onMounted(() => {
                             <div class="flex flex-col gap-1 text-sm">
                                 <InputLabel value="Monocyty (MON)" />
                                 <LabInput
-                                    :modelValue="form.mono"
+                                    v-model="form.mono"
                                     unit="tys./μl"
                                 ></LabInput>
                                 <span
@@ -334,7 +334,7 @@ onMounted(() => {
                             <div class="flex flex-col gap-1 text-sm">
                                 <InputLabel value="Eozynofile (EOS)" />
                                 <LabInput
-                                    :modelValue="form.eos"
+                                    v-model="form.eos"
                                     unit="tys./μl"
                                 ></LabInput>
                                 <span
@@ -347,7 +347,7 @@ onMounted(() => {
                             <div class="flex flex-col gap-1 text-sm">
                                 <InputLabel value="Bazofile (BAS)" />
                                 <LabInput
-                                    :modelValue="form.baso"
+                                    v-model="form.baso"
                                     unit="tys./μl"
                                 ></LabInput>
                                 <span
@@ -382,7 +382,7 @@ onMounted(() => {
                             <div class="flex flex-col gap-1 text-sm">
                                 <InputLabel value="AST" />
                                 <LabInput
-                                    :modelValue="form.ast"
+                                    v-model="form.ast"
                                     unit="U/l"
                                 ></LabInput>
                                 <span
@@ -395,7 +395,7 @@ onMounted(() => {
                             <div class="flex flex-col gap-1 text-sm">
                                 <InputLabel value="ALT" />
                                 <LabInput
-                                    :modelValue="form.alt"
+                                    v-model="form.alt"
                                     unit="U/l"
                                 ></LabInput>
                                 <span
@@ -408,7 +408,7 @@ onMounted(() => {
                             <div class="flex flex-col gap-1 text-sm">
                                 <InputLabel value="Bilirubina całkowita" />
                                 <LabInput
-                                    :modelValue="form.bilirubin"
+                                    v-model="form.bilirubin"
                                     unit="mg/dl"
                                 ></LabInput>
                                 <span
@@ -421,7 +421,7 @@ onMounted(() => {
                             <div class="flex flex-col gap-1 text-sm">
                                 <InputLabel value="Fosfataza zasadowa (ALP)" />
                                 <LabInput
-                                    :modelValue="form.alp"
+                                    v-model="form.alp"
                                     unit="U/l"
                                 ></LabInput>
                                 <span
@@ -434,7 +434,7 @@ onMounted(() => {
                             <div class="flex flex-col gap-1 text-sm">
                                 <InputLabel value="GGTP" />
                                 <LabInput
-                                    :modelValue="form.ggtp"
+                                    v-model="form.ggtp"
                                     unit="U/l"
                                 ></LabInput>
                                 <span
@@ -469,7 +469,7 @@ onMounted(() => {
                             <div class="flex flex-col gap-1 text-sm">
                                 <InputLabel value="Cholesterol całk. (CHOL)" />
                                 <LabInput
-                                    :modelValue="form.total_cholesterol"
+                                    v-model="form.total_cholesterol"
                                     unit="mg/dl"
                                 ></LabInput>
                                 <span
@@ -482,7 +482,7 @@ onMounted(() => {
                             <div class="flex flex-col gap-1 text-sm">
                                 <InputLabel value="Cholesterol HDL" />
                                 <LabInput
-                                    :modelValue="form.hdl_cholesterol"
+                                    v-model="form.hdl_cholesterol"
                                     unit="mg/dl"
                                 ></LabInput>
                                 <span
@@ -495,7 +495,7 @@ onMounted(() => {
                             <div class="flex flex-col gap-1 text-sm">
                                 <InputLabel value="Cholesterol nie-HDL" />
                                 <LabInput
-                                    :modelValue="form.non_hdl_cholesterol"
+                                    v-model="form.non_hdl_cholesterol"
                                     unit="mg/dl"
                                 ></LabInput>
                                 <span
@@ -508,7 +508,7 @@ onMounted(() => {
                             <div class="flex flex-col gap-1 text-sm">
                                 <InputLabel value="Cholesterol LDL" />
                                 <LabInput
-                                    :modelValue="form.ldl_cholesterol"
+                                    v-model="form.ldl_cholesterol"
                                     unit="mg/dl"
                                 ></LabInput>
                                 <span
@@ -521,7 +521,7 @@ onMounted(() => {
                             <div class="flex flex-col gap-1 text-sm">
                                 <InputLabel value="Triglicerydy (TG)" />
                                 <LabInput
-                                    :modelValue="form.triglycerides"
+                                    v-model="form.triglycerides"
                                     unit="mg/dl"
                                 ></LabInput>
                                 <span

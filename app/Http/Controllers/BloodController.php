@@ -52,8 +52,6 @@ class BloodController extends Controller
             'triglycerides' => 'nullable|numeric',
         ]);
 
-        // Dodać zabezpieczenie, ze jesli nie ma danych to nie wysylamy ich do API
-
         $apiKey = config('services.openai.key');
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . $apiKey,

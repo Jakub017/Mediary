@@ -1,17 +1,12 @@
 <script setup>
 import MainLayout from "@/Layouts/MainLayout.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
-import { useForm, Link } from "@inertiajs/vue3";
-import { onMounted } from "vue";
-import { Head } from "@inertiajs/vue3";
+import { useForm, Link, Head } from "@inertiajs/vue3";
+import { ref, nextTick } from "vue";
 
-defineOptions({
-    layout: MainLayout,
-});
+defineOptions({ layout: MainLayout });
 
-defineProps({
-    diets: Array,
-});
+defineProps({ diets: Array });
 
 const form = useForm({
     name: "",
@@ -24,35 +19,26 @@ const form = useForm({
     documents: false,
 });
 
-const formatDate = (date) => {
-    let newDate = new Date(date);
-    return newDate.toLocaleDateString("pl-PL", {
+const formatDate = (date) =>
+    new Date(date).toLocaleDateString("pl-PL", {
         day: "numeric",
         month: "long",
         year: "numeric",
     });
+
+const expanded = ref({});
+
+const toggle = (id) => {
+    expanded.value[id] = !expanded.value[id];
 };
 
-const submit = () => form.post(route("diet.store"));
-
-onMounted(() => {
-    const dietContainers = [...document.querySelectorAll(".diet-container")];
-    const dietContents = [...document.querySelectorAll(".diet-content")];
-
-    dietContainers.forEach((container, i) => {
-        container.addEventListener("click", () => {
-            if (!dietContents[i].classList.contains("diet-content-active")) {
-                dietContents[i].classList.remove("hidden");
-                dietContents[i].classList.add("diet-content-active");
-                dietContents[i].classList.add("flex");
-            } else {
-                dietContents[i].classList.add("hidden");
-                dietContents[i].classList.remove("diet-content-active");
-                dietContents[i].classList.remove("flex");
-            }
-        });
+const submit = () =>
+    form.post(route("diet.store"), {
+        preserveScroll: true,
+        onSuccess: () => {
+            form.reset();
+        },
     });
-});
 </script>
 
 <template>
@@ -286,6 +272,7 @@ onMounted(() => {
                     >
                         <div
                             class="diet-container flex justify-between p-4 duration-200 hover:bg-gray-50 hover:cursor-pointer"
+                            @click="toggle(diet.id)"
                         >
                             <div class="flex min-w-0 gap-x-4">
                                 <div class="min-w-0 flex-auto">
@@ -329,6 +316,8 @@ onMounted(() => {
                                 <Link
                                     method="DELETE"
                                     :href="route('diet.destroy', diet)"
+                                    @click.stop
+                                    aria-label="Usuń dietę"
                                 >
                                     <i
                                         class="fa-solid text-red-600 duration-200 hover:text-red-700 fa-trash"
@@ -337,7 +326,8 @@ onMounted(() => {
                             </div>
                         </div>
                         <div
-                            class="border-t border-slate-300 p-4 diet-content text-sm flex-col gap-6 hidden"
+                            class="border-t border-slate-300 p-4 diet-content text-sm flex-col gap-6"
+                            :class="expanded[diet.id] ? 'flex' : 'hidden'"
                         >
                             <div
                                 v-for="day in diet.days"
@@ -394,64 +384,6 @@ onMounted(() => {
                                     v-html="day.content"
                                     class="diet-text text-sm"
                                 ></div>
-                                <!-- <div class="flex gap-4">
-                                    <div
-                                        class="w-20 flex gap-1 items-center justify-start flex-col"
-                                    >
-                                        <div
-                                            class="flex items-center justify-center w-[70px] h-[70px] rounded-full border-[7px] border-blue-500"
-                                        >
-                                            <span
-                                                class="text-base font-semibold"
-                                                >{{
-                                                    Math.round(day.protein)
-                                                }}
-                                                g</span
-                                            >
-                                        </div>
-                                        <span class="text-sm font-semibold"
-                                            >Białko</span
-                                        >
-                                    </div>
-                                    <div
-                                        class="w-20 flex gap-1 items-center justify-start flex-col"
-                                    >
-                                        <div
-                                            class="flex items-center justify-center w-[70px] h-[70px] rounded-full border-[7px] border-yellow-400"
-                                        >
-                                            <span
-                                                class="text-base font-semibold"
-                                                >{{
-                                                    Math.round(day.fat)
-                                                }}
-                                                g</span
-                                            >
-                                        </div>
-                                        <span class="text-sm font-semibold"
-                                            >Tłuszcz</span
-                                        >
-                                    </div>
-                                    <div
-                                        class="w-20 flex gap-1 items-center justify-start flex-col"
-                                    >
-                                        <div
-                                            class="flex items-center justify-center w-[70px] h-[70px] rounded-full border-[7px] border-purple-500"
-                                        >
-                                            <span
-                                                class="text-base font-semibold"
-                                                >{{
-                                                    Math.round(
-                                                        day.carbohydrates
-                                                    )
-                                                }}
-                                                g</span
-                                            >
-                                        </div>
-                                        <span class="text-sm font-semibold"
-                                            >Węglowodany</span
-                                        >
-                                    </div>
-                                </div> -->
                             </div>
                         </div>
                     </div>
