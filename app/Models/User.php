@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Diet;
 use App\Models\File;
+use App\Models\Note;
 use App\Models\Weight;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Jetstream\HasProfilePhoto;
@@ -119,5 +120,9 @@ class User extends Authenticatable
 
     public function diets() {
         return $this->hasMany(Diet::class);
+    }
+
+    public function notes() {
+        return $this->hasMany(Note::class);
     }
 }

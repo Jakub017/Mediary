@@ -74,7 +74,11 @@ onMounted(() => {
         <nav class="desktop-nav">
             <div class="desktop-nav__container">
                 <div class="desktop-nav__logo-container">
-                    <img src="/img/logo.png" alt="" class="desktop-nav__logo" />
+                    <img
+                        src="/img/logo_1.png"
+                        alt=""
+                        class="desktop-nav__logo"
+                    />
                 </div>
 
                 <ul class="desktop-nav__menu">
@@ -95,18 +99,29 @@ onMounted(() => {
                         >
                     </li>
                     <li class="desktop-nav__option">
-                        <a href="#contact" class="desktop-nav__link">Kontakt</a>
+                        <a
+                            href="mailto:kontakt@mediary.pl"
+                            class="desktop-nav__link"
+                            >Kontakt</a
+                        >
                     </li>
                 </ul>
-                <Link :href="route('register')" class="desktop-nav__button"
-                    >Zarejestruj się</Link
-                >
+                <div class="desktop-nav__buttons">
+                    <Link
+                        :href="route('login')"
+                        class="desktop-nav__button desktop-nav__button--empty"
+                        >Zaloguj się</Link
+                    >
+                    <Link :href="route('register')" class="desktop-nav__button"
+                        >Zarejestruj się</Link
+                    >
+                </div>
             </div>
         </nav>
 
         <nav class="mobile-nav">
             <div class="mobile-nav__container">
-                <img src="/img/logo.png" alt="" class="mobile-nav__logo" />
+                <img src="/img/logo_1.png" alt="" class="mobile-nav__logo" />
                 <button class="mobile-nav__hamburger-button">
                     <i
                         class="fa-solid fa-bars mobile-nav__hamburger mobile-nav__hamburger--active"
@@ -116,7 +131,11 @@ onMounted(() => {
             </div>
             <div class="mobile-nav__sidebar">
                 <ul class="mobile-nav__menu">
-                    <img src="/img/logo.png" alt="" class="mobile-nav__logo" />
+                    <img
+                        src="/img/logo_1.png"
+                        alt=""
+                        class="mobile-nav__logo"
+                    />
                     <li class="mobile-nav__option">
                         <a href="#start" class="mobile-nav__link">Start</a>
                     </li>
@@ -134,7 +153,18 @@ onMounted(() => {
                         >
                     </li>
                     <li class="mobile-nav__option">
-                        <a href="#contact" class="mobile-nav__link">Kontakt</a>
+                        <a
+                            href="mailto:kontakt@mediary.pl"
+                            class="mobile-nav__link"
+                            >Kontakt</a
+                        >
+                    </li>
+                    <li class="mobile-nav__option">
+                        <Link
+                            :href="route('login')"
+                            class="mobile-nav__link mobile-nav__link--empty"
+                            >Zaloguj się</Link
+                        >
                     </li>
                     <li class="mobile-nav__option">
                         <Link
@@ -729,7 +759,7 @@ onMounted(() => {
         <footer id="contact" class="footer">
             <div class="footer__container">
                 <div class="footer__column">
-                    <img src="/img/logo.png" alt="" class="footer__logo" />
+                    <img src="/img/logo_1.png" alt="" class="footer__logo" />
                     <p class="footer__text">
                         Zadbaj o zdrowie dzięki analizie wyników badań, danych
                         zdrowotnych i inteligentnym rekomendacjom AI.
@@ -755,7 +785,11 @@ onMounted(() => {
                             >
                         </li>
                         <li class="footer__option">
-                            <a href="#contact" class="footer__link">Kontakt</a>
+                            <a
+                                href="mailto:kontakt@mediary.pl"
+                                class="footer__link"
+                                >Kontakt</a
+                            >
                         </li>
                     </ul>
                 </div>
@@ -793,7 +827,7 @@ onMounted(() => {
                         </li>
                         <li class="footer__option">
                             <a
-                                href="mailto:contact@domain.com"
+                                href="mailto:kontakt@lipinskijakub.pl"
                                 class="footer__link"
                                 >kontakt@lipinskijakub.pl</a
                             >
@@ -808,7 +842,7 @@ onMounted(() => {
                         <a
                             class="footer__link footer__link--colored"
                             target="_blank"
-                            href="https://lipinskijakub.pl/pl"
+                            href="https://lipinskijakub.pl"
                             >Jakub Lipiński</a
                         >
                     </p>

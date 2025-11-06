@@ -12,7 +12,7 @@ class AppController extends Controller
         $user = $request->user();
         $files = $user->files()->orderBy('created_at', 'desc')->limit(5)->get();
         $weights = $user->weights()->orderBy('date', 'asc')->limit(5)->pluck('weight');
-        $dates = $user->weights()->orderBy('date', 'desc')->limit(5)->pluck('date');
+        $dates = $user->weights()->orderBy('date', 'asc')->limit(5)->pluck('date');
 
         $dates = $dates->map(function ($date) {
             return Carbon::parse($date)->format('d.m');

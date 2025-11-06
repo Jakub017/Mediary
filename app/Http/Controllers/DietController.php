@@ -83,6 +83,7 @@ class DietController extends Controller
         ])->json();
 
         $content = $response['output'][0]['content'][0]['text'];
+        
         $parsed = json_decode($content, true);
 
         $diet = $user->diets()->create([

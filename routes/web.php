@@ -6,6 +6,7 @@ use Illuminate\Foundation\Application;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\DietController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\NoteController;
 use App\Http\Controllers\BloodController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\ProfileController;
@@ -45,6 +46,12 @@ Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'), 'verified'
         Route::get('/diety', 'index')->name('diet.index');
         Route::post('/diety/stworz', 'store')->name('diet.store');
         Route::delete('/diety/usun/{diet}', 'destroy')->name('diet.destroy');
+    });
+
+    Route::controller(NoteController::class)->group(function() {
+        Route::get('/dziennik', 'index')->name('note.index');
+        Route::post('/dziennik/dodaj', 'store')->name('note.store');
+        Route::delete('/dziennik/usun/{note}', 'destroy')->name('note.destroy');
     });
 
     Route::controller(FileController::class)->group(function() {
