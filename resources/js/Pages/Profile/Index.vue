@@ -26,8 +26,23 @@ const pressureForm = useForm({
     date: null,
 });
 
-const submit = () => form.patch(route("profile.update"));
-const submitPressure = () => pressureForm.post(route("blood.pressure"));
+const submit = () =>
+    form.patch(route("profile.update"), {
+        onSuccess: () => {
+            const toastMagic = new ToastMagic();
+            toastMagic.success("Gotowe!", "Twoje dane zostały zapisane.");
+        },
+    });
+const submitPressure = () =>
+    pressureForm.post(route("blood.pressure"), {
+        onSuccess: () => {
+            const toastMagic = new ToastMagic();
+            toastMagic.success(
+                "Gotowe!",
+                "Wyniki pomiaru ciśnienia zostały zapisane."
+            );
+        },
+    });
 
 const props = defineProps({
     blood_pressures: Array,

@@ -162,6 +162,11 @@ const upload = () => {
             document
                 .querySelector("#add-file-background")
                 .classList.add("hidden");
+            const toastMagic = new ToastMagic();
+            toastMagic.success(
+                "Gotowe!",
+                "Twój plik został zapisany i jest gotowy do analizy."
+            );
         },
     });
 };
@@ -457,11 +462,11 @@ onMounted(() => {
                         </div>
 
                         <!-- Opcje -->
-                        <div class="ml-2 flex-shrink-0">
+                        <!-- <div class="ml-2 flex-shrink-0">
                             <button class="text-gray-600">
                                 <i class="fa-solid fa-ellipsis"></i>
                             </button>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

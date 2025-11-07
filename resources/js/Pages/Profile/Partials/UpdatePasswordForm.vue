@@ -21,7 +21,14 @@ const updatePassword = () => {
     form.put(route("user-password.update"), {
         errorBag: "updatePassword",
         preserveScroll: true,
-        onSuccess: () => form.reset(),
+        onSuccess: () => {
+            const toastMagic = new ToastMagic();
+            toastMagic.success(
+                "Gotowe!",
+                "Twoje hasło zostało zaktualizowane."
+            );
+            form.reset();
+        },
         onError: () => {
             if (form.errors.password) {
                 form.reset("password", "password_confirmation");

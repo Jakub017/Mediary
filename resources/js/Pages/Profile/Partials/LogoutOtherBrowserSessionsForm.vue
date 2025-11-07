@@ -29,7 +29,13 @@ const confirmLogout = () => {
 const logoutOtherBrowserSessions = () => {
     form.delete(route("other-browser-sessions.destroy"), {
         preserveScroll: true,
-        onSuccess: () => closeModal(),
+        onSuccess: () => {
+            closeModal();
+            toastMagic.success(
+                "Gotowe!",
+                "Inne sesje przeglądarki zostały wylogowane."
+            );
+        },
         onError: () => passwordInput.value.focus(),
         onFinish: () => form.reset(),
     });
@@ -140,9 +146,9 @@ const closeModal = () => {
                     Wyloguj inne sesje przeglądarki
                 </PrimaryButton>
 
-                <ActionMessage :on="form.recentlySuccessful" class="ms-3">
+                <!-- <ActionMessage :on="form.recentlySuccessful" class="ms-3">
                     Done.
-                </ActionMessage>
+                </ActionMessage> -->
             </div>
 
             <!-- Log Out Other Devices Confirmation Modal -->

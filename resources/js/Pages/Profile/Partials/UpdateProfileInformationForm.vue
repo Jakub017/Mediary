@@ -32,7 +32,14 @@ const updateProfileInformation = () => {
     form.post(route("user-profile-information.update"), {
         errorBag: "updateProfileInformation",
         preserveScroll: true,
-        onSuccess: () => clearPhotoFileInput(),
+        onSuccess: () => {
+            clearPhotoFileInput();
+            const toastMagic = new ToastMagic();
+            toastMagic.success(
+                "Gotowe!",
+                "Dane Twojego konta zostały zaktualizowane."
+            );
+        },
     });
 };
 
@@ -198,9 +205,9 @@ const clearPhotoFileInput = () => {
         </template>
 
         <template #actions>
-            <ActionMessage :on="form.recentlySuccessful" class="me-3">
+            <!-- <ActionMessage :on="form.recentlySuccessful" class="me-3">
                 Saved.
-            </ActionMessage>
+            </ActionMessage> -->
 
             <PrimaryButton
                 :class="{ 'opacity-25': form.processing }"

@@ -47,7 +47,16 @@ const form = useForm({
     triglycerides: user.value.triglycerides ?? null,
 });
 
-const submit = () => form.patch(route("blood.update"));
+const submit = () =>
+    form.patch(route("blood.update"), {
+        onSuccess: () => {
+            const toastMagic = new ToastMagic();
+            toastMagic.success(
+                "Gotowe!",
+                "Wyniki badań krwi zostały zapisane i przeanalizowane."
+            );
+        },
+    });
 
 onMounted(() => {
     const dropdownBtns = [...document.querySelectorAll(".dropdown-btn")];

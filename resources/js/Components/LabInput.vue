@@ -8,7 +8,7 @@
             @input="onInput"
         />
         <span
-            class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-1/2 md:translate-y-[-50%]"
+            class="text-xs block w-fit px-2 text-center text-gray-600 border-l border-slate-300 absolute top-1/2 right-0 p-1 rounded-e-md translate-y-1/2 translate-y-[-50%]"
         >
             {{ unit }}
         </span>

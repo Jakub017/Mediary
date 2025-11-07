@@ -36,6 +36,11 @@ const submit = () =>
     form.post(route("diet.store"), {
         preserveScroll: true,
         onSuccess: () => {
+            const toastMagic = new ToastMagic();
+            toastMagic.success(
+                "Gotowe!",
+                "Twoja dieta została wygenerowana i jest dostępna na liście."
+            );
             form.reset();
         },
     });

@@ -44,6 +44,10 @@ onMounted(() => {
 
 const submit = () => {
     form.post(route("password.update"), {
+        onSuccess: () => {
+            const toastMagic = new ToastMagic();
+            toastMagic.success("Success!", "Your password has been reset!");
+        },
         onFinish: () => form.reset("password", "password_confirmation"),
     });
 };

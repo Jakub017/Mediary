@@ -4,25 +4,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        
-        <title>
-            Mediary: Zadbaj o zdrowie i lepsze samopoczucie z pomocą AI
-        </title>
-        <meta
-            name="description"
-            content="Aplikacja Mediary analizuje Twoje wyniki badań i parametry zdrowotne, tworząc spersonalizowaną dietę, raporty i zalecenia wspierane przez AI."
-        />
-        <meta
-            name="keywords"
-            content="mediary, zdrowie, dieta, analiza wyników badań, aplikacja zdrowotna, sztuczna inteligencja, AI, monitorowanie ciśnienia, śledzenie wagi, raporty zdrowotne, spersonalizowana dieta"
-        />
-        <meta
-            property="og:title"
-            content="Mediary: Zadbaj o zdrowie i lepsze samopoczucie z pomocą AI"
-        />
-        <meta property="og:url" content="{{ url()->current() }}" />
-        <meta property="og:image" content="{{ asset('img/og.png') }}" />
-
+        {!! ToastMagic::styles() !!}
         <!-- Favicon -->
         <link
             rel="icon"
@@ -56,11 +38,11 @@
             src="https://kit.fontawesome.com/80916011c5.js"
             crossorigin="anonymous"
         ></script>
-
-        <!-- Scripts -->
-        @routes @vite(['resources/js/app.js', "resources/sass/app.scss",
-        "resources/js/Pages/{$page['component']}.vue"])@inertiaHead
+    </head>
+    <!-- Scripts -->
+    @routes @vite(['resources/js/app.js', "resources/sass/app.scss",
+    "resources/js/Pages/{$page['component']}.vue"])@inertiaHead
     <body class="font-sans antialiased">
-        @inertia
+        @inertia {!! ToastMagic::scripts() !!}
     </body>
 </html>

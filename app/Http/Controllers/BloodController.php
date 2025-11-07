@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
-
+use Devrabiul\ToastMagic\Facades\ToastMagic;
 
 class BloodController extends Controller
 {
@@ -62,9 +62,10 @@ class BloodController extends Controller
         ]);
         
         $data['blood_recommendations'] = $response->json()['output'][0]['content'][0]['text'];
-        Log::info($data['blood_recommendations']);
         
         $user->update($data);
+        
+        ToastMagic::success('Successfully Created');
 
         return back();
     }
