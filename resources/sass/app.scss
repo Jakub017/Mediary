@@ -227,6 +227,7 @@
 
     &__link {
         font-size: 14px;
+        font-weight: 500;
 
         &--cta {
             border-radius: 60px;
@@ -630,7 +631,7 @@
 
         &__menu {
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             gap: 20px;
             width: calc(100% - 375px);
