@@ -37,7 +37,7 @@ class HandleInertiaRequests extends Middleware
                 'location' => $request->url(),
             ],
             'user' => $request->user(),
-            ''
+            'app_url' => config('app.url'),
         ];
        
     }

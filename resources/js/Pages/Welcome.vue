@@ -1,17 +1,20 @@
 <script setup>
 import { Link } from "@inertiajs/vue3";
-import { onMounted } from "vue";
+import { onMounted, computed } from "vue";
 import Swiper from "swiper";
 import { Navigation, Pagination } from "swiper/modules";
-import { Head } from "@inertiajs/vue3";
+import { Head, usePage } from "@inertiajs/vue3";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
+const page = usePage();
+const url = computed(() => page.props.app_url);
+
 onMounted(() => {
     new Swiper(".swiper", {
         modules: [Pagination],
-        direction: "horizontal", // zmień na "horizontal", bo vertical nie wygląda naturalnie w Twoim przypadku
+        direction: "horizontal",
         loop: true,
         pagination: {
             el: ".swiper-pagination",
@@ -69,7 +72,26 @@ onMounted(() => {
 </script>
 
 <template>
-    <Head title="Strona główna" />
+    <Head>
+        <title>
+            Mediary: Zadbaj o zdrowie i lepsze samopoczucie z pomocą AI
+        </title>
+        <meta
+            name="description"
+            content="Aplikacja Mediary analizuje Twoje wyniki badań i parametry zdrowotne, tworząc spersonalizowaną dietę, raporty i zalecenia wspierane przez AI."
+        />
+        <meta
+            name="keywords"
+            content="mediary, zdrowie, dieta, analiza wyników badań, aplikacja zdrowotna, sztuczna inteligencja, AI, monitorowanie ciśnienia, śledzenie wagi, raporty zdrowotne, spersonalizowana dieta"
+        />
+        <meta
+            property="og:title"
+            content="Mediary: Zadbaj o zdrowie i lepsze samopoczucie z pomocą AI"
+        />
+        <meta property="og:url" :content="url" />
+        <meta property="og:image" :content="`${url}/img/og.png`" />
+    </Head>
+
     <div class="website-container">
         <nav class="desktop-nav">
             <div class="desktop-nav__container">
