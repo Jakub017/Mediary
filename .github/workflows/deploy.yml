@@ -1,27 +1,47 @@
-name: Deploy Web project to server via SSH
+name: Deploy Website
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: Deploy via SSH
-        uses: appleboy/ssh-action@v1.0.0
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
         with:
-          host: ${{ secrets.SERVER_IP }}
-          username: ${{ secrets.SERVER_USER }}
-          port: ${{ secrets.SERVER_PORT }}
-          key: ${{ secrets.SERVER_KEY }}
+          php-version: "8.4"
+
+      - name: Deploy to VPS via SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /home/srv59939/domains/mediary.pl/public_html
+            cd /home/user/web/mediary.pl/public_html
+
+            # Pobieranie kodu
             git pull origin main
+
+            # Backend
+            composer install --no-dev --optimize-autoloader
+
+            # Budowanie frontendu
+            npm install
+            npm run build
+
+            # Laravel
+            php artisan migrate --force
             php artisan config:cache
             php artisan route:cache
+            php artisan view:cache
+            php artisan filament:optimize
+
+            # Restart SSR
+            php artisan inertia:stop-ssr || true
