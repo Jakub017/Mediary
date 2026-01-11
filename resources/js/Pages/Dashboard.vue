@@ -105,6 +105,8 @@ var options = {
     },
     yaxis: {
         opposite: true,
+        min: (min) => min - 5,
+        max: (max) => max + 5,
     },
     legend: {
         horizontalAlign: "left",
@@ -147,6 +149,10 @@ var optionsHeart = {
     labels: props.blood_dates,
     xaxis: {
         type: "category",
+    },
+    yaxis: {
+        min: (min) => min - 10,
+        max: (max) => max + 10,
     },
 };
 

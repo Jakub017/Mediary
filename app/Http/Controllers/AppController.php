@@ -11,16 +11,18 @@ class AppController extends Controller
     {
         $user = $request->user();
         $files = $user->files()->orderBy('created_at', 'desc')->limit(5)->get();
-        $weights = $user->weights()->orderBy('date', 'asc')->limit(5)->pluck('weight');
-        $dates = $user->weights()->orderBy('date', 'asc')->limit(5)->pluck('date');
+        $weightsData = $user->weights()->orderBy('date', 'desc')->limit(5)->get()->sortBy('date');
+        $weights = $weightsData->pluck('weight');
+        $dates = $weightsData->pluck('date');
 
         $dates = $dates->map(function ($date) {
             return Carbon::parse($date)->format('d.m');
         });
 
-        $systolics = $user->blood_pressures()->orderBy('date', 'asc')->limit(5)->pluck('systolic');
-        $diastolics = $user->blood_pressures()->orderBy('date', 'asc')->limit(5)->pluck('diastolic');
-        $blood_dates = $user->blood_pressures()->orderBy('date', 'asc')->limit(5)->pluck('date');
+        $bloodData = $user->blood_pressures()->orderBy('date', 'desc')->limit(5)->get()->sortBy('date');
+        $systolics = $bloodData->pluck('systolic');
+        $diastolics = $bloodData->pluck('diastolic');
+        $blood_dates = $bloodData->pluck('date');
         $last_pressure = $user->blood_pressures()->orderBy('date', 'desc')->first();
 
         $blood_dates = $blood_dates->map(function ($date) {
